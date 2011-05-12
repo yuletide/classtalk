@@ -136,6 +136,21 @@ class GroupsController < ApplicationController
     #needs to return something API-like, yo
   end
   
+  #receive a POSTed email as a form from cloudmailin. figure out what to do with it.
+  def receive_email
+    message = Mail.new(params[:message])
+    if message.to.match(/group\+(\d+)@/) && @group = Group.find($1)
+      from = message.sender.address
+
+      if @sender = @group.students.find_by_email(from)
+        @group.send_message(@sender.name+": "+message.body.decoded,@sender)
+      elsif @group.user.email==from
+        @group.send_message(@group.user.display_name+": "+message.body.decoded,@group.user)
+      end
+    end
+    render :text => 'success', :status => 200
+  end
+  
   def load_groups
     @groups = current_user.groups.all
   end

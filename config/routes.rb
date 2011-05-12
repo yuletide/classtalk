@@ -3,6 +3,7 @@ HomeworkNotifier::Application.routes.draw do
   resources :groups do
     collection do
       post "receive_message"
+      post "receive_email"
     end
     member do
       post "send_message", :as=>:send_message_to
