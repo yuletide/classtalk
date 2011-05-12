@@ -10,3 +10,6 @@ FLOCKY_TOKEN,FLOCKY_USERNAME,FLOCKY_PASSWORD,FLOCKY_APPNUM
 These are the API token, username, password, and appnumber for your tropo app
 
 you can get your appnumber by visiting https://api.tropo.com/v1/applications
+
+on heroku, the following plugins are used:
+sendgrid, cloudmailin, cron
