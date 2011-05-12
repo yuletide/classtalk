@@ -13,3 +13,10 @@ you can get your appnumber by visiting https://api.tropo.com/v1/applications
 
 on heroku, the following plugins are used:
 sendgrid, cloudmailin, cron
+
+Setting up incoming email
+1) install the cloudmailin plugin on heroku
+2) look at 'heroku config' for your app, to get the username and password
+3) on cloudmailin.com, add the desired incoming domain as a custom domain
+4) on your DNS server, add 'clients.cloudmailin.net' as a CNAME for your desired subdomain/domain.
+resources: http://docs.cloudmailin.com/custom_domains, http://devcenter.heroku.com/articles/cloudmailin
