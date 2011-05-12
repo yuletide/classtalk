@@ -23,7 +23,7 @@ class Group < ActiveRecord::Base
     end
 
     #send message to non-sms recipients (email, for now)
-    other_recipients.each {|recip| NotificationMailer.notification_email(message,recip,self)}
+    other_recipients.each {|recip| NotificationMailer.notification_email(message,recip,self).deliver}
     
     #todo: also log these messages
   end
