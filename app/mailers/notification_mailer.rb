@@ -3,7 +3,7 @@ class NotificationMailer < ActionMailer::Base
     mail(:to=>user.email, 
       :from=>"group+#{group.id}@classtalk-staging.heroku.com",
       :subject=>"Update from #{group.title}",
-      :reply_to => env['CLOUDMAILIN_FORWARD_ADDRESS']) do |format|
+      :reply_to => ENV['CLOUDMAILIN_FORWARD_ADDRESS']) do |format|
       format.text {render :text=>message}
     end
   end
