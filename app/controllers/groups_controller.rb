@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_filter :authenticate_user!, :except=>[:receive_message, :receive_email]
-  before_filter :load_groups
+  before_filter :load_groups, :except =>[:receive_message, :receive_email]
 
   def index
     @groups = current_user.groups
