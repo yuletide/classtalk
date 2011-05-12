@@ -140,7 +140,7 @@ class GroupsController < ApplicationController
   def receive_email
     message = Mail.new(params[:message])
     if message.to.match(/group\+(\d+)@/) && @group = Group.find($1)
-      from = message.sender.address
+      from = message.from.first
 
       if @sender = @group.students.find_by_email(from)
         @group.send_message(@sender.name+": "+message.body.decoded,@sender)
