@@ -93,6 +93,44 @@ class GroupsController < ApplicationController
     end
   end
   
+  require 'csv'
+  def bulk_upload_students
+    @group = current_user.groups.find(params[:id])
+    
+    if !@group
+      #404 or something?
+      #return
+    end
+    
+    csv = CSV.parse(params[:upload][:csv].read)
+    
+    #in future: these might be programatically defined, and possibly merge multiple cells.
+    retrieve_procs = {
+      :name => lambda {|row| row[0]},
+      :phone_number => lambda {|row| row[1]},
+      :email => lambda {|row| row[2]}
+    }
+    
+    new_students=0
+    updated_students=0
+    
+    csv.each do |row|
+        #hash.merge(self) accomplishes a .map, but keeps us a hash, not an array.
+      given = retrieve_procs.merge(retrieve_procs) {|key,value_proc| value_proc[row]}
+      #TODO: we should check if this is ambiguous, instead of giving priority to the first.
+      @student = @group.students.where("name = ? OR phone_number = ? OR email = ?",*given.values_at(:name,:phone_number,:email)).first
+      
+      if @student
+        @student.update_attributes(given) #todo: check for errors
+        updated_students+=1
+      else
+        @student = @group.students.create(given) #todo: check for errors
+        new_students+=1
+      end
+
+    end
+    redirect_to @group, :notice=> "upload good" #helper.pluralize(new_students,"student") +" created and " + helper.pluralize(updated_students,"student") + "updated"
+  end
 
   #POST groups/:id/send_message, sends a message to all members of group
   def send_message

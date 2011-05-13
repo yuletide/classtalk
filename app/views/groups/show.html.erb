@@ -14,6 +14,17 @@
         <li>
           <%= link_to 'Add Member', new_group_student_path(@group), :class => 'button minor left margin_top' %>
         </li>
+        <li>
+          <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
+            <div class="field">
+              <%= label :upload, "csv" %><br />
+              <%= file_field :upload, "csv" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "upload CSV", :class => "button" %>
+            </div>
+          <%end%>
+        </li>
       </ul>
     <% end %>
 </div>

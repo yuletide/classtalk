@@ -146,6 +146,17 @@ describe GroupsController do
     end
   end
   
+  describe "bulk_update_students"
+    it "should accept a simply formatted, no-header CSV, with [name, phone, email], as a multipart-file" do
+    end
+    it "should add new students from CSV" do
+    end
+    it "should update matching names, phone numbers, or emails with new info from CSV" do
+    end
+    pending "should handle errors" do
+    end
+  end
+  
   describe "send_message" do
     before :each do
       #$outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
