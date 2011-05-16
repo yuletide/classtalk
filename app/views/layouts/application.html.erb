@@ -41,23 +41,26 @@
     <div id="logo" class="top_bar">
   		<a href="/" id="logo_text" class="lucky">ClassTalk</a>
     </div>
+    
     <div id="nav" class="top_bar">
       <% if current_user %>
-				<span id="welcome_user">Welcome, <%= current_user.name %></span>
-			<% end %>
-        <ul id="main_menu">
-            <h3>
-              <% if current_user %>
-                <li><%= link_to "Sign out", destroy_user_session_path %></li>
-        				<li><%= link_to "Profile", edit_profile_path %></li>
-        			<% else %>
-            		<li id="sign_in"><%= link_to('SIGN IN', new_user_session_path)%></li>
-        			<% end %>
-        			<li><%= link_to "Groups", groups_path %></li>
-              <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li>
-            </h3>
-        </ul>
-  </div>
+        <span id="welcome_user">Welcome, <%= current_user.name %></span>
+      <% end %>
+      <ul id="main_menu">
+        <h3>
+              
+          <% if user_signed_in? %>
+            <%= render "users/top_bar" %>
+          <% elsif admin_signed_in? %>
+            <%= render "admins/top_bar" %>
+          <% else %>
+            <%= render "layouts/default_top_bar" %>
+          <%end %>
+          <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li>
+          
+        </h3>
+      </ul>
+    </div>
 		<div id="main">
 			<div class="header">
 				<div class="title_text">
