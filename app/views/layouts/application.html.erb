@@ -3,13 +3,13 @@
  
 <html lang="en"> 
 <head> 
-	<title>Homework Notifier</title>  
+  <title>Homework Notifier</title>  
   <%= stylesheet_link_tag 'reset.css' %>
   <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'> 
   <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'> 
   <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:regular,bold' rel='stylesheet' type='text/css'> 
   <%= stylesheet_link_tag 'application.css' %>
-	<%= javascript_include_tag :all %>
+  <%= javascript_include_tag :all %>
   <%= csrf_meta_tag %>
 </head> 
 <body>
@@ -39,7 +39,7 @@
   </script>
   <div id="container"> 
     <div id="logo" class="top_bar">
-  		<a href="/" id="logo_text" class="lucky">ClassTalk</a>
+      <a href="/" id="logo_text" class="lucky">ClassTalk</a>
     </div>
     
     <div id="nav" class="top_bar">
@@ -61,20 +61,21 @@
         </h3>
       </ul>
     </div>
-		<div id="main">
-			<div class="header">
-				<div class="title_text">
-					<%= render :partial => 'layouts/breadcrumbs' %>
-				</div>
-			</div>
-			<div class="content">
-				<%= render :partial => 'layouts/notices' %>
-				<%= yield %>
-			</div>
-		</div>
+
+    <div id="main">
+      <div class="header">
+        <div class="title_text">
+          <%= render :partial => 'layouts/breadcrumbs' %>
+        </div>
+      </div>
+      <div class="content">
+        <%= render :partial => 'layouts/notices' %>
+        <%= yield %>
+      </div>
+    </div>
   </div>
   <div id="footer">
     <span>made by <a href="http://codeforamerica.org">Code for America</a> in partnership with the <a href="http://www.newurbanmechanics.org">City of Boston</a></span>
-	</div>
-</body> 
+  </div>
+</body>
 </html>
