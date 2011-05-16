@@ -28,6 +28,8 @@ HomeworkNotifier::Application.routes.draw do
       end
     end
   end
+  
+  resources :users
   # devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
   # The priority is based upon order of creation:
