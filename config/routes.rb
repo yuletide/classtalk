@@ -1,7 +1,7 @@
 HomeworkNotifier::Application.routes.draw do
   devise_for :admins
 
-  root :to => 'groups#index'
+  root :to => 'application#index'
   resources :groups do
     collection do
       post "receive_message"
