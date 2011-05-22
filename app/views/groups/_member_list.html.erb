@@ -6,7 +6,7 @@
     <div id="student_number">
         <span class="text_highlight"><%= PhoneValidator::OUTPUT_PRINTF%member.phone_number.scan(/\d/) if member.phone_number.present? %></span>
     </div>
-    <div>
+    <div id="student_email">
       <span class="text_highlight"><%= member.email %></span>
     </div>
 </span>

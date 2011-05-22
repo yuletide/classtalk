@@ -180,12 +180,16 @@ span:hover.text_highlight {
 	background-color: red;
 }
 #student_name {
-	margin-bottom: -10px;
 	font-weight: bold;
-	padding-top: 5px;
+	padding-top: 10px;
 }
 #student_number {
-	margin-top: 0px;
+	margin: 0px;
+	font-weight: normal;
+	line-height:12px;
+}
+#student_email {
+	margin: 0px;
 	font-weight: normal;
 }
 #remove_member {
