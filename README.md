@@ -20,3 +20,5 @@ Setting up incoming email
 3) on cloudmailin.com, add the desired incoming domain as a custom domain
 4) on your DNS server, add 'clients.cloudmailin.net' as a CNAME for your desired subdomain/domain.
 resources: http://docs.cloudmailin.com/custom_domains, http://devcenter.heroku.com/articles/cloudmailin
+
+[![Code for America Tracker](http://stats.codeforamerica.org/codeforamerica/homework_notifier.png)](http://stats.codeforamerica.org/projects/homework_notifier)
