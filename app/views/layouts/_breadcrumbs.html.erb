@@ -18,6 +18,8 @@
     			<span class="noclick">> Add Member</span>
     		<% end %>
     	<% end %>
+    <% elsif current_admin %>
+        <span class="noclick">Administrator</span>
     <% else %>
         <span class="noclick">Sign In</span>
     <% end %>
