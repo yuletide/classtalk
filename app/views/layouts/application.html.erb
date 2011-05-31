@@ -45,6 +45,8 @@
     <div id="nav" class="top_bar">
       <% if current_user %>
         <span id="welcome_user">Welcome, <%= current_user.name %></span>
+      <% elsif current_admin %>
+        <span id="welcome_user">Welcome, administrator</span>
       <% end %>
       <ul id="main_menu">
         <h3>
