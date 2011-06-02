@@ -506,6 +506,9 @@ span:hover.text_highlight {
 .noclick {
     cursor: default;
 }
+.message_row {
+	border-bottom: 1px solid #DDD;
+}
 #return_to_groups { height: 50px; clear: both; }
 .content{
 	padding: 15px 20px 20px 20px;
