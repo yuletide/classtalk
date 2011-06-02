@@ -35,7 +35,7 @@
         <h3 class="right">
             <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
         </h3>
-    </div
+    </div>
 </div>
 
 <%= form_for @group, :url=>send_message_to_group_path, :html=>{:method=>"post"} do |f| %>
