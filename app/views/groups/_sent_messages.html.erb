@@ -1,0 +1,7 @@
+<h3>Sent Messages</h3>
+  <table id="messages">
+  	<tr><th>Sent On</th><th>Message</th></tr>
+  	<% @messages.each do |message| %>
+  		<tr><td><h6><%=formatted_time(message.created_at) %></h6></td><td><h6><%= message.message %></h6></td></tr>
+  	<%end%>
+  </table>
