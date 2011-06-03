@@ -11,6 +11,8 @@ These are the API token, username, password, and appnumber for your tropo app
 
 you can get your appnumber by visiting https://api.tropo.com/v1/applications
 
+App domain classtalk.org redirects from heroku URL using heroku config variable. To set the key APP_DOMAIN use: heroku config:add APP_DOMAIN=your.domain.com --app <heroku-appname>
+
 on heroku, the following plugins are used:
 sendgrid, cloudmailin, cron
 
