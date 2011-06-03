@@ -50,5 +50,5 @@ HomeworkNotifier::Application.configure do
   config.action_mailer.default_url_options = { :host => 'classtalk.heroku.com' }
   
   config.time_zone = "Eastern Time (US & Canada)"
-  
+    
 end
