@@ -159,8 +159,7 @@ describe GroupsController do
   
   describe "send_message" do
     before :each do
-      #$outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
-      sign_out controller.current_user
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
     end
     
     it "should send a message to all group members" do
@@ -169,6 +168,7 @@ describe GroupsController do
     it "should send a message delayed-like" do
       #@group.should_receive(:delay) {@group} #I don't know how to test this properly - @group here won't receive the message - createds-in-crontroller-@group inside the controller will
       post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"1999",:month=>"12",:day=>"31",:hour=>"23"}}
+      Delayed::Worker.new.work_off #send the delayed message
     end
     
     it "should log the message" do
