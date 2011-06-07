@@ -157,7 +157,7 @@ class GroupsController < ApplicationController
   def receive_message
     params[:incoming_number] = $1 if params[:incoming_number]=~/^1(\d{10})$/
     params[:origin_number] = $1 if params[:origin_number]=~/^1(\d{10})$/
-    @group=current_user.groups.find_by_phone_number(params[:incoming_number])
+    @group=Group.find_by_phone_number(params[:incoming_number])
     
     if @group
       sent_by_admin=@group.user.phone_number==params[:origin_number]
