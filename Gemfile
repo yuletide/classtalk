@@ -9,7 +9,6 @@ gem 'flocky', :git => 'git://github.com/codeforamerica/flocky.git'
 gem 'delayed_job'
 gem 'sqlite3'
 gem 'json'
-gem "compass", ">= 0.10.6"
 gem "devise"
 gem "httpclient"
 gem 'jquery-rails', '>= 0.2.6'
