@@ -146,7 +146,7 @@ describe GroupsController do
     end
   end
   
-  describe "bulk_update_students"
+  describe "bulk_update_students" do
     it "should accept a simply formatted, no-header CSV, with [name, phone, email], as a multipart-file" do
     end
     it "should add new students from CSV" do
@@ -160,6 +160,7 @@ describe GroupsController do
   describe "send_message" do
     before :each do
       #$outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
+      sign_out controller.current_user
     end
     
     it "should send a message to all group members" do
@@ -179,6 +180,10 @@ describe GroupsController do
   end
   
   describe "receive_message" do
+    before :each do
+      sign_out controller.current_user
+    end
+    
     it "should log the message" do
       $outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
       expect {
