@@ -28,7 +28,9 @@ describe Group do
       @group.students << @email_student
     end
     it "should send emails to users without phone numbers" do
-      NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group)
+    	mailer = mock(:mail)
+    	mailer.should_receive(:deliver)
+      NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
       @group.send_message("test message",@group.user)
     end
   end
