@@ -184,12 +184,7 @@ describe GroupsController do
       sign_out controller.current_user
     end
     
-    it "should log the message" do
-      $outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
-      expect {
-        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send now"}
-      }.to change(LoggedMessage,:count).by(@group.students.count)
-      LoggedMessage.last.message.should match("test message")
+    pending "should log the message" do
     end
     
     describe "if teacher does have phone number" do
