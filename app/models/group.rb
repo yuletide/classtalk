@@ -11,10 +11,9 @@ class Group < ActiveRecord::Base
   
   def send_message(message,sending_person,recipients=nil)
     recipients ||= students+[user] - [sending_person]
-    sms_recipients,other_recipients = recipients.partition {|r| r.phone_number.present?} #in future, partition based on notification preferences AND availability of notifications
     
     #send sms messages to sms recipients
-    numbers = sms_recipients.map(&:phone_number)
+    numbers = recipients.map(&:phone_number).compact
     $outbound_flocky.message phone_number, message, numbers
     
     #log sms poutputs
@@ -23,7 +22,7 @@ class Group < ActiveRecord::Base
     end
 
     #send message to non-sms recipients (email, for now)
-    other_recipients.each {|recip| NotificationMailer.notification_email(message,recip,self).deliver}
+    recipients.select {|r| r.email.present?}.each {|recip| NotificationMailer.notification_email(message,recip,self).deliver}
     
     #todo: also log these messages
   end
