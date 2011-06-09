@@ -177,14 +177,16 @@ class GroupsController < ApplicationController
   #receive a POSTed email as a form from cloudmailin. figure out what to do with it.
   def receive_email
     message = Mail.new(params[:message])
+    
       #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if message.to.any? {|address| address.match(/group\+(\d+)@/)} && @group = Group.find($1)
       from = message.from.first
+      body = message.body.decoded.gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
 
       if @sender = @group.students.find_by_email(from)
-        @group.send_message(@sender.name+": "+message.body.decoded,@sender,[@group.user])
+        @group.send_message(@sender.name+": "+body,@sender,[@group.user])
       elsif @group.user.email==from
-        @group.send_message(@group.user.display_name+": "+message.body.decoded,@group.user)
+        @group.send_message(@group.user.display_name+": "+body,@group.user)
       end
     end
     render :text => 'success', :status => 200
