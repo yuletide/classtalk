@@ -205,9 +205,32 @@ describe GroupsController do
       end
     end
     describe "if teacher does not have phone number" do
-      pending "if sent from student...it disappears?" do
+      pending "is sent to email" do
       end
     end
+  end
+  
+  describe "receive_email" do
+    before :each do
+      sign_out controller.current_user
+      @group.user.update_attribute(:phone_number, @teacher_num="5551234567")
+      @from_email="from@fromemail.com"
+      @params = {"html"=>"", "from"=>@from_email,"x_to_header"=>"[\"group+1@mail.staging.classtalk.org\"]", "plain"=>"a returning message\n\nOn Thu, Jun 9, 2011 at 1:13 AM,  <group+1@mail.staging.classtalk.org> wrote:\n> user1: a testing message\n>", "disposable"=>"1", "signature"=>"05977d0872091de8114af47950ee403f", "subject"=>"Re: Update from example group", "to"=>"<group+1@mail.staging.classtalk.org>", "x_cc_header"=>"[\"user+moartest@codeforamerica.org\"]", "message"=>"Received: by bwz16 with SMTP id 16so1211960bwz.4\r\n        for <group+1@mail.staging.classtalk.org>; Thu, 09 Jun 2011 01:13:32 -0700 (PDT)\r\nMIME-Version: 1.0\r\nReceived: by 10.204.22.197 with SMTP id o5mr434729bkb.68.1307607211820; Thu,\r\n 09 Jun 2011 01:13:31 -0700 (PDT)\r\nReceived: by 10.205.65.198 with HTTP; Thu, 9 Jun 2011 01:13:31 -0700 (PDT)\r\nIn-Reply-To: <4df080925871c_13f9c87c7a1388633f@e1f5f000-4ff7-415d-b21f-afe6950e9a31.mail>\r\nReferences: <4df080925871c_13f9c87c7a1388633f@e1f5f000-4ff7-415d-b21f-afe6950e2011-06-09T08:13:34+00:00 app[web.1]: 9a31.mail>\r\nDate: Thu, 9 Jun 2011 01:13:31 -0700\r\nMessage-ID: <BANLkTind+aaGnUmfy2R2Egsy1YVysRg-Dw@mail.gmail.com>\r\nSubject: Re: Update from example group\r\nFrom: the guy <#{@from_email}>\r\nTo: group+1@mail.staging.classtalk.org\r\nCc: user+moartest@codeforamerica.org\r\nContent-Type: text/plain; charset=ISO-8859-1\r\n\r\na returning message\r\n\r\nOn Thu, Jun 9, 2011 at 1:13 AM,  <group+1@mail.staging.classtalk.org> wrote:\r\n> user1: a testing message\r\n>"}
+      @group.students << Factory.create(:student,:email=>@student_email)
+    end
+    
+    it "if sent from student, should send a message to teacher, and only the teacher" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,[@teacher_num])
+      @group.students << Factory.create(:student,:email=>@from_email)
+      post :receive_email, @params
+    end
+    
+    it "if sent from teacher, should send to whole group" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,@group.students.map(&:phone_number).compact)
+      @group.user.update_attribute(:email,@from_email)
+      post :receive_email, @params
+    end
+    
   end
   
 end
