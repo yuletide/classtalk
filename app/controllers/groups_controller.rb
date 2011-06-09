@@ -182,7 +182,7 @@ class GroupsController < ApplicationController
       from = message.from.first
 
       if @sender = @group.students.find_by_email(from)
-        @group.send_message(@sender.name+": "+message.body.decoded,@sender)
+        @group.send_message(@sender.name+": "+message.body.decoded,@sender,[@group.user])
       elsif @group.user.email==from
         @group.send_message(@group.user.display_name+": "+message.body.decoded,@group.user)
       end
