@@ -231,6 +231,13 @@ describe GroupsController do
       post :receive_email, @params
     end
     
+    it "should strip out older messages that are being replied to" do
+      @group.user.update_attribute(:email,@from_email)
+      post :receive_email, @params
+      LoggedMessage.last.message.should match /a returning message/
+      LoggedMessage.last.message.should_not match /a testing message/
+    end
+    
   end
   
 end
