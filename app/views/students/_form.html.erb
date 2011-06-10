@@ -11,15 +11,15 @@
 <% end %>
 <div class="field">
 <%= f.label :name %><br />
-<%= f.text_field :name, :class => 'ajax_edit student' %>
+<%= f.text_field :name, :class => 'ajax_edit student', :title => "Name" %>
 </div>
 <div class="field">
 <%= f.label :phone_number %><br />
-<%= f.text_field :phone_number, :class => 'ajax_edit number' %>
+<%= f.text_field :phone_number, :class => 'ajax_edit number', :title => "Mobile phone" %>
 </div>
 <div class="field">
   <%= f.label :email %><br />
-  <%= f.text_field :email, :class => "ajax_edit" %>
+  <%= f.text_field :email, :class => "ajax_edit", :title => "Email" %>
 </div>
 <% #TODO: groups/memberships%>
 <%= link_to 'Cancel', group_path(@group), :class => "button secondary minor margin_top" %>

@@ -93,6 +93,9 @@ input.membership_field { width: 315px;}
 input.infield_form_label {
 	color: grey;
 }
+input.infield_form_label.focused {
+	color: black;
+}
 input.ajax_edit{
 	font-family: 'Josefin Sans', arial, serif;
 	font-weight: bold;
