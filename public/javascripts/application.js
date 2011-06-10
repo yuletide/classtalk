@@ -11,22 +11,24 @@ $(document).ready(function() {
 		$("#edit_student_"+id).hide();
 		$("#student_info_"+id).show();
 	});
-	// $('.email_form input[email]').each(function() {
-	//         $thisInput = $(this);
-	//         if ($thisInput.val() == '') {
-	//             $thisInput.val($thisInput.attr('title'));
-	//         }
-	//         
-	//         $thisInput.focus(function() {
-	//             if ($(this).val() === $(this).attr('title')) {
-	//                 $(this).val('').addClass('focused');
-	//             }
-	//         });
-	//         
-	//         $thisInput.blur(function() {
-	//             if ($(this).val() === '') {
-	//                 $(this).val($(this).attr('title')).removeClass('focused');
-	//             }
-	//         });
-	// });
+	
+	//Puts field title in form field
+	$('.infield_form_label').each(function() {
+		$thisInput = $(this);
+		if ($thisInput.val() == '') {
+			$thisInput.val($thisInput.attr('title'));
+		}
+	        
+		$thisInput.focus(function() {
+			if ($(this).val() === $(this).attr('title')) {
+				$(this).val('').addClass('focused');
+			}
+		});
+	        
+		$thisInput.blur(function() {
+			if ($(this).val() === '') {
+				$(this).val($(this).attr('title')).removeClass('focused');
+			}
+		});
+	});
 });

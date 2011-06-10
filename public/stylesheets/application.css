@@ -90,6 +90,9 @@ input.last { margin-bottom: 5px; }
 label { color: dimGray; }
 input.first{ margin-top: 30px; }
 input.membership_field { width: 315px;}
+input.infield_form_label {
+	color: grey;
+}
 input.ajax_edit{
 	font-family: 'Josefin Sans', arial, serif;
 	font-weight: bold;

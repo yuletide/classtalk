@@ -1,9 +1,9 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <p><%= f.label :email%><br />
-  <%= f.email_field :email, :class => "email_form", :title => "Email" %></p>
+  <%= f.email_field :email, :class => "", :title => "Email" %></p>
 
   <p><%= f.label :password %><br />
-  <%= f.password_field :password, :class => 'last' %></p>
+  <%= f.password_field :password, :class => 'last', :title => "Password" %></p>
 
   <%= render :partial => "devise/shared/links" %>
 
