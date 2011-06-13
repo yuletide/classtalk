@@ -18,8 +18,8 @@
         <li>
           <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
             <div class="field">
-              <%= label :upload, "Bulk Add Members (CSV)" %><br />
-              <%= file_field :upload, "Bulk Add Members" %>
+              <%= label :upload, "Bulk Add Members (CSV)", :for=>"upload[csv]" %><br />
+              <%= file_field :upload, :csv %>
             </div>
             <div class="actions">
               <%= f.submit "Upload CSV", :class => 'button minor left margin_top' %>
