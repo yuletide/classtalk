@@ -565,19 +565,23 @@ span:hover.text_highlight {
 	position: relative;
 	width: 940px;
 	height: 20px;
+	padding-top: 5px;
 	margin-left: -470px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	left: 50%;
 	text-align: center;
 	line-height: 20px;
 	font-size: 10px;
-	background-color: #808080;
-	color: #cccccc;
+	color: #a5a5a5;
 	font-family: 'Helvetica';
 	clear: both;
 	border-radius: 0px 0px 8px 8px;
 }
 #footer a {
+	text-decoration: none;
+	color: #a5a5a5;
+}
+#footer a:hover {
 	text-decoration: none;
 	color: white;
 }
