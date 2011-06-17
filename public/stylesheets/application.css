@@ -6,7 +6,7 @@
 -------------------------------------------------------------- */
 
 body {
-  background: #E3E3E3;
+  background: url('../images/bg.png') repeat right;
   font-size: 20px;
   font-family: 'Josefin Sans';
   font-weight: bold;
@@ -85,6 +85,7 @@ input[type="password"], input[type="email"], input[type="text"]{
 	font-size: 1.1em;
 	padding: 7px;
 	margin-bottom: 20px;
+	background-color: #f5f5f5;
 }
 input.last { margin-bottom: 5px; }
 label { color: dimGray; }
@@ -291,7 +292,7 @@ span:hover.text_highlight {
 	margin: 0 0px 10px 0;
 	padding-left: 15px;
 	float: left;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #8a8a8a;
 	border-radius: 0px 0px 0px 8px;
 /*	background-image: url('/images/phone.png');
 	background-repeat: no-repeat;*/
@@ -302,20 +303,20 @@ span:hover.text_highlight {
 	height: 50px; /*should be 75*/
 	margin: 0 0 10px 0px;
 	float: left;
-	border-bottom: 1px solid gray;
+	border-bottom: 1px solid #8a8a8a;
 	padding-right: 20px;
 	border-radius: 0px 0px 8px 0px;
 }
 .top_bar {
 	/* fallback */
-	  background-color: #696969;
+	  background-color: #8f8f8f;
 	  /* Firefox 3.6+ */
-	  background: -moz-linear-gradient(100% 100% 90deg, #696969, #727272);
+	  background: -moz-linear-gradient(100% 100% 90deg, #8f8f8f, #a0a0a0);
 	  /* Safari 4-5, Chrome 1-9 */
 	   -webkit-gradient(<type>, <point> [, <radius>]?, <point> [, <radius>]? [, <stop>]*) 
-	  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#696969), to(#727272));
+	  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8f8f8f), to(#a0a0a0));
 	  /* Safari 5.1+, Chrome 10+ */
-	  background: -webkit-linear-gradient(#696969, #727272);*/	
+	  background: -webkit-linear-gradient(#8f8f8f, #a0a0a0);
 }
 #welcome_user {
 	font-size: 14px;
@@ -397,11 +398,15 @@ span:hover.text_highlight {
 }*/
 #main {
   margin: 2px 10px 0px 0px;
-  background-color: #fff;
+  background-color: #f7f7f7;
   float: left;
   width: 940px;
   min-height: 610px;
-	border-radius: 8px 8px 0px 0px;
+	border-radius: 8px 8px 8px 8px;
+	border: 1px solid #b5b5b5;
+	-moz-box-shadow: 0px 2px 5px 2px #C6C6C6;
+	-webkit-box-shadow: 0px 2px 5px 2px #C6C6C6;
+	box-shadow: 0px 2px 5px 2px #C6C6C6;
 }
 .header{
   width: 920px;
@@ -409,7 +414,7 @@ span:hover.text_highlight {
 }
 #main .header{
   background-color: #FAA644;
-  padding: 10px;
+  padding: 5px 10px 5px 10px;
 	border-radius: 8px 8px 0px 0px;
 }
 #sidebar .header{
@@ -463,9 +468,9 @@ span:hover.text_highlight {
 }
 .group_list_item:hover {
 	text-decoration: none;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ffffff'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#fff)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #dfdfdf,  #fff); /* for firefox 3.6+ */
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#F7F7F7'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#F7F7F7)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #dfdfdf,  #F7F7F7); /* for firefox 3.6+ */
 }
 .group_list a {
 	text-decoration: none;
