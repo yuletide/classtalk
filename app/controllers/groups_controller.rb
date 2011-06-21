@@ -164,7 +164,11 @@ class GroupsController < ApplicationController
       @sending_student = @group.students.find_by_phone_number(params[:origin_number])
       @sending_person = sent_by_admin ? @group.user : @sending_student
       
-      if @sending_person
+      #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
+      if params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
+        @group.send_message("You have been removed from phone notifications",nil,[@sending_student])
+        @sending_student.update_attribute(:phone_number,nil)
+      elsif @sending_person
         message = (sent_by_admin ? @group.user.display_name : @sending_student.name)+": "+params[:message]
         @group.send_message(message,@sending_person, sent_by_admin ? @group.students : [@group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
       end

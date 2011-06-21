@@ -187,6 +187,13 @@ describe GroupsController do
     pending "should log the message" do
     end
     
+    it "should disable student if they text '#removeme'" do
+      @group.students.first.phone_number.should_not be_nil
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/removed/,[@group.students.first.phone_number])
+      post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"#removeme"}
+      @group.students.first.phone_number.should be_nil
+    end
+    
     describe "if teacher does have phone number" do
       before :each do
         @group.user.phone_number = @teacher_num = "5551234567"
