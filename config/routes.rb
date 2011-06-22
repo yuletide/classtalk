@@ -18,7 +18,7 @@ HomeworkNotifier::Application.routes.draw do
   resources :students
 
   # devise_for :users
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock'}, :skip=>:registrations
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register'}
   
   as :user do
     scope "/users" do
