@@ -58,6 +58,76 @@ a.button.minor, input.button.minor {
 a.button.minor.margin_top, input.button.minor.margin_top {
 	margin-top: 15px;
 }
+a.button.sign_up {
+	-webkit-appearance: none;
+    -webkit-box-align: center;
+    -webkit-box-shadow: rgb(44, 124, 209) 0px 0px 0px 1px inset, rgba(143, 228, 255, 0.597656) 0px 1px 0px 1px inset, rgba(143, 228, 255, 0.648438) 0px 28px 20px -18px inset, rgb(47, 148, 255) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.5) 0px 2px 5px 0px;
+	-moz-box-shadow: rgb(44, 124, 209) 0px 0px 0px 1px inset, rgba(143, 228, 255, 0.597656) 0px 1px 0px 1px inset, rgba(143, 228, 255, 0.648438) 0px 28px 20px -18px inset, rgb(47, 148, 255) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.5) 0px 2px 5px 0px;
+    -webkit-font-smoothing: antialiased;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #2E8CF0;
+    background-image: none;
+    background-origin: padding-box;
+    border-bottom-color: white;
+    border-radius: 25px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-left-color: white;
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: white;
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: white;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    letter-spacing: normal;
+    line-height: 40px;
+    margin-bottom: 0px;
+    margin-left: 325px;
+    margin-right: 0px;
+    margin-top: 230px;
+    outline-color: white;
+    outline-style: none;
+    outline-width: 0px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 4px;
+    text-align: center;
+    text-indent: 0px;
+    text-shadow: rgba(0, 0, 0, 0.199219) 0px -1px 0px;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: nowrap;
+	width: 250px;
+    word-spacing: 0px;
+    zoom: 1;
+	
+}
+a.button.sign_up:active {
+	-webkit-border-radius:22px;
+	-moz-border-radius:22px;
+	border-radius:22px;
+	-webkit-box-shadow:0 0 0 2px #bebfc2 inset,0 2px 0 0 rgba(0,0,0,0.05) inset,0 -37px 25px -26px rgba(255,255,255,0.3) inset,0 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow:0 0 0 2px #bebfc2 inset,0 2px 0 0 rgba(0,0,0,0.05) inset,0 -37px 25px -26px rgba(255,255,255,0.3) inset,0 1px 2px 0 rgba(0,0,0,0.5);
+}
+.arrow_lets_go {
+	font-size: 18px;
+	margin-left: 5px;
+}
 textarea {
 	resize: none;
 	border: 1px solid #aaaaaa;
@@ -548,6 +618,72 @@ span:hover.text_highlight {
 }
 #users_table{
 	clear: both;
+}
+button[type="sign_up"] {
+	-webkit-appearance: none;
+    -webkit-box-align: center;
+    -webkit-box-shadow: rgb(44, 124, 209) 0px 0px 0px 1px inset, rgba(143, 228, 255, 0.597656) 0px 1px 0px 1px inset, rgba(143, 228, 255, 0.648438) 0px 28px 20px -18px inset, rgb(47, 148, 255) 0px 0px 0px 2px inset, rgba(0, 0, 0, 0.5) 0px 2px 5px 0px;
+    -webkit-font-smoothing: antialiased;
+    background-attachment: scroll;
+    background-clip: border-box;
+    background-color: #2E8CF0;
+    background-image: none;
+    background-origin: padding-box;
+    border-bottom-color: white;
+    border-radius: 25px;
+    border-bottom-style: none;
+    border-bottom-width: 0px;
+    border-left-color: white;
+    border-left-style: none;
+    border-left-width: 0px;
+    border-right-color: white;
+    border-right-style: none;
+    border-right-width: 0px;
+    border-top-color: white;
+    border-top-style: none;
+    border-top-width: 0px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 25px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    letter-spacing: normal;
+    line-height: 40px;
+    margin-bottom: 0px;
+    margin-left: 325px;
+    margin-right: 0px;
+    margin-top: 230px;
+    outline-color: white;
+    outline-style: none;
+    outline-width: 0px;
+    overflow-x: visible;
+    overflow-y: visible;
+    padding-bottom: 4px;
+    padding-left: 20px;
+    padding-right: 15px;
+    padding-top: 4px;
+    text-align: center;
+    text-indent: 0px;
+    text-shadow: rgba(0, 0, 0, 0.199219) 0px -1px 0px;
+    text-transform: none;
+    vertical-align: middle;
+    white-space: nowrap;
+	width: 250px;
+    word-spacing: 0px;
+    zoom: 1;
+}
+#sign_up:active {
+	-webkit-border-radius:4px;
+	-moz-border-radius:4px;
+	border-radius:4px;
+	-webkit-box-shadow:0 0 0 1px #bebfc2 inset,0 2px 0 0 rgba(0,0,0,0.05) inset,0 -28px 20px -18px #fff inset,0 1px 2px 0 #fff;-moz-box-shadow:0 0 0 1px #bebfc2 inset,0 2px 0 0 rgba(0,0,0,0.05) inset,0 -28px 20px -18px #fff inset,0 1px 2px 0 #fff
+}
+.splash {
+	background: url('../images/classtalk_splash.png') center no-repeat;
 }
 #left_column{
   width: 520px;

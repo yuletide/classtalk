@@ -41,7 +41,6 @@
     <div id="logo" class="top_bar">
       <a href="/" id="logo_text" class="lucky">ClassTalk</a>
     </div>
-    
     <div id="nav" class="top_bar">
       <% if current_user %>
         <span id="welcome_user">Welcome, <%= current_user.name %></span>
@@ -50,7 +49,6 @@
       <% end %>
       <ul id="main_menu">
         <h3>
-              
           <% if user_signed_in? %>
             <%= render "users/top_bar" %>
           <% elsif admin_signed_in? %>
@@ -58,26 +56,30 @@
           <% else %>
             <%= render "layouts/default_top_bar" %>
           <%end %>
-          <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li>
-          
+          <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li> 
         </h3>
       </ul>
-    </div>
-
-    <div id="main">
-      <div class="header">
-        <div class="title_text">
-          <%= render :partial => 'layouts/breadcrumbs' %>
-        </div>
-      </div>
-      <div class="content">
-        <%= render :partial => 'layouts/notices' %>
-        <%= yield %>
-      </div>
-    </div>
-    <div id="footer">
-              <span>made by <a href="http://codeforamerica.org">Code for America</a> in partnership with the <a href="http://www.newurbanmechanics.org">City of Boston</a></span>
+    </div>        
+    <% if (params[:action] == 'splash') %>
+        <div id="main" class="splash">
+    <% else %>
+        <div id="main">
+            <div class="header">
+                <div class="title_text">
+                    <%= render :partial => 'layouts/breadcrumbs' %>
+                </div>
             </div>
+    <% end %>
+            <div class="content">
+                <%= render :partial => 'layouts/notices' %>
+                <%= yield %>
+            </div>
+        </div>
+    <div id="footer">
+              <span>
+                  made by <a href="http://codeforamerica.org">Code for America</a> in partnership with the <a href="http://www.newurbanmechanics.org">City of Boston</a>
+              </span>
+    </div>
   </div>
 
   <!-- begin olark code -->
