@@ -55,6 +55,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def bulk_create
+    #expects a list of email addresses, either in text or in an uploaded file
+    #creates users for each address
+    email_text = params[:upload_file].present? ? params[:upload_file] : params[:emails]
+    
+    successful_creates = email_text.split("\n").map do |email|
+      User.create(:email=>email)
+    end.count(true)
+    
+    if successful_creates > 0
+      format.html { redirect_to(users_url, :notice => "#{successful_creates} users wer successfully created.") }
+    else
+      #TODO: redirect to appropriate place
+    end
+  end
+
   # PUT /users/1
   # PUT /users/1.xml
   def update
