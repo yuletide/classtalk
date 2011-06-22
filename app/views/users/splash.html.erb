@@ -1,5 +1,7 @@
-<%= link_to new_user_session_path, {:class => "button sign_up"} do %>
-  Sign up now<span class="arrow_lets_go"> ▶</span>
+<%= link_to new_registration_path(:user), {:class => "button sign_up"} do %>
+  Sign up now<span class="arrow_sign_up"> ▶</span>
 <% end %>
 
-Learn more ▶
+<%= link_to new_registration_path(:user), {:class => "splash_sub_action"} do %>
+  Learn more about ClassTalk<!-- <span class="arrow_learn_more">▶</span> -->
+<% end %>
