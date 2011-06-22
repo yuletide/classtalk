@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
       else
         #TODO: find a better, less API-intensive way to ensure we don't abuse our tropo provisioning
         if @group.phone_number.nil?
-          @group.errors[:phone_number] = ["could not provision phone number at this time"]
+          @group.errors[:phone_number] = ["Could not provision phone number at this time. Please try again later."]
         else
           destroy_phone_number(@group.phone_number)
           @group.phone_number=nil
@@ -166,7 +166,7 @@ class GroupsController < ApplicationController
       
       #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
       if params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
-        @group.send_message("You have been removed from phone notifications",nil,[@sending_student])
+        @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
         @sending_student.update_attribute(:phone_number,nil)
       elsif @sending_person
         message = (sent_by_admin ? @group.user.display_name : @sending_student.name)+": "+params[:message]
