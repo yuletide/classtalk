@@ -37,29 +37,26 @@
 
     var feedback_widget = new GSFN.feedback_widget(feedback_widget_options);
   </script>
-  <div id="container"> 
-    <div id="logo" class="top_bar">
-      <a href="/" id="logo_text" class="lucky">ClassTalk</a>
-    </div>
-    <div id="nav" class="top_bar">
-      <% if current_user %>
-        <span id="welcome_user">Welcome, <%= current_user.name %></span>
-      <% elsif current_admin %>
-        <span id="welcome_user">Welcome, administrator</span>
-      <% end %>
-      <ul id="main_menu">
-        <h3>
-          <% if user_signed_in? %>
-            <%= render "users/top_bar" %>
-          <% elsif admin_signed_in? %>
-            <%= render "admins/top_bar" %>
-          <% else %>
-            <%= render "layouts/default_top_bar" %>
-          <%end %>
-          <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li> 
-        </h3>
-      </ul>
-    </div>        
+  <div id="container">
+      <div class="top_bar">
+          <div id="logo">
+              <a href="/" id="logo_text" class="lucky">ClassTalk</a>
+          </div>
+          <div id="nav">
+              <ul id="main_menu">
+                  <h3>
+                    <% if user_signed_in? %>
+                        <%= render "users/top_bar" %>
+                    <% elsif admin_signed_in? %>
+                        <%= render "admins/top_bar" %>
+                    <% else %>
+                        <%= render "layouts/default_top_bar" %>
+                    <%end %>
+                    <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li> 
+                  </h3>
+              </ul>
+          </div>        
+      </div>
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
     <% else %>
