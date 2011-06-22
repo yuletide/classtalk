@@ -54,7 +54,7 @@ class GroupsController < ApplicationController
       else
         #TODO: find a better, less API-intensive way to ensure we don't abuse our tropo provisioning
         if @group.phone_number.nil?
-          @group.errors[:phone_number] = ["could not provision phone number at this time"]
+          @group.errors[:phone_number] = ["Could not provision phone number at this time. Please try again later."]
         else
           destroy_phone_number(@group.phone_number)
           @group.phone_number=nil
