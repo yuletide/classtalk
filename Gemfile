@@ -9,14 +9,14 @@ gem 'flocky', :git => 'git://github.com/codeforamerica/flocky.git'
 gem 'delayed_job'
 gem 'sqlite3'
 gem 'json'
-gem "devise"
-gem "httpclient"
+gem 'devise'
+gem 'httpclient'
 gem 'jquery-rails', '>= 0.2.6'
 
 group :test, :development do
-  gem "rspec-rails", "~> 2.4"
-  gem "factory_girl_rails"
-  gem "simplecov"
+  gem 'rspec-rails', '~> 2.4'
+  gem 'factory_girl_rails'
+  gem 'simplecov'
 end
 
 # Use unicorn as the web server
