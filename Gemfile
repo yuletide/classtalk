@@ -10,7 +10,7 @@ gem 'delayed_job'
 gem 'sqlite3'
 gem 'json'
 gem 'devise'
-gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem 'httpclient'
 gem 'jquery-rails', '>= 0.2.6'
 
