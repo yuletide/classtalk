@@ -11,8 +11,13 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :name, :display_name, :phone_number
-  
-  validates_presence_of :name
+
+  validates_presence_of :first_name
+  validates_presence_of :last_name
   validates_presence_of :display_name
   validates_phone_number :phone_number, :allow_nil=>true, :allow_blank=>true
+
+  def name
+    [first_name, last_name].compact.join(' ')
+  end
 end
