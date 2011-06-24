@@ -1,7 +1,7 @@
 <div class="left">
   <h2>Edit Account</h2>
 
-  <%= form_for(resource, :as => resource_name, :url => profile_path(resource_name), :html => { :method => :put }) do |f| %>
+  <%= form_for(resource, :as => resource_name, :url => profile_path, :html => { :method => :put }) do |f| %>
     <%= devise_error_messages! %>
 
     <fieldset>
