@@ -1,23 +1,18 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <p><%= f.label :email%><br />
+  <p><%= f.label :email%>
   <%= f.email_field :email, :class => "", :title => "Email" %></p>
 
-  <p><%= f.label :password %><br />
+  <p><%= f.label :password %>
   <%= f.password_field :password, :class => 'last', :title => "Password" %></p>
 
   <%= render :partial => "devise/shared/links" %>
 
   <% if devise_mapping.rememberable? -%>
-    <h5><%= f.check_box :remember_me, :class => "first" %> <%= f.label :remember_me%></h5>
+    <%= f.check_box :remember_me, :class => "first" %> <%= f.label :remember_me%>
   <% end -%>
     <% if devise_mapping.name == :admin %>
       <p><br><%= f.submit "Admin Sign In", :class => "button" %></p>
     <% else %>
         <p><%= f.submit "Sign In", :class => "button" %></p>
     <% end %>
-<% end %>
-<br><br><br><br><br>
-
-<% if devise_mapping.name == :user %>
-  <h5><%= link_to('Admin?', new_admin_session_path, :class => "right")%></h5>
 <% end %>

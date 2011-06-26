@@ -20,6 +20,8 @@
     	<% end %>
     <% elsif current_admin %>
         <span class="noclick">Administrator</span>
+    <% elsif (params[:controller] == 'registrations') %>
+        <span class="noclick">Sign Up</span>
     <% else %>
         <span class="noclick">Sign In</span>
     <% end %>
