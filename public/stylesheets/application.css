@@ -179,7 +179,6 @@ input:focus[type="password"], input:focus[type="email"], input:focus[type="text"
 }
 input.last { margin-bottom: 5px; }
 label { color: dimGray; }
-input.first{ margin-top: 30px; }
 input.membership_field { width: 315px;}
 input.infield_form_label {
 	color: grey;
