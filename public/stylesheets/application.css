@@ -175,10 +175,10 @@ input:focus[type="password"], input:focus[type="email"], input:focus[type="text"
     -webkit-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
     -moz-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
 }
-input.last { margin-bottom: 5px; }
+input.last { margin-bottom: 20px; }
 input.membership_field { width: 315px;}
 input.infield_form_label {
-	color: grey;
+	color: #c5c5c5;
 }
 label {
 	color: #575757;
@@ -196,11 +196,11 @@ label {
 	color: #a9a9a9;
 	margin: 1px 0px 0px 4px;
 }
-#user_first_name {
-	width: 150px;
+#user_first_name, #user_last_name, #user_password, #user_password_confirmation {
+	width: 160px;
 }
-#user_last_name {
-	width: 150px;
+#signup_form_wrap {
+	width: 350px;
 }
 input.infield_form_label.focused {
 	color: black;
@@ -238,9 +238,10 @@ span:hover.text_highlight {
 	background-color: #FFFFD3;
 }
 .session_link {
-	font-size: 10pt;
+	font-size: 9pt;
 	font-family: helvetica, arial, sans-serif;
 	font-weight: normal;
+	display: block;
 }
 .formwrap {
 	border: 8px solid #d3d3d3;
