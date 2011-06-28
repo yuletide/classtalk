@@ -1,6 +1,6 @@
-<% if notice.present? %>
-	<div class="flash" id="notice"><%= notice %></div>
+<% if flash[:notice].present? %>
+	<div class="flash" id="notice"><%= flash[:notice] %></div>
 <% end %>
-<% if alert.present? %>
-	<div class="flash" id="alert"><%= alert %></div>
+<% if flash[:alert].present? %>
+	<div class="flash" id="alert"><%= flash[:alert] %></div>
 <% end %>
