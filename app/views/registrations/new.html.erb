@@ -1,38 +1,39 @@
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-
-  <div id="signup_form_wrap">
+<div id="signup_form_wrap">
+  
     <p class="title">ClassTalk empowers teachers to communicate instantly with their classes through SMS and email.</p>
     <p class="leading">Sign up for a free account below, or <%= link_to "sign in here", new_session_path(resource_name) %>.</p>
     
-    <%= devise_error_messages! %>
-      
-    <div class="field">
-      <%= f.label :first_name, "Name" %>
-      <%= f.text_field :first_name, :title => "First", :class => "infield_form_label" %>
-      <%= f.text_field :last_name, :title => "Last", :class => "infield_form_label" %>
-    </div>
-    <div class="field">
-      <%= f.label :display_name, "Display Name" %>
-      <%= f.text_field :display_name, :title => "e.g. \"Mr. S\"", :class => "infield_form_label" %>
-      <span class="field_description">A short name displayed in text messages you send</span>
-    </div>
-    <div class="field">
-      <%= f.label :email, "Email" %>
-      <%= f.text_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :phone_number, "Mobile Number" %>
-      <%= f.text_field :phone_number %>
-      <span class="field_description">SMS messages will be sent to this number (optional)</span>
-    </div>
-    <div class="field">
-      <%= f.label :password, "Password" %>
-      <%= f.password_field :password, :title => "Password" %>
-      <%= f.text_field :password_confirmation, :title => "Re-type", :onfocus => "this.type = 'password';", :class => "infield_form_label last" %>
-    </div>
-
-    <p><%= f.submit "Go Talk  »", :class => 'button right' %></p>
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
     
-  </div>
+      <%= devise_error_messages! %>
   
-<% end %>
+      <div class="field">
+        <%= f.label :first_name, "Name" %>
+        <%= f.text_field :first_name, :title => "First", :class => "infield_form_label" %>
+        <%= f.text_field :last_name, :title => "Last", :class => "infield_form_label" %>
+      </div>
+      <div class="field">
+        <%= f.label :display_name, "Display Name" %>
+        <%= f.text_field :display_name, :title => "e.g. \"Mr. S\"", :class => "infield_form_label" %>
+        <span class="field_description">A short name displayed in text messages you send</span>
+      </div>
+      <div class="field">
+        <%= f.label :email, "Email" %>
+        <%= f.text_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :phone_number, "Mobile Number" %>
+        <%= f.text_field :phone_number %>
+        <span class="field_description">SMS messages will be sent to this number (optional)</span>
+      </div>
+      <div class="field">
+        <%= f.label :password, "Password" %>
+        <%= f.password_field :password, :title => "Password" %>
+        <%= f.text_field :password_confirmation, :title => "Re-type", :onfocus => "this.type = 'password';", :class => "infield_form_label last" %>
+      </div>
+
+      <p><%= f.submit "Go Talk  »", :class => 'button right' %></p>
+    
+    <% end %>
+    
+</div>

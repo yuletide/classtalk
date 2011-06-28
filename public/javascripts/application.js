@@ -1,6 +1,12 @@
 $(document).ready(function() {
 	$('form').live('submit', function(e) {
-    	$(this).append('Loading...');
+		$('.infield_form_label').each(function() {
+			if ($(this).attr('title') == $(this).val()) {
+				$('form').prepend('ERROR');
+				e.preventDefault();
+			}
+		});
+		$(this).append('Loading...');
   	});
 	$("#edit_group_cancel").live('click', function() { 
 		$('#edit_group').hide(); 
