@@ -203,6 +203,10 @@ label {
 	display: block;
 	margin: 15px 0px 2px 0px;	
 }
+label.inline {
+	display: inline;
+	margin-left: 3px;
+}
 .field_description {
 	display: block;
 	font-family: helvetica, arial, sans-serif;
@@ -223,11 +227,15 @@ label {
 	margin: 3px 0px 60px 2px;
 }
 #signin_form_wrap {
-	width: 350px;
+	width: 260px;
 	margin: 3px 0px 60px 2px;
 }
+#signin_more_actions {
+	padding: 25px 0px 0px 0px;
+	float: left;
+}
 .signin {
-	width: 240px;
+	width: 100%;
 }
 input.infield_form_label.focused {
 	color: black;
