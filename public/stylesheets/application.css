@@ -8,17 +8,19 @@
 body {
   background: url('../images/bg.png') repeat right;
   font-size: 20px;
-  font-family: 'Josefin Sans';
+  font-family: helvetica, arial, sans-serif;
   font-weight: bold;
   color: #333;
 }
 
-h1 { font-family: 'Josefin Sans', arial, serif; font-size: 2em;}
-h2 { font-family: 'Josefin Sans', arial, serif; font-size: 1.75em;  }
-h3 { font-family: 'Josefin Sans', arial, serif; font-size: 1.25em; }
-h4 { font-family: 'Josefin Sans', arial, serif; font-size: 1.15em; }
-h5 { font-family: 'Josefin Sans', arial, serif; font-size: .9em; }
-h6 { font-family: 'Josefin Sans', arial, serif; font-size: .8em; }
+h1 { font-size: 2em;}
+h2 { font-size: 1.75em;  }
+h3 { font-size: 1.25em; }
+h4 { font-size: 1.15em; }
+h5 { font-size: .9em; }
+h6 { font-size: .8em; }
+
+.josefin { font-family: 'Josefin Sans', arial, serif; }
 
 p {
 	font-family: helvetica, arial, sans-serif;
