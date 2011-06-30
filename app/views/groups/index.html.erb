@@ -3,11 +3,11 @@
 <% else %>
 			<% @groups.each do |group| %>
 				<a class="group_list_item" href="<%= group_path(group) %>">
-							<span class="left">
+							<span class="left josefin bold">
 								<span class="groups primary"><%= group.title %></span><br>
 								<span class="groups secondary"><%= group.description %></span>
 							</span>
-							<span class="right">
+							<span class="right josefin bold">
 								<span class="groups primary"><%= PhoneValidator::OUTPUT_PRINTF%group.phone_number.scan(/\d/) %></span><br>
 								<span class="groups secondary right"><%= pluralize group.students.count, "member" %></span>
 							</span>

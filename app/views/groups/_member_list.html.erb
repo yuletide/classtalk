@@ -1,5 +1,6 @@
 <span id="student_info_<%= member.id %>" onClick="$(this).hide(); $('#edit_student_<%= member.id %>').show();">
-    <div id="student_name">
+    <h7>
+        <div id="student_name">
         <span class="text_highlight"><%= member.name %></span>
         <%= link_to 'remove', group_path(@group, :group=>{:students_attributes=>[{:id=>member.id,:_destroy=>1}]}), :confirm => 'Are you sure?', :method => :put, :id => 'remove_member' %>
     </div>
@@ -9,6 +10,7 @@
     <div id="student_email">
       <span class="text_highlight"><%= member.email %></span>
     </div>
+    </h7>
 </span>
 <span id="edit_student_info_<%=member.id%>">
     <%=render :partial => "groups/ajax_membership_form", :locals => {:student => member, :group => @group}%>
