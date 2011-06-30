@@ -215,12 +215,19 @@ label {
 	display: inline;
 	font-weight: bold;
 }
-#user_first_name, #user_last_name, #user_password, #user_password_confirmation {
+.double_field {
 	width: 160px;
 }
 #signup_form_wrap {
 	width: 350px;
 	margin: 3px 0px 60px 2px;
+}
+#signin_form_wrap {
+	width: 350px;
+	margin: 3px 0px 60px 2px;
+}
+.signin {
+	width: 240px;
 }
 input.infield_form_label.focused {
 	color: black;

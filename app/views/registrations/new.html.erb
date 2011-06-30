@@ -9,8 +9,8 @@
   
       <div class="field">
         <%= f.label :first_name, "Name" %>
-        <%= f.text_field :first_name, :title => "First", :class => "infield_form_label" %>
-        <%= f.text_field :last_name, :title => "Last", :class => "infield_form_label" %>
+        <%= f.text_field :first_name, :title => "First", :class => "double_field infield_form_label" %>
+        <%= f.text_field :last_name, :title => "Last", :class => "double_field infield_form_label" %>
       </div>
       <div class="field">
         <%= f.label :display_name, "Display Name" %>
@@ -28,8 +28,8 @@
       </div>
       <div class="field">
         <%= f.label :password, "Password" %>
-        <%= f.password_field :password, :title => "Password" %>
-        <%= f.text_field :password_confirmation, :title => "Re-type", :onfocus => "this.type = 'password';", :class => "infield_form_label last" %>
+        <%= f.password_field :password, :title => "Password", :class => "double_field" %>
+        <%= f.text_field :password_confirmation, :title => "Re-type", :onfocus => "this.type = 'password';", :class => "double_field infield_form_label last" %>
       </div>
 
       <p><%= f.submit "Go Talk  »", :class => 'button right' %></p>
