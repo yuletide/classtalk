@@ -142,6 +142,7 @@ DEPENDENCIES
   jquery-rails (>= 0.2.6)
   json
   rails (= 3.0.9)
+  resque
   rspec-rails (~> 2.4)
   simplecov
   sqlite3
