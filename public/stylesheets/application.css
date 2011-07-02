@@ -348,17 +348,23 @@ span:hover.text_highlight {
 #send_message_scheduled { width: 290px }
 #member_list_header {
 	font-size: 14px;
+	font-weight: bold;
 	text-align: center;
-	color: #525252;
-	background-color: lightGrey;
+	color: white;
+	background-color: lightgray;
 	padding: 10px 10px 8px 10px;
-	border: 1px solid white;
+	margin-top: 11px;
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
-	-moz-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
-	-webkit-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
-	box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
+	text-shadow: rgba(0,0,0,0.25) 0px -1px 0px;
+}
+#member_list_subheader {
+	font-size: 11px;
+	font-weight: normal;
+	display: block;
+	color: white;
+	text-shadow: rgba(0,0,0,0.1) 0px -1px 0px;
 }
 #student_list {
 	list-style: none;

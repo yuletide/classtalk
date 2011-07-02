@@ -5,7 +5,8 @@
 
     <% else %>
     	<div id="member_list_header">
-    	    Message will be sent to <%= pluralize @group.students.count, "member" %>:
+    	    Message will be sent to <%= pluralize @group.students.count, "member" %>
+    	    <span id="member_list_subheader">Click member info to edit</span>
     	</div>
     	<ul id="student_list">
         <% for member in @group.students %>
@@ -20,7 +21,7 @@
         <li>
           <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
             <div class="field">
-              <%= label :upload, "Bulk Add Members (CSV)", :for=>"upload[csv]" %><br />
+              <%= label :upload, "Bulk Add Members (CSV)", :for=>"upload[csv]" %>
               <%= file_field :upload, :csv %>
             </div>
             <div class="actions">
