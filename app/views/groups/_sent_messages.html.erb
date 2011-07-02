@@ -1,7 +1,7 @@
-<h3>Sent Messages</h3>
+<h4>Sent Messages</h4>
   <table id="messages">
-  	<tr><th class="message_row"><b>Date</b></th><th class="message_row"><b>Message</b></th></tr>
+  	<tr><th class="message_row"><b><h7>Date</h7></b></th><th class="message_row"><h7><b>Message</b></h7></th></tr>
   	<% @messages.each do |message| %>
-  		<tr><td class="message_row"><h6><%=formatted_time(message.created_at) %></h6></td><td class="message_row"><h6><%= message.message %></h6></td></tr>
+  		<tr><td class="message_row"><h7><%=formatted_time(message.created_at) %></h7></td><td class="message_row"><h7><%= message.message %></h7></td></tr>
   	<%end%>
   </table>

@@ -4,7 +4,9 @@
     	<%= link_to 'Add Member', new_group_student_path(@group), :class => 'button left minor margin_top' %>
 
     <% else %>
-    	<h6><br>Your message will be sent to <%= pluralize @group.students.count, "member" %>:</h6>
+    	<div id="member_list_header">
+    	    Message will be sent to <%= pluralize @group.students.count, "member" %>:
+    	</div>
     	<ul id="student_list">
         <% for member in @group.students %>
         	<li>

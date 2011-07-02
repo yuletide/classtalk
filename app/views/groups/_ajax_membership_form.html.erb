@@ -3,7 +3,7 @@
       <%= f.text_field :name, :class => "ajax_edit student", :title => "Name" %>
       <%= f.text_field :phone_number, :class => "ajax_edit number", :title => "Mobile number" %>
       <%= f.text_field :email, :class=>"ajax_edit number", :title => "Email" %>
-      
+      <br>
       <%= f.submit 'Save', :class=>"button minor"%>
       <a href="#" id="edit_student_cancel" data="<%= student.id%>" class="button minor secondary">Cancel</a>
 <%end%>

@@ -42,7 +42,6 @@
   <%= fields_for :message do |mf| %>
     <div class="field left">
       <%= mf.label :content, "Send Message" %>
-			<br />
       <span class="formwrap"><%= mf.text_area :content, :id => "message_content"%>
 	<div id="character_count"><h5>
 		<div>

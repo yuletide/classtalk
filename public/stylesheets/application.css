@@ -176,7 +176,8 @@ table.padded { margin-left: 10px; }
 td.top{ vertical-align: top; }
 input[type="password"], input[type="email"], input[type="text"]{
     -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
-    border-style: none;
+    -moz-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
+	border-style: none;
     border-radius: 4px;
     height: 28px;
     line-height: 16px;
@@ -244,32 +245,45 @@ input.infield_form_label.focused {
 	color: black;
 }
 input.ajax_edit{
-	font-family: 'Josefin Sans', arial, serif;
-	font-weight: bold;
+	font-weight: normal;
 	background-color: #FFFFD3;
-	border: 1px solid #CCC;
+	border: 1px solid black;
 	width: 80%;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+	border-style: 1px solid lightGray;
+    border-radius: 3px;
+	border-color: lightGray;
+    height: 26px;
+    line-height: 0px;
+    padding: 0px 4px 0px 4px;
+    font-size: 18px;
+	font-weight: normal;
 }
 input.ajax_edit.title{
-	font-size: 25px;
-	margin-bottom: 5px;
-	padding: 4px;
+	font-size: 35px;
+	margin-bottom: 1px;
+	padding: 18px 5px 5px 3px;
+	font-family: 'Josefin Sans', arial, serif;
+	font-weight: bold;
 }
 input.ajax_edit.description{
 	font-size: 0.8em;
-	margin-bottom: 5px;
-	padding: 4px;
+	margin-bottom: 1px;
+	padding: 0px 4px 0px 4px;
 }
 input.ajax_edit.student{
-	font-size: 1em;
-	margin-bottom: 5px;
-	padding: 6px 0px 0px 2px;
+	font-size: 20px;
+	font-weight: normal;
+	font-family: 'Josefin Sans', arial, serif;
+	font-weight: bold;
+	height: 18px;
+	line-height: 0px;
+	margin-top: 12px;
 }
 input.ajax_edit.number{
-	font-size: 1em;
-	margin-bottom: 2px;
+	font-size: 14px;
 	font-weight: normal;
-	padding: 6px 0px 0px 2px;
 }
 span:hover.text_highlight {
 	cursor: text;
@@ -332,6 +346,20 @@ span:hover.text_highlight {
 	margin-top: 8px
 }
 #send_message_scheduled { width: 290px }
+#member_list_header {
+	font-size: 14px;
+	text-align: center;
+	color: #525252;
+	background-color: lightGrey;
+	padding: 10px 10px 8px 10px;
+	border: 1px solid white;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	-moz-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
+	-webkit-box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
+	box-shadow: 0px 2px 2px 1px rgba(0,0,0,0.1);
+}
 #student_list {
 	list-style: none;
 	padding: 10px 0px 5px 15px;
@@ -346,14 +374,17 @@ span:hover.text_highlight {
 #student_number {
 	margin: 0px;
 	font-weight: normal;
-	line-height:12px;
+	font-size: 14px;
+	line-height:10px;
 }
 #student_email {
 	margin: 0px;
 	font-weight: normal;
+	font-size: 14px;
 }
 #remove_member {
-	font-size: .8em;
+	font-size: .6em;
+	font-weight: normal;
 }
 .flash {
 	margin: 10px;
@@ -645,6 +676,7 @@ span:hover.text_highlight {
 	float: right;
 	width: 39%;
 	clear: right;
+	line-height: 56px;
 }
 #edit_group {
 	width: 60%;
