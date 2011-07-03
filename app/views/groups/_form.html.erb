@@ -13,9 +13,10 @@
 	<%= hidden_field :group, :user_id, :value => current_user.id %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
+  <br>
   <div class="actions">
     <%= f.submit :class => "button" %>
   </div>
