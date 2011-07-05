@@ -6,6 +6,7 @@
     <% else %>
     	<div id="member_list_header">
     	    Message will be sent to <%= pluralize @group.students.count, "member" %>
+    	    <br><span id="member_list_subheader">Replies will only be returned to group owner</span>
     	    <span id="member_list_subheader">Click member info to edit</span>
     	</div>
     	<ul id="student_list">
