@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   def index
     if user_signed_in?
       redirect_to :groups
+    elsif admin_signed_in?
+      redirect_to "/admin"
     else
       redirect_to "/welcome"
     end
