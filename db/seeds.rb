@@ -5,6 +5,7 @@
 #
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
-Admin.create(:email => "boston@codeforamerica.org", :password => "password", :password_confirmation => "password")
+Admin.create(:email => "admin@codeforamerica.org", :password => "password", :password_confirmation => "password")
+User.create(:email => "demo@codeforamerica.org", :password => "password", :password_confirmation => "password")
 
-puts "success!"
+puts "Success! Admin 'admin@codeforamerica.org' and User 'demo@codeforamerica.org' have been created. Default password is 'password'. You should change it now."
