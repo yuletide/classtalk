@@ -1,5 +1,4 @@
 HomeworkNotifier::Application.routes.draw do
-  devise_for :admins
 
   root :to => 'application#index'
   resources :groups do
