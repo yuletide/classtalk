@@ -47,8 +47,6 @@
                   <h3 class="josefin">
                     <% if user_signed_in? %>
                         <%= render "users/top_bar" %>
-                    <% elsif admin_signed_in? %>
-                        <%= render "admins/top_bar" %>
                     <% else %>
                         <%= render "layouts/default_top_bar" %>
                     <%end %>

@@ -18,7 +18,8 @@ HomeworkNotifier::Application.routes.draw do
 
   # devise_for :users
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout', :password => 'secret', :confirmation => 'verification', :unlock => 'unblock', :registration => 'register'}, :controllers=>{:registrations=>"registrations"}
-  
+  devise_for :admins
+
   as :user do
     scope "/users" do
       resource :profile, :controller=>"registrations", :only=>[:edit,:update] do
@@ -26,11 +27,11 @@ HomeworkNotifier::Application.routes.draw do
       end
     end
   end
-  
+
   resources :users
-  
+
   get "/welcome" => "users#splash"
-  
+
   # devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 
   # The priority is based upon order of creation:

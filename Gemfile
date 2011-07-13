@@ -9,6 +9,7 @@ gem 'json'
 gem 'rails', '3.0.9'
 gem 'resque'
 gem 'sqlite3'
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 
 group :test, :development do
   gem 'factory_girl_rails'
