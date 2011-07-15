@@ -676,13 +676,16 @@ span:hover.text_highlight {
 #group_info {
 	width: 60%;
 	float: left;
-	margin-bottom: 30px;
+	margin-bottom: 20px;
+}
+#group_title {
+	font-size: 26px;
+	line-height: 26px;
 }
 #group_number {
 	float: right;
-	width: 39%;
 	clear: right;
-	line-height: 56px;
+	margin-top: -3px;
 }
 #edit_group {
 	width: 60%;

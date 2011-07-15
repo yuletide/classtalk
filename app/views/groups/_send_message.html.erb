@@ -24,9 +24,7 @@
 <%= render :partial => 'ajax_form' %>
 <div>
     <div id="group_info" onClick="$(this).hide(); $('#edit_group').show();">
-        <h2>
-            <span class='title text_highlight josefin bold'><%= @group.title %></span>
-        </h2>
+            <span id='group_title' class='text_highlight josefin bold'><%= @group.title %></span>
         <h5>
             <span class="left text_highlight"><h5><%= @group.description %></span>
         </h5>
