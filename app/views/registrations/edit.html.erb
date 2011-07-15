@@ -26,11 +26,13 @@
         <%= f.text_field :phone_number %>
       </div>
       <div class="field">
-        <%= f.label :current_password %><%= link_to "Change?", edit_password_of_profile_path, :class => "right" %><br>
+        <%= f.label :current_password %>
         <%= f.password_field :current_password %>
       </div>
+      <p><%= link_to "Change password »", edit_password_of_profile_path, :class => "right" %></p><br>
     </fieldset>
     <%= link_to "Cancel", groups_path, :class => "button secondary left" %>
-    <p class="right"><%= f.submit "Save" %></p>
+    <%= f.submit "Save", :class => "button right" %>
+    <br><br><br>
 </div>
 <% end %>
