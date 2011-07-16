@@ -13,6 +13,7 @@ HomeworkNotifier::Application.routes.draw do
     resources :students do
       #post "send_message", :as=>:send_message_to #possibly add in future
     end
+    resources :destinations
   end
   resources :students
 

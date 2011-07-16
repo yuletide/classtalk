@@ -1,0 +1,35 @@
+  <% if @destination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destination.errors.count, "error") %> prohibited this destination from being saved:</h2>
+
+      <ul>
+      <% @destination.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %>
+    <%= f.text_field :notes %>
+  </div>
+  <div class="field">
+    <%= f.label :hashtag %>
+    <%= f.text_field :hashtag %>
+  </div>
+  <div class="field">
+    <%= f.label :questions %>
+    <%= f.text_field :questions %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>

@@ -1,0 +1,8 @@
+<h1>Editing destination</h1>
+
+<%= form_for(:destination, :url => group_destinations_path(@group), :html => {:method => :post}) do |f| %>
+  <%= render :partial => 'form', :locals => {:f => f} %>
+<% end %>
+
+<%= link_to 'Show', group_destination_path(@destination) %> |
+<%= link_to 'Back', group_destinations_path %>

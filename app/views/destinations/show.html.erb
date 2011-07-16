@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<dl>
+  <dt>Name:</dt>
+  <dd><%= @destination.name %></dd>
+
+  <dt>Address:</dt>
+  <dd><%= @destination.address %></dd>
+
+  <dt>Notes:</dt>
+  <dd><%= @destination.notes %></dd>
+
+  <dt>Hashtag:</dt>
+  <dd><%= @destination.hashtag %></dd>
+
+  <dt>Questions:</dt>
+  <dd><%= @destination.questions %></dd>
+</dl>
+
+<%= link_to 'Edit', edit_group_destination_path(@destination) %> |
+<%= link_to 'Back', group_destinations_path %>
