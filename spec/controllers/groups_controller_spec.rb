@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe GroupsController do
+
+  #   rspec will whine about setting an expectation on nil
+  # unless $outbound_flocky is set to something first. 
+  $outbound_flocky = ''
   
   before(:each) do
     login
@@ -182,6 +186,7 @@ describe GroupsController do
   describe "receive_message" do
     before :each do
       sign_out controller.current_user
+      ENV["APP_DOMAIN"] = 'test.com'
     end
     
     pending "should log the message" do
@@ -189,7 +194,7 @@ describe GroupsController do
     
     it "should disable student if they text '#removeme'" do
       @group.students.first.phone_number.should_not be_nil
-      $outbound_flocky.should_receive(:message).with(@group.phone_number,/removed/,[@group.students.first.phone_number])
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/no longer receive messages/,[@group.students.first.phone_number])
       post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"#removeme"}
       @group.students.first.phone_number.should be_nil
     end
@@ -239,6 +244,7 @@ describe GroupsController do
     end
     
     it "should strip out older messages that are being replied to" do
+      $outbound_flocky.stub(:message)
       @group.user.update_attribute(:email,@from_email)
       post :receive_email, @params
       LoggedMessage.last.message.should match /a returning message/

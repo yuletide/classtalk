@@ -165,8 +165,8 @@ class GroupsController < ApplicationController
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
-      case params[:message]
-      when /^\s*#remove[\s_]*me/ && @sending_student.present?
+      case 
+      when params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
         @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
         @sending_student.update_attribute(:phone_number,nil)
       else
