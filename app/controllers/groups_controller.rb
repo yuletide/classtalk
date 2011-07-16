@@ -152,28 +152,31 @@ class GroupsController < ApplicationController
     end
 
   end
-  
+
   #POST groups/receive_message, receives a message as a JSON post, and figures out what to do with it.
   def receive_message
     params[:incoming_number] = $1 if params[:incoming_number]=~/^1(\d{10})$/
     params[:origin_number] = $1 if params[:origin_number]=~/^1(\d{10})$/
     @group=Group.find_by_phone_number(params[:incoming_number])
-    
+
     if @group
       sent_by_admin=@group.user.phone_number==params[:origin_number]
       @sending_student = @group.students.find_by_phone_number(params[:origin_number])
       @sending_person = sent_by_admin ? @group.user : @sending_student
-      
+
       #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
-      if params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
+      case params[:message]
+      when /^\s*#remove[\s_]*me/ && @sending_student.present?
         @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
         @sending_student.update_attribute(:phone_number,nil)
-      elsif @sending_person
-        message = (sent_by_admin ? @group.user.display_name : @sending_student.name)+": "+params[:message]
-        @group.send_message(message,@sending_person, sent_by_admin ? @group.students : [@group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
+      else
+        if @sending_person
+          message = (sent_by_admin ? @group.user.display_name : @sending_student.name)+": "+params[:message]
+          @group.send_message(message,@sending_person, sent_by_admin ? @group.students : [@group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
+        end
       end
     end
-    
+
     render :text=>"sent", :status=>202
     #needs to return something API-like, yo
   end
