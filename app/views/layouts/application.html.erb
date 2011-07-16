@@ -59,8 +59,13 @@
         <div id="main" class="splash">
     <% else %>
         <div id="main">
+            <div id="header">
+                <div class="title_text">
+                    Groups
+                </div>
+            </div>
     <% end %>
-            <div id="content">
+            <div class="content">
                 <%= render :partial => 'layouts/notices' %>
                 <%= yield %>
             </div>
