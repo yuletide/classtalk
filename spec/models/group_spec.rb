@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe Group do
+  before(:all) do
+    $outbound_flocky = '' unless $outbound_flocky
+  end
   before(:each) do
     @group = Factory.create(:group)
   end
@@ -21,13 +24,14 @@ describe Group do
       @group.should be_valid
     end
   end
-  
+
   describe "send_message" do
     before :each do
       @email_student=Factory.create(:student,:email=>"abc@def.com", :phone_number=>nil)
       @group.students << @email_student
     end
     it "should send emails to users without phone numbers" do
+      $outbound_flocky.stub(:message)
     	mailer = mock(:mail)
     	mailer.should_receive(:deliver)
       NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
