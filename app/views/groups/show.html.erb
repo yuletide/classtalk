@@ -34,6 +34,12 @@
     <% end %>
 </div>
 <div id="left_column">
+  <div>
+    <%= link_to "Create New Destination", new_group_destination_path(@group) %>
+    <ul>
+      <%= render :partial => 'destinations/list_element', :collection => @group.destinations %>
+    </ul>
+  </div>
 	<div>
 	    <%= render :partial => 'send_message' %>
 	</div>
