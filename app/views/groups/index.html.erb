@@ -1,19 +1,24 @@
-<% if @groups.blank? %>
-	<h3>You haven't yet created any groups.</h3><br><%= link_to 'Make my first group!', new_group_path, :class => "button" %>
-<% else %>
-			<% @groups.each do |group| %>
-				<a class="group_list_item" href="<%= group_path(group) %>">
-							<span class="left josefin bold">
-								<span class="groups primary"><%= group.title %></span><br>
-								<span class="groups secondary"><%= group.description %></span>
-							</span>
-							<span class="right josefin bold">
-								<span class="groups primary"><%= PhoneValidator::OUTPUT_PRINTF%group.phone_number.scan(/\d/) %></span><br>
-								<span class="groups secondary right"><%= pluralize group.students.count, "member" %></span>
-							</span>
-				</a>
-			<% end %>
-			<br>
-	<%= link_to "Add New Group", new_group_path, :class => 'button right' %>
-	<div id="return_to_groups"></div>
-<% end %>
+<div id="group_list">
+    <% if @groups.blank? %>
+    	<h3>You haven't yet created any groups.</h3><br><%= link_to 'Make my first group!', new_group_path, :class => "button" %>
+    <% else %>
+    			<% @groups.each do |group| %>
+    				<a class="group_list_item" href="<%= group_path(group) %>">
+    							<span class="left josefin bold">
+    								<span class="groups primary"><%= group.title %></span><br>
+    								<span class="groups secondary"><%= group.description %></span>
+    							</span>
+    							<span class="right josefin bold">
+    								<span class="groups primary"><%= PhoneValidator::OUTPUT_PRINTF%group.phone_number.scan(/\d/) %></span><br>
+    								<span class="groups secondary right"><%= pluralize group.students.count, "member" %></span>
+    							</span>
+    				</a>
+    			<% end %>
+    			<br>
+    	<%= link_to "Add New Group", new_group_path, :class => 'button right' %>
+    	<div id="return_to_groups"></div>
+    <% end %>
+</div>
+<div id="group_content">
+    This is some content
+</div>
