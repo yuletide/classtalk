@@ -13,7 +13,7 @@ GIT
     rails_admin (0.0.1)
       builder (~> 2.1.0)
       fastercsv
-      haml (>= 3.0.0, < 3.2.0)
+      haml (< 3.2.0, >= 3.0.0)
       rails (~> 3.0.7)
 
 GEM
