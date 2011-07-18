@@ -72,6 +72,8 @@ describe GroupsController do
     end
     describe "delete" do
       it "should delete group, and dependent students" do
+        $outbound_flocky.should_receive(:destroy_phone_number_synchronous).with(@group.phone_number)
+        $outbound_flocky.should_receive(:destroy_phone_number_synchronous).with(@group.destination_phone_number)
         expect {
           delete :destroy, {:id=>@group.id}
         }.to change(Student,:count).by(-1)

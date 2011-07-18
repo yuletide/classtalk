@@ -88,6 +88,8 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = current_user.groups.find(params[:id])
+    destroy_phone_number(@group.phone_number)
+    destroy_phone_number(@group.destination_phone_number)
     @group.destroy
 
     respond_to do |format|
