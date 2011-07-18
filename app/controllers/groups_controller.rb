@@ -169,17 +169,7 @@ class GroupsController < ApplicationController
       @sending_student = @group.students.find_by_phone_number(params[:origin_number])
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
-      #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
-      case 
-      when params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
-        @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
-        @sending_student.update_attribute(:phone_number,nil)
-      else
-        if @sending_person
-          message = (sent_by_admin ? @group.user.display_name : @sending_student.name)+": "+params[:message]
-          @group.send_message(message,@sending_person, sent_by_admin ? @group.students : [@group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
-        end
-      end
+      handle_group_message(@group,@sending_person,params[:message])
     end
 
     render :text=>"sent", :status=>202
@@ -189,17 +179,14 @@ class GroupsController < ApplicationController
   #receive a POSTed email as a form from cloudmailin. figure out what to do with it.
   def receive_email
     
-    
-      #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
+    #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if params[:to].match(/group\+(\d+)@/) && @group = Group.find($1)
       from = params[:from]
       body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
 
-      if @sender = @group.students.find_by_email(from)
-        @group.send_message(@sender.name+": "+body,@sender,[@group.user])
-      elsif @group.user.email==from
-        @group.send_message(@group.user.display_name+": "+body,@group.user)
-      end
+      @sender = @group.user.email==from ? @group.user : @group.students.find_by_email(from)
+
+      handle_group_message(@group,@sender,body)
     end
     render :text => 'success', :status => 200
   end
@@ -219,5 +206,25 @@ class GroupsController < ApplicationController
   end
   def destroy_phone_number(num)
     $outbound_flocky.destroy_phone_number_synchronous(num)
+  end
+  
+  def handle_group_message(group,sender,message)
+    return unless [group,sender,message].all?(&:present?)
+    
+    sent_by_admin = (sender == group.user)
+    
+    case message
+      when /^\s*#remove[\s_]*me/
+        unless sent_by_admin
+          @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
+          @sending_student.update_attribute(:phone_number,nil)
+        end
+      else
+        message = (sent_by_admin ? group.user.display_name : sender.name)+": "+message
+        group.send_message(message,sender, sent_by_admin ? group.students : [group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
+      end
+  end
+  
+  def handle_destination_message
   end
 end
