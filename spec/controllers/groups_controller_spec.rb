@@ -203,7 +203,7 @@ describe GroupsController do
       post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"#removeme"}
       @group.students.first.phone_number.should be_nil
     end
-
+    
     describe "if teacher does have phone number" do
       before :each do
         @group.user.phone_number = @teacher_num = "5551234567"
@@ -225,6 +225,21 @@ describe GroupsController do
       pending "is sent to email" do
       end
     end
+    
+    describe "if contains a checkin hashtag" do
+      pending "if is a valid hashtag, should check the student in, and send the first question" do
+      end
+      pending "if not a valid hashtag, should inform the student" do
+      end
+    end
+    
+    describe "if sent to an alternate destination number" do
+      pending "should answer the most current question, and send out the next question" do
+      end
+      pending "if is an answer to the last question, should send out the 'finished' method'" do
+      end
+    end
+    
   end
 
   describe "receive_email" do
@@ -254,6 +269,20 @@ describe GroupsController do
       post :receive_email, @params
       LoggedMessage.last.message.should match /a returning message/
       LoggedMessage.last.message.should_not match /a testing message/
+    end
+
+    describe "if contains a checkin hashtag" do
+      pending "if is a valid hashtag, should check the student in" do
+      end
+      pending "if not a valid hashtag, should inform the student" do
+      end
+    end
+
+    describe "if sent to an alternate destination email" do
+      pending "should answer the most current question, and send out the next question" do
+      end
+      pending "if is an answer to the last question, should send out the 'finished' method'" do
+      end
     end
 
   end
