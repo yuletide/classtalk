@@ -9,6 +9,7 @@ class Group < ActiveRecord::Base
   accepts_nested_attributes_for :students, :allow_destroy=>true, :reject_if=>:all_blank
 
   validates_phone_number :phone_number
+  validates_phone_number :destination_phone_number
 
   def send_message(message,sending_person,recipients=nil)
     recipients ||= students+[user] - [sending_person]

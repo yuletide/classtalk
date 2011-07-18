@@ -44,6 +44,7 @@ class GroupsController < ApplicationController
     params[:group][:user_id]=current_user.id
     @group = current_user.groups.new(params[:group])
     @group.phone_number = get_new_phone_number
+    @group.destination_phone_number = get_new_phone_number
     @page_title = "New Groups"
     @group.description = "Click to add more info..."
 		
@@ -53,11 +54,13 @@ class GroupsController < ApplicationController
         format.xml  { render :xml => @group, :status => :created, :location => @group }
       else
         #TODO: find a better, less API-intensive way to ensure we don't abuse our tropo provisioning
-        if @group.phone_number.nil?
+        if @group.phone_number.nil? || @group.destination_phone_number.nil?
           @group.errors[:phone_number] = ["Could not provision phone number at this time. Please try again later."]
         else
           destroy_phone_number(@group.phone_number)
+          destroy_phone_number(@group.destination_phone_number)
           @group.phone_number=nil
+          @group.estination_dphone_number=nil
         end
         format.html { render :action => "new" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
