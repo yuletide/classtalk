@@ -162,14 +162,19 @@ class GroupsController < ApplicationController
   def receive_message
     params[:incoming_number] = $1 if params[:incoming_number]=~/^1(\d{10})$/
     params[:origin_number] = $1 if params[:origin_number]=~/^1(\d{10})$/
-    @group=Group.find_by_phone_number(params[:incoming_number])
 
-    if @group
+    if (@group=Group.find_by_phone_number(params[:incoming_number]))
       sent_by_admin=@group.user.phone_number==params[:origin_number]
       @sending_student = @group.students.find_by_phone_number(params[:origin_number])
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       handle_group_message(@group,@sending_person,params[:message])
+    elsif (@group=Group.find_by_destination_phone_number(params[:incoming_number]))
+      sent_by_admin=@group.user.phone_number==params[:origin_number]
+      @sending_student = @group.students.find_by_phone_number(params[:origin_number])
+      @sending_person = sent_by_admin ? @group.user : @sending_student
+
+      handle_destination_message(@group,@sending_person,params[:message])
     end
 
     render :text=>"sent", :status=>202
@@ -179,15 +184,19 @@ class GroupsController < ApplicationController
   #receive a POSTed email as a form from cloudmailin. figure out what to do with it.
   def receive_email
     
+    from = params[:from]
+    body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
+      
     #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if params[:to].match(/group\+(\d+)@/) && @group = Group.find($1)
-      from = params[:from]
-      body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
-
       @sender = @group.user.email==from ? @group.user : @group.students.find_by_email(from)
-
       handle_group_message(@group,@sender,body)
+    elsif params[:to].match(/group_destinations\+(\d+)@/) && @group = Group.find($1)
+      @sender = @group.user.email==from ? @group.user : @group.students.find_by_email(from)
+      handle_destination_message(@group,@sender,body)
     end
+    
+    
     render :text => 'success', :status => 200
   end
   

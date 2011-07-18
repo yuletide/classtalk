@@ -28,4 +28,15 @@ class Group < ActiveRecord::Base
 
     #todo: also log these messages
   end
+  
+  def send_destination_message(message,recipient)
+    if recipient.phone_number.present?
+      LoggedMessage.create(:group=>self,:sender=>@group.user,:source_phone=>destination_phone_number,:destination_phone=>recipient.phone_number,:message=>message)
+      $outbound_flocky.message destination_phone_number, message, recipient.phone_number
+    end
+    
+    if recipient.email.present?
+      #destination email send.
+    end
+  end
 end
