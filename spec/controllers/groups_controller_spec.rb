@@ -227,9 +227,26 @@ describe GroupsController do
     end
     
     describe "if contains a checkin hashtag" do
-      pending "if is a valid hashtag, should check the student in, and send the first question" do
+      it "if is a valid hashtag, should check the student in, and send the first question, on the alternate phone number" do
+        @destination = Factory.create(:destination, :group=>@group)
+        @question = Factory.create(:question, :destination=>@destination)
+        @student = @group.students.first
+        
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+
+        @student.checkins.find_by_destination(@destination).should_not be_nil
+        @student.active_checkin.should_not be_nil
+        @student.active_checkin.destination.should == @destination
+
       end
-      pending "if not a valid hashtag, should inform the student" do
+      it "if not a valid hashtag, should not change checkin, should inform the student" do
+        @student = @group.students.first
+        
+        $outbound_flocky.should_receive(:message).with(@group.phone_number,/.*/,[@student.phone_number]) #TODO: determine copy of response.
+        expect{
+          post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"#fake_hashtag"}
+        }.to_not change(@student,:active_checkin)
       end
     end
     
@@ -272,7 +289,7 @@ describe GroupsController do
     end
 
     describe "if contains a checkin hashtag" do
-      pending "if is a valid hashtag, should check the student in" do
+      pending "if is a valid hashtag, should check the student in, and send the first question, on the alternate email" do
       end
       pending "if not a valid hashtag, should inform the student" do
       end
