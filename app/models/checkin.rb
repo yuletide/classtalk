@@ -1,4 +1,5 @@
 class Checkin < ActiveRecord::Base
   belongs_to :destination
   belongs_to :student
+  validates_uniqueness_of :destination_id, :scope => :student_id
 end
