@@ -15,5 +15,6 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 2.4'
   gem 'simplecov'
+  gem 'spork', '~> 0.9.0.rc'
 end
 
