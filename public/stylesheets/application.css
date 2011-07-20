@@ -143,24 +143,58 @@ Group List
 .group_list_item {
 	list-style: none;
 	clear: both;
-	border-bottom: 2px solid #B3B3B3;
 	overflow: auto;
-	padding: 22px 10px 20px 15px;
 	display: block;
+	vertical-align: center;
+	height: 76px;
+	width: 328px;
+	padding: 22px 0px 0px 20px;
+	border-top: 2px solid #B3B3B3;
+	border-right: 2px solid #B3B3B3;
+}
+.group_list_item:first-of-type {
+	border-top: 2px solid transparent;
+	border-bottom: none;
+}
+.group_list_item:first-of-type:hover {
+	border-top: none;
+	border-bottom: none;
+	background-position: 0px 0px;
+	height: 78px;
+	background: url('../images/groups/active_group_top.png');
+}
+.group_list_item:hover+a.group_list_item {
+	list-style: none;
+	clear: both;
+	overflow: auto;
+	display: block;
+	vertical-align: center;
+	height: 76px;
+	width: 328px;
+	padding: 22px 0px 0px 20px;
+	border-top: 2px solid transparent;
+	border-right: 2px solid #B3B3B3;
+}
+.group_list_item:hover {
+	list-style: none;
+	clear: both;
+	overflow: auto;
+	display: block;
+	vertical-align: center;
+	height: 78px;
+	width: 361px;
+	padding: 22px 0px 0px 20px;
+	background-color: white;
+	background: url('../images/groups/active_group.png');
+	background-position: 0px 0px;
+	border-top: none;
+	border-right: none;
+}
+.group_list_item:first-of-type:hover {
+	border-radius: 8px 0px 0px 0px;
 }
 .group_list_item:hover {
 	text-decoration: none;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#F7F7F7'); /* for IE */
-	background: -webkit-gradient(linear, left top, left bottom, from(#dfdfdf), to(#F7F7F7)); /* for webkit browsers */
-	background: -moz-linear-gradient(top,  #dfdfdf,  #F7F7F7); /* for firefox 3.6+ */
-	background-image: url('../images/groups/active_group.png');
-}
-.group_list a {
-	text-decoration: none;
-}
-.group_list a:hover {
-	text-decoration: none;
-	background-color: black;
 }
 .groups.primary {
 	color: #E0E0E0;
@@ -168,9 +202,15 @@ Group List
 	display: block;
 	line-height: 1em;
 }
+.groups.primary.selected {
+	color: #000;
+}
 .groups.secondary {
 	color: #B7B7B7;
 	font-size: .8em;
+}
+.groups.secondary.selected {
+	color: #6D6E71;
 }
 #group_info {
 	width: 60%;
@@ -193,16 +233,15 @@ Group List
 	overflow: auto;
 }
 #group_list {
-	background: #AAAAAA;
+	background: #959595;
 /*	background-image: url('../images/groups/bg-texture.png');*/
 	border-radius: 7px 0px 0px 0px;
 	width: 350px;
-	border-right: 2px solid #999999;
 }
 #group_list_bottom {
 	background-image: url('../images/groups/bottom.png');
 	background-repeat:repeat-x;
-	width: 350px;
+	width: 348px;
 	height: 100%;
 	padding-top: 10px;
 	padding-bottom: 35px;
@@ -210,9 +249,10 @@ Group List
 	border-right: 2px solid #B3B3B3;
 }
 #group_list_gradient {
-	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.4)));
-	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.4)));
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,.25)));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,.25)));
 	width: 350px;
+	border-radius: 7px 0px 0px 0px;
 }
 
 /* --------------------------------------------------------------
@@ -547,19 +587,24 @@ Site Containers
 	width: 960px;
 	min-height: 600px;
 	border-radius: 8px 8px 8px 8px;
-	border: 1px solid #b5b5b5;
+	border-top: 1px solid #a5a5a5;
+	border-right: 1px solid #B3B3B3;
+	border-bottom: 1px solid #d8d8d8;
+	border-left: 1px solid #B3B3B3;
 	-moz-box-shadow: 0px 2px 5px 2px #C6C6C6;
 	-webkit-box-shadow: 0px 2px 5px 2px #C6C6C6;
 	box-shadow: 0px 2px 5px 2px #C6C6C6;
 }
 #groups {
-	width: 388px;
+	width: 383px;
 	min-height: 600px;
 	float: left;
 }
 #group_content {
 	width: 572px;
-	float: right;
+	float: left;
+	margin-left: -5px;
+	padding-top: 15px;
 }
 
 /* --------------------------------------------------------------
