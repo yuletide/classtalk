@@ -276,8 +276,8 @@ describe GroupsController do
         
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/.*/,[@student.phone_number]) #TODO: correct message here
         post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 2"}
-        
-        @student.active_checkin.should be_complete
+
+        @student.reload.active_checkin.should be_complete
       end
     end
     

@@ -26,12 +26,13 @@ class Destination < ActiveRecord::Base
     cn.current_question_index += 1
 
     if (cn.current_question_index < self.questions.count) #if it's still a valid index
-      q = self.questions.all[cn.current_question_index]
+      q = cn.current_question
       self.group.send_destination_message("Question #{q.order_index}: #{q.content}",student)
     else
       cn.complete = true
       self.group.send_destination_message("All questions complete!",student)
     end
+    cn.save
   end
 
 end
