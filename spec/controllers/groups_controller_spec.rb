@@ -227,11 +227,13 @@ describe GroupsController do
     end
     
     describe "if contains a checkin hashtag" do
-      it "if is a valid hashtag, should check the student in, and send the first question, on the alternate phone number" do
+      before(:each) do
         @destination = Factory.create(:destination, :group=>@group)
         @question = Factory.create(:question, :destination=>@destination)
         @student = @group.students.first
-        
+      end
+      
+      it "if is a valid hashtag, should check the student in, and send the first question, on the alternate phone number" do
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
         @student.reload
@@ -241,9 +243,14 @@ describe GroupsController do
         @student.active_checkin.destination.should == @destination
 
       end
+      it "if they've checked in before, should resend their current question" do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+      end
+      
       it "if not a valid hashtag, should not change checkin, should inform the student" do
-        @student = @group.students.first
-        
         $outbound_flocky.should_receive(:message).with(@group.phone_number,/.*/,[@student.phone_number]) #TODO: determine copy of response.
         expect{
           post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"#fake_hashtag"}
