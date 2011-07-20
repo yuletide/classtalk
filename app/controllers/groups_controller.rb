@@ -253,9 +253,13 @@ class GroupsController < ApplicationController
     if sender.active_checkin.blank?
       group.send_message("you're not currently checked in to any group. send in the hashtag of a destination to check in",nil,[sender])
     else
-      @question = sender.active_checkin.current_question
+      @checkin = sender.active_checkin
+      @question = @checkin.current_question
       sender.answers << Answer.new(:question=>@question, :content=>message)
-      sender.active_checkin.destination.send_next_question(sender)
+      
+      @checkin.current_question_index += 1
+      @checkin.save
+      @checkin.destination.send_current_question(sender)
     end
     
   end
