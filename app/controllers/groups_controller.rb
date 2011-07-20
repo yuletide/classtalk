@@ -246,6 +246,6 @@ class GroupsController < ApplicationController
       end
   end
   
-  def handle_destination_message
+  def handle_destination_message(group,sender,message)
   end
 end

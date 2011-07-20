@@ -252,9 +252,32 @@ describe GroupsController do
     end
     
     describe "if sent to an alternate destination number" do
-      pending "should answer the most current question, and send out the next question" do
+      before(:each) do
+        @destination = Factory.create(:destination, :group=>@group)
+        @question1 = Factory.create(:question, :destination=>@destination)
+        @question2 = Factory.create(:question, :destination=>@destination)
+        @student = @group.students.first
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question1.content}/,[@student.phone_number])
+        @destination.checkin(@student)
       end
-      pending "if is an answer to the last question, should send out the 'finished' method'" do
+      
+      it "should record answer the most current question, and send out the next question" do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question2.content}/,[@student.phone_number])
+        
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 1"}
+        
+        a = @student.answers.last
+        a.content.should == "answer to question 1"
+        a.question.should == @question1
+      end
+      it "if is an answer to the last question, should send out the 'finished' method', and the checkin should be complete." do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question2.content}/,[@student.phone_number])
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 1"}
+        
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/.*/,[@student.phone_number]) #TODO: correct message here
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 2"}
+        
+        @student.active_checkin.should be_complete
       end
     end
     
