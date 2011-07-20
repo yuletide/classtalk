@@ -228,6 +228,18 @@ class GroupsController < ApplicationController
           @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
           @sending_student.update_attribute(:phone_number,nil)
         end
+      when /^\s*#(\w+)\s*$/
+        unless sent_by_admin
+          hashtag = $1
+          @destination = @group.destinations.find_by_hashtag(hashtag)
+          
+          if @destination
+            @destination.checkin(sender)
+          else
+            @group.send_message("sorry, '#{hashtag}' doesn't seem to be a valid destination", nil, [sender])
+          end
+          
+        end
       else
         message = (sent_by_admin ? group.user.display_name : sender.name)+": "+message
         group.send_message(message,sender, sent_by_admin ? group.students : [group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group

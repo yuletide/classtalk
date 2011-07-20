@@ -234,8 +234,9 @@ describe GroupsController do
         
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
-
-        @student.checkins.find_by_destination(@destination).should_not be_nil
+        @student.reload
+        
+        @student.checkins.find_by_destination_id(@destination.id).should_not be_nil
         @student.active_checkin.should_not be_nil
         @student.active_checkin.destination.should == @destination
 
