@@ -140,6 +140,7 @@ Group List
 
 -------------------------------------------------------------- */
 
+/*Unselected group list items*/
 .group_list_item {
 	list-style: none;
 	clear: both;
@@ -152,17 +153,54 @@ Group List
 	border-top: 2px solid #B3B3B3;
 	border-right: 2px solid #B3B3B3;
 }
+/*First group list item has rounded corner and top border removed*/
 .group_list_item:first-of-type {
 	border-top: 2px solid transparent;
 	border-bottom: none;
 }
 .group_list_item:first-of-type:hover {
 	border-top: none;
+	border-radius: 8px 0px 0px 0px;
 	border-bottom: none;
 	background-position: 0px 0px;
 	height: 78px;
 	background: url('../images/groups/active_group_top.png');
 }
+/*Selected group list items show white arrow*/
+.group_list_item.selected {
+	list-style: none;
+	clear: both;
+	overflow: auto;
+	display: block;
+	vertical-align: center;
+	text-decoration: none;
+	height: 78px;
+	width: 361px;
+	padding: 22px 0px 0px 20px;
+	background-color: white;
+	background: url('../images/groups/active_group.png');
+	background-position: 0px 0px;
+	border-top: none;
+	border-right: none;
+}
+/*Hovered group list items show recessed dark arrow*/
+.group_list_item:hover {
+	list-style: none;
+	clear: both;
+	overflow: auto;
+	display: block;
+	vertical-align: center;
+	text-decoration: none;
+	height: 78px;
+	width: 361px;
+	padding: 22px 0px 0px 20px;
+	background-color: white;
+	background: url('../images/groups/hover_group.png');
+	background-position: 0px 0px;
+	border-top: none;
+	border-right: none;
+}
+/*Group list item immediately following selected or hovered has top border removed*/
 .group_list_item:hover+a.group_list_item {
 	list-style: none;
 	clear: both;
@@ -175,27 +213,19 @@ Group List
 	border-top: 2px solid transparent;
 	border-right: 2px solid #B3B3B3;
 }
-.group_list_item:hover {
+.group_list_item.selected+a.group_list_item {
 	list-style: none;
 	clear: both;
 	overflow: auto;
 	display: block;
 	vertical-align: center;
-	height: 78px;
-	width: 361px;
+	height: 76px;
+	width: 328px;
 	padding: 22px 0px 0px 20px;
-	background-color: white;
-	background: url('../images/groups/active_group.png');
-	background-position: 0px 0px;
-	border-top: none;
-	border-right: none;
+	border-top: 2px solid transparent;
+	border-right: 2px solid #B3B3B3;
 }
-.group_list_item:first-of-type:hover {
-	border-radius: 8px 0px 0px 0px;
-}
-.group_list_item:hover {
-	text-decoration: none;
-}
+/*Other group style below*/
 .groups.primary {
 	color: #E0E0E0;
 	font-size: 1.3em;
