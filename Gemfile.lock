@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 508e0c848ed39fcfe9526215ea3bbc7d3db93051
+  revision: 641ca438671093674979060170cab71122257872
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
@@ -108,7 +108,7 @@ GEM
     redis-namespace (1.0.3)
       redis (< 3.0.0)
     resque (1.17.1)
-      json (>= 1.4.6, < 1.6)
+      json (< 1.6, >= 1.4.6)
       redis-namespace (~> 1.0.2)
       sinatra (>= 0.9.2)
       vegas (~> 0.1.2)
@@ -140,7 +140,7 @@ GEM
     tzinfo (0.3.29)
     vegas (0.1.8)
       rack (>= 1.0.0)
-    warden (1.0.4)
+    warden (1.0.5)
       rack (>= 1.0)
 
 PLATFORMS
