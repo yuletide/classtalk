@@ -150,8 +150,9 @@ Group List
 	height: 76px;
 	width: 328px;
 	padding: 22px 0px 0px 20px;
-	border-top: 2px solid #B3B3B3;
-	border-right: 2px solid #B3B3B3;
+	border-top: 1px solid #9c9c9c;
+	border-bottom: 1px solid #757575;
+	border-right: 1px solid #757575;
 }
 /*First group list item has rounded corner and top border removed*/
 .group_list_item:first-of-type {
@@ -159,15 +160,32 @@ Group List
 	border-bottom: none;
 }
 .group_list_item:first-of-type:hover {
-	border-top: none;
 	border-radius: 8px 0px 0px 0px;
-	border-bottom: none;
 	background-position: 0px 0px;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.05)));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,.25)));
+	text-decoration: none;
+	border-top: 2px solid rgba(0,0,0,.1);
+}
+.group_list_item_selected:first-of-type {
+	list-style: none;
+	clear: both;
+	overflow: auto;
+	display: block;
+	vertical-align: center;
+	text-decoration: none;
 	height: 78px;
-	background: url('../images/groups/active_group_top.png');
+	width: 361px;
+	padding: 22px 0px 0px 20px;
+	background-color: white;
+	background: url('../images/groups/active_group_first.png');
+	border-radius: 8px 0px 0px 0px;
+	background-position: 0px 0px;
+	border-top: none;
+	border-right: none;
 }
 /*Selected group list items show white arrow*/
-.group_list_item.selected {
+.group_list_item_selected {
 	list-style: none;
 	clear: both;
 	overflow: auto;
@@ -183,25 +201,18 @@ Group List
 	border-top: none;
 	border-right: none;
 }
-/*Hovered group list items show recessed dark arrow*/
-.group_list_item:hover {
-	list-style: none;
-	clear: both;
-	overflow: auto;
-	display: block;
-	vertical-align: center;
+.group_list_item_selected:hover {
 	text-decoration: none;
-	height: 78px;
-	width: 361px;
-	padding: 22px 0px 0px 20px;
-	background-color: white;
-	background: url('../images/groups/hover_group.png');
-	background-position: 0px 0px;
-	border-top: none;
-	border-right: none;
+}
+/*Hovered group list items highlighted*/
+.group_list_item:hover {
+	background: #646464;
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.1)));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.1)));
+	text-decoration: none;
 }
 /*Group list item immediately following selected or hovered has top border removed*/
-.group_list_item:hover+a.group_list_item {
+.group_list_item_selected+a.group_list_item {
 	list-style: none;
 	clear: both;
 	overflow: auto;
@@ -211,19 +222,6 @@ Group List
 	width: 328px;
 	padding: 22px 0px 0px 20px;
 	border-top: 2px solid transparent;
-	border-right: 2px solid #B3B3B3;
-}
-.group_list_item.selected+a.group_list_item {
-	list-style: none;
-	clear: both;
-	overflow: auto;
-	display: block;
-	vertical-align: center;
-	height: 76px;
-	width: 328px;
-	padding: 22px 0px 0px 20px;
-	border-top: 2px solid transparent;
-	border-right: 2px solid #B3B3B3;
 }
 /*Other group style below*/
 .groups.primary {
@@ -231,6 +229,7 @@ Group List
 	font-size: 1.3em;
 	display: block;
 	line-height: 1em;
+	text-decoration: none;
 }
 .groups.primary.selected {
 	color: #000;
@@ -271,16 +270,17 @@ Group List
 #group_list_bottom {
 	background-image: url('../images/groups/bottom.png');
 	background-repeat:repeat-x;
-	width: 348px;
+	border-radius: 0px 0px 0px 8px;
+	width: 349px;
 	height: 100%;
 	padding-top: 10px;
 	padding-bottom: 35px;
 	text-align: center;
-	border-right: 2px solid #B3B3B3;
+	border-right: 1px solid #757575;
 }
 #group_list_gradient {
-	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,.25)));
-	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,.25)));
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.2)));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.2)));
 	width: 350px;
 	border-radius: 7px 0px 0px 0px;
 }
