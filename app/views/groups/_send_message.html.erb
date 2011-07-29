@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<%= form_for @group, :url=>send_message_to_group_path, :html=>{:method=>"post"} do |f| %>
+<%= form_for @group, :url=> send_message_to_group_path(@group), :html=>{:method=>"post"} do |f| %>
   <%= fields_for :message do |mf| %>
     <div class="field left">
       <%= mf.label :content, "Send Message" %>
