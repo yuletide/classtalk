@@ -4,5 +4,5 @@
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 
-<%= link_to 'Show', group_destination_path(@destination) %> |
-<%= link_to 'Back', group_destinations_path %>
+<%= link_to 'Show', group_destination_path(@group,@destination) %> |
+<%= link_to 'Back', group_destinations_path(@group) %>

@@ -9,13 +9,13 @@
 
 <% @destinations.each do |destination| %>
   <tr>
-    <td><%= link_to 'Show', group_destination_path(destination) %></td>
-    <td><%= link_to 'Edit', edit_group_destination_path(destination) %></td>
-    <td><%= link_to 'Destroy', group_destination_path(destination), :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Show', group_destination_path(@group,destination) %></td>
+    <td><%= link_to 'Edit', edit_group_destination_path(@group,destination) %></td>
+    <td><%= link_to 'Destroy', group_destination_path(@group,destination), :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Destination', new_group_destination_path(@destinations.first.group) %>
+<%= link_to 'New Destination', new_group_destination_path(@group) %>

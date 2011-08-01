@@ -10,7 +10,7 @@ describe "destinations/new.html.erb" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers
-    assert_select "form", :action => destinations_path, :method => "post" do
+    assert_select "form", :action => group_destinations_path(@group), :method => "post" do
     end
   end
 end
