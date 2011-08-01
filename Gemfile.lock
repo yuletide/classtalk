@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: fe26f8df13bf6fe7be0f88293f144506fe5f177d
+  revision: ef02329d8c4263d55b2c958dba498dda803fd18b
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
@@ -103,7 +103,7 @@ GEM
       rdoc (~> 3.4)
       thor (~> 0.14.4)
     rake (0.9.2)
-    rdoc (3.9)
+    rdoc (3.9.1)
     redis (2.2.1)
     redis-namespace (1.0.3)
       redis (< 3.0.0)
