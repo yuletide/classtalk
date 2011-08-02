@@ -29,14 +29,13 @@
   
   <div id="questions_form">
     <%= f.fields_for :questions do |qf| %>
-      
       <div class="field">
         <%= qf.label :content %>
         <%= qf.text_field :content %>
       </div>
-      <%= qf.label :_destroy, "Remove This Question" %>
-      <%= qf.check_box :_destroy %>
+      <%= qf.link_to_remove "Remove this question" %>
     <% end %>
+    <%= f.link_to_add "Add a new question", :questions %>
   </div>
   
   <div class="actions">

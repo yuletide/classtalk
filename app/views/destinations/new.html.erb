@@ -1,6 +1,6 @@
 <h1>New destination</h1>
 
-<%= form_for(:destination, :url => group_destinations_path(@group), :html => {:method => :post}) do |f| %>
+<%= nested_form_for(:destination, :url => group_destinations_path(@group), :html => {:method => :post}) do |f| %>
   <%= render :partial => 'form', :locals => {:f => f} %>
 <% end %>
 <%= link_to 'Back', group_destinations_path(@group) %>
