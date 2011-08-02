@@ -10,6 +10,22 @@
   <%= @student.phone_number %>
 </p>
 
+<div>
+  Answers:
+  <% @grouped_answers.each do |(destination, answers)| %>
+    <ul>
+      <li>
+        <%= destination.present? ? destination.name : "unknown destination" %>
+        <ol>
+          <% answers.each do |a| %>
+            <li><%= a.question.present? ? a.question.content : "unknown question" %>: 
+            <%= a.content %></li>
+          <%end%>
+        </ol>
+      </li>
+    </ul>
+  <% end %>
+</div>
 <br />
 
 <%= link_to 'Edit', edit_group_student_path(@group, @student) %> |

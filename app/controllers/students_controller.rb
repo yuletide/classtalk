@@ -16,7 +16,10 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.xml
   def show
-    @student = Student.includes(:groups).find(params[:id])
+    @student = @group.students.find(params[:id])
+    @grouped_answers = @student.answers.includes(:question).order("questions.destination_id, questions.order_index").group_by {|a| a.question.try(:destination_id)}
+    #you'll still have a bit of n+1. ah well.
+    @grouped_answers = @grouped_answers.map {|(id,answers)| [id.present? ? @group.destinations.find(id) : nil,answers]}
 
     respond_to do |format|
       format.html # show.html.erb
