@@ -1,0 +1,31 @@
+<%= render :partial => 'ajax_form' %>
+<div>
+    <div id="group_info" onClick="$(this).hide(); $('#edit_group').show();">
+            <span id='group_title' class='text_highlight josefin bold'><%= @group.title %></span>
+        <h5>
+            <span class="left text_highlight"><h5><%= @group.description %></span>
+        </h5>
+    </div>
+    <div id="group_number">
+        <h3 class="right josefin">
+            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+        </h3>
+    </div>
+</div>
+
+<div id="member_list_header">
+    Message will be sent to <%= pluralize @group.students.count, "member" %>
+    <br><span id="member_list_subheader">Replies will only be returned to group owner</span>
+    <span id="member_list_subheader">Click member info to edit</span>
+</div>
+
+<div>
+    <%= render :partial => 'send_message' %>
+</div>
+<div id="return_to_groups"></div>
+<div class="left margin_top">
+    <%= render :partial => 'sent_messages'%>
+    <div id="return_to_groups"></div>
+    <span><%= link_to "< All Groups", groups_path %></span>
+    <div id="return_to_groups"></div>
+</div>
