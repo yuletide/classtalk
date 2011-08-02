@@ -3,6 +3,8 @@ class Destination < ActiveRecord::Base
   belongs_to :group
   has_many :questions, :order => :order_index
   has_many :checkins
+  
+  accepts_nested_attributes_for :questions, :allow_destroy => true, :reject_if => :all_blank
 
   def checkin(student)
     return nil unless self.group == student.group

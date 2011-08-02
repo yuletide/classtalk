@@ -26,10 +26,19 @@
     <%= f.label :hashtag %>
     <%= f.text_field :hashtag %>
   </div>
-  <div class="field">
-    <%= f.label :questions %>
-    <%= f.text_field :questions %>
+  
+  <div id="questions_form">
+    <%= f.fields_for :questions do |qf| %>
+      
+      <div class="field">
+        <%= qf.label :content %>
+        <%= qf.text_field :content %>
+      </div>
+      <%= qf.label :_destroy, "Remove This Question" %>
+      <%= qf.check_box :_destroy %>
+    <% end %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
