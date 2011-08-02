@@ -17,9 +17,8 @@ class StudentsController < ApplicationController
   # GET /students/1.xml
   def show
     @student = @group.students.find(params[:id])
-    @grouped_answers = @student.answers.includes(:question).order("questions.destination_id, questions.order_index").group_by {|a| a.question.try(:destination_id)}
-    #you'll still have a bit of n+1. ah well.
-    @grouped_answers = @grouped_answers.map {|(id,answers)| [id.present? ? @group.destinations.find(id) : nil,answers]}
+    @grouped_answers = @student.answers.includes(:question).order("questions.destination_id, questions.order_index").group_by {|a| a.question.try(:destination)}
+    #you can't easily do #includes through a :includes, you'll still have a bit of n+1 on getting the associated destinations. ah well.
 
     respond_to do |format|
       format.html # show.html.erb

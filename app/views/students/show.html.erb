@@ -15,10 +15,10 @@
   <% @grouped_answers.each do |(destination, answers)| %>
     <ul>
       <li>
-        <%= destination.present? ? destination.name : "unknown destination" %>
+        <%= destination.try(:name) || "unknown destination" %>
         <ol>
           <% answers.each do |a| %>
-            <li><%= a.question.present? ? a.question.content : "unknown question" %>: 
+            <li><%= a.question.try(:content) || "unknown question" %>: 
             <%= a.content %></li>
           <%end%>
         </ol>
