@@ -12,6 +12,6 @@
 		<li><%= link_to 'Send Message', group_destinations_path(@group,@destination), :class => 'button' %></li>
 		<li><%= link_to 'Plan Field Trip', group_destinations_path(@group,@destination), :class => 'button' %></li>
 		<li><%= link_to 'Manage Members', group_destinations_path(@group,@destination), :class => 'button' %></li>
-		<li>Delete Group<li>
+		<li><%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete, :class => 'button' %></li>
 	</ul>
 </div>
