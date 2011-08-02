@@ -26,10 +26,18 @@
     <%= f.label :hashtag %>
     <%= f.text_field :hashtag %>
   </div>
-  <div class="field">
-    <%= f.label :questions %>
-    <%= f.text_field :questions %>
+  
+  <div id="questions_form">
+    <%= f.fields_for :questions do |qf| %>
+      <div class="field">
+        <%= qf.label :content %>
+        <%= qf.text_field :content %>
+      </div>
+      <%= qf.link_to_remove "Remove this question" %>
+    <% end %>
+    <%= f.link_to_add "Add a new question", :questions %>
   </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

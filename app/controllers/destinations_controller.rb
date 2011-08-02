@@ -1,4 +1,6 @@
 class DestinationsController < ApplicationController
+  before_filter :load_group
+  
   # GET /destinations
   # GET /destinations.xml
   def index
@@ -25,7 +27,6 @@ class DestinationsController < ApplicationController
   # GET /destinations/new.xml
   def new
     @destination = Destination.new
-    @group = Group.find(params[:group_id])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @destination }
@@ -41,7 +42,6 @@ class DestinationsController < ApplicationController
   # POST /destinations.xml
   def create
     @destination = Destination.new(params[:destination])
-    @group = Group.find(params[:group_id])
     @destination.group = @group
 
     respond_to do |format|
@@ -62,7 +62,7 @@ class DestinationsController < ApplicationController
 
     respond_to do |format|
       if @destination.update_attributes(params[:destination])
-        format.html { redirect_to(@destination, :notice => 'Destination was successfully updated.') }
+        format.html { redirect_to(@group, :notice => 'Destination was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -80,6 +80,15 @@ class DestinationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(destinations_url) }
       format.xml  { head :ok }
+    end
+  end
+
+  private
+  def load_group
+    if params[:group_id]
+      @group = Group.find(params[:group_id])
+    elsif params[:destination][:group_id]
+      @group = Group.find(params[:destination][:group_id])
     end
   end
 end
