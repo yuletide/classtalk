@@ -4,5 +4,5 @@
 		<td class="top"><%= render 'membership_form' %></td>
 	</tr>
 </table>
-
+<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete %>
 <%= link_to 'Back', groups_path %>
