@@ -1,0 +1,16 @@
+<div id="member_list_header">
+    Message will be sent to <%= pluralize @group.students.count, "member" %>
+    <br><span id="member_list_subheader">Replies will only be returned to group owner</span>
+    <span id="member_list_subheader">Click member info to edit</span>
+</div>
+
+<div>
+    <%= render :partial => 'send_message' %>
+</div>
+<div id="return_to_groups"></div>
+<div class="left margin_top">
+    <%= render :partial => 'sent_messages'%>
+    <div id="return_to_groups"></div>
+    <span><%= link_to "< All Groups", groups_path %></span>
+    <div id="return_to_groups"></div>
+</div>

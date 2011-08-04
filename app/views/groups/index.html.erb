@@ -8,10 +8,31 @@
     </div>
 </div>
 <div id="group_content">
+	<%= render :partial => 'ajax_form' %>
+	<div>
+	    <div id="group_info" onClick="$(this).hide(); $('#edit_group').show();">
+	            <span id='group_title' class='text_highlight josefin bold'><%= @group.title %></span>
+	        <h5>
+	            <span class="left text_highlight"><h5><%= @group.description %></span>
+	        </h5>
+	    </div>
+	    <div id="group_number">
+	        <h3 class="right josefin">
+	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+	        </h3>
+	    </div>
+	</div>
 	<ul>
 		<li><%= link_to 'Send Message', group_destinations_path(@group,@destination), :class => 'button' %></li>
 		<li><%= link_to 'Plan Field Trip', group_destinations_path(@group,@destination), :class => 'button' %></li>
 		<li><%= link_to 'Manage Members', group_destinations_path(@group,@destination), :class => 'button' %></li>
 		<li><%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete, :class => 'button' %></li>
+		<li><%= link_to 'Edit Group', edit_group_path(@group) %></li>
 	</ul>
+	<div id="message">
+		<%= render :partial => 'message'%>
+	</div>
+	<div id="members">
+		<%= render :partial => 'member_list'%>
+	</div>
 </div>

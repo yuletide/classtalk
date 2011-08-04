@@ -21,21 +21,6 @@
 	});
 </script>
 
-<%= render :partial => 'ajax_form' %>
-<div>
-    <div id="group_info" onClick="$(this).hide(); $('#edit_group').show();">
-            <span id='group_title' class='text_highlight josefin bold'><%= @group.title %></span>
-        <h5>
-            <span class="left text_highlight"><h5><%= @group.description %></span>
-        </h5>
-    </div>
-    <div id="group_number">
-        <h3 class="right josefin">
-            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
-        </h3>
-    </div>
-</div>
-
 <%= form_for @group, :url=> send_message_to_group_path(@group), :html=>{:method=>"post"} do |f| %>
   <%= fields_for :message do |mf| %>
     <div class="field left">
