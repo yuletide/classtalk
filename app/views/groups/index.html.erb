@@ -8,14 +8,7 @@
     </div>
 </div>
 <div id="group_content">
-	<%= render :partial => 'ajax_form' %>
 	<div id="group_header">
-	    <div id="group_info" onClick="$(this).hide(); $('#edit_group').show();">
-	            <span id='group_title' class='text_highlight josefin bold'><%= @group.title %></span>
-	        <h5>
-	            <span class="left text_highlight"><h5><%= @group.description %></span>
-	        </h5>
-	    </div>
 	    <div id="group_number">
 	        <h3 class="right josefin">
 	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
