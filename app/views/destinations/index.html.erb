@@ -30,6 +30,8 @@
 
 		<table>
 		  <tr>
+		    <th>Name</th>
+   		    <th>Hashtag</th>
 		    <th></th>
 		    <th></th>
 		    <th></th>
@@ -37,6 +39,8 @@
 
 		<% @destinations.each do |destination| %>
 		  <tr>
+		  	<td><%= destination.name %></td>
+		  	<td><%= destination.hashtag %></td>
 		    <td><%= link_to 'Show', group_destination_path(@group,destination) %></td>
 		    <td><%= link_to 'Edit', edit_group_destination_path(@group,destination) %></td>
 		    <td><%= link_to 'Destroy', group_destination_path(@group,destination), :confirm => 'Are you sure?', :method => :delete %></td>
