@@ -5,7 +5,8 @@ class DestinationsController < ApplicationController
   # GET /destinations.xml
   def index
     @destinations = Destination.all
-
+    @groups = current_user.groups
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @destinations }
@@ -16,6 +17,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/1.xml
   def show
     @destination = Destination.find(params[:id])
+    @groups = current_user.groups
 
     respond_to do |format|
       format.html # show.html.erb
@@ -27,6 +29,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/new.xml
   def new
     @destination = Destination.new
+    @groups = current_user.groups
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @destination }
@@ -36,6 +39,7 @@ class DestinationsController < ApplicationController
   # GET /destinations/1/edit
   def edit
     @destination = Destination.find(params[:id])
+    @groups = current_user.groups
   end
 
   # POST /destinations
@@ -43,6 +47,7 @@ class DestinationsController < ApplicationController
   def create
     @destination = Destination.new(params[:destination])
     @destination.group = @group
+    @groups = current_user.groups
 
     respond_to do |format|
       if @destination.save
@@ -59,6 +64,7 @@ class DestinationsController < ApplicationController
   # PUT /destinations/1.xml
   def update
     @destination = Destination.find(params[:id])
+    @groups = current_user.groups
 
     respond_to do |format|
       if @destination.update_attributes(params[:destination])
@@ -76,6 +82,7 @@ class DestinationsController < ApplicationController
   def destroy
     @destination = Destination.find(params[:id])
     @destination.destroy
+    @groups = current_user.groups
 
     respond_to do |format|
       format.html { redirect_to(destinations_url) }

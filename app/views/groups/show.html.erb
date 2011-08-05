@@ -8,10 +8,27 @@
     </div>
 </div>
 <div id="group_content">
-	<ul>
-		<li>Send Message</li>
-		<li>Plan Field Trip</li>
-		<li>Manage Members</li>
-		<li>Delete Group<li>
-	</ul>
+	<div id="group_header">
+		<ul id="group_nav">
+			<li>
+				<a href="javascript:toggleMessage();">Message</a>
+			</li>
+			<li><%= link_to 'Field Trips', group_destinations_path(@group,@destination) %></li>
+			<li>
+				<a href="javascript:toggleMembers();">Members</a>
+			</li>
+			<li><%= link_to 'Settings', edit_group_path(@group) %></li>
+		</ul>
+		<div id="group_number">
+	        <h3 class="right josefin">
+	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+	        </h3>
+	    </div>
+	</div>
+	<div id="message">
+		<%= render :partial => 'message'%>
+	</div>
+	<div id="members">
+		<%= render :partial => 'member_list'%>
+	</div>
 </div>

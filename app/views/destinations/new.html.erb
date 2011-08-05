@@ -1,6 +1,36 @@
-<h1>New destination</h1>
+<div id="groups">
+    <div id="group_list">
+	    <%= render :partial => 'groups/group_list' %>
+    </div>
+    <div id="group_list_bottom">
+        <div class="field_description margin large"><%= @groups.count %> groups</div>
+        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
+    </div>
+</div>
+<div id="group_content">
+	<div id="group_header">
+		<ul id="group_nav">
+			<li>
+				<a href="javascript:toggleMessage();">Message</a>
+			</li>
+			<li><%= link_to 'Field Trips', group_destinations_path(@group,@destination) %></li>
+			<li>
+				<a href="javascript:toggleMembers();">Members</a>
+			</li>
+			<li><%= link_to 'Settings', edit_group_path(@group) %></li>
+		</ul>
+		<div id="group_number">
+	        <h3 class="right josefin">
+	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+	        </h3>
+	    </div>
+	</div>
+	<div id="destinations">
+		<h1>New destination</h1>
 
-<%= nested_form_for([@group,@destination]) do |f| %>
-  <%= render :partial => 'form', :locals => {:f => f} %>
-<% end %>
-<%= link_to 'Back', group_destinations_path(@group,@destination) %>
+		<%= nested_form_for([@group,@destination]) do |f| %>
+		  <%= render :partial => 'form', :locals => {:f => f} %>
+		<% end %>
+		<%= link_to 'Back', group_destinations_path(@group,@destination) %>
+	</div>
+</div>
