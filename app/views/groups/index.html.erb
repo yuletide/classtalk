@@ -1,3 +1,30 @@
+<script type="text/javascript"> 
+function toggleMessage() {
+	var message = document.getElementById("message");
+	var members = document.getElementById("members");
+	if(members.style.display == "block" && message.style.display == "none") {
+    	members.style.display = "none";
+		message.style.display = "block";
+  	}
+	else {
+		members.style.display = "none";
+		message.style.display = "block";
+	}
+}
+function toggleMembers() {
+	var message = document.getElementById("message");
+	var members = document.getElementById("members");
+	if(members.style.display == "none" && message.style.display == "block") {
+    	members.style.display = "block";
+		message.style.display = "none";
+  	}
+	else {
+		members.style.display = "block";
+		message.style.display = "none";
+	}
+}
+</script>
+
 <div id="groups">
     <div id="group_list">
 	    <%= render :partial => 'group_list' %>
@@ -9,17 +36,21 @@
 </div>
 <div id="group_content">
 	<div id="group_header">
-	    <div id="group_number">
+		<ul id="group_nav">
+			<li>
+				<a href="javascript:toggleMessage();">Message</a>
+			</li>
+			<li><%= link_to 'Field Trips', group_destinations_path(@group,@destination) %></li>
+			<li>
+				<a href="javascript:toggleMembers();">Members</a>
+			</li>
+			<li><%= link_to 'Settings', edit_group_path(@group) %></li>
+		</ul>
+		<div id="group_number">
 	        <h3 class="right josefin">
 	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
 	        </h3>
 	    </div>
-		<ul id="group_nav">
-			<li><%= link_to 'Send Message', group_destinations_path(@group,@destination) %></li>
-			<li><%= link_to 'Plan Field Trip', group_destinations_path(@group,@destination) %></li>
-			<li><%= link_to 'Manage Members', group_destinations_path(@group,@destination) %></li>
-			<li><%= link_to 'Edit Group', edit_group_path(@group) %></li>
-		</ul>
 	</div>
 	<div id="message">
 		<%= render :partial => 'message'%>
