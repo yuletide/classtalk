@@ -38,3 +38,27 @@ $(document).ready(function() {
 		});
 	});
 });
+function toggleMessage() {
+	var message = document.getElementById("message");
+	var members = document.getElementById("members");
+	if(members.style.display == "block" && message.style.display == "none") {
+    	members.style.display = "none";
+		message.style.display = "block";
+  	}
+	else {
+		members.style.display = "none";
+		message.style.display = "block";
+	}
+}
+function toggleMembers() {
+	var message = document.getElementById("message");
+	var members = document.getElementById("members");
+	if(members.style.display == "none" && message.style.display == "block") {
+    	members.style.display = "block";
+		message.style.display = "none";
+  	}
+	else {
+		members.style.display = "block";
+		message.style.display = "none";
+	}
+}
