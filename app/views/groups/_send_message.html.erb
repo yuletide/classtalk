@@ -24,17 +24,22 @@
 <%= form_for @group, :url=> send_message_to_group_path(@group), :html=>{:method=>"post"} do |f| %>
   <%= fields_for :message do |mf| %>
     <div class="field left">
-      <%= mf.label :content, "Send Message" %>
-      <span class="formwrap"><%= mf.text_area :content, :id => "message_content"%>
-	<div id="character_count"><h5>
-		<div>
-			<div id="barbox">
-				<div id="bar"></div>
+		<span class="formwrap">
+			<span id="send_message_header">Send message to <%= pluralize @group.students.count, "member" %></span>
+			<br>
+			<span id="send_message_subheader">Replies will be returned only to group owner</span>
+			<%= mf.text_area :content, :id => "message_content"%>
+			<div id="character_count">
+				<h5>
+					<div>
+						<div id="barbox">
+							<div id="bar"></div>
+						</div>
+					</div>
+					<div id="count">0 / <%= 158 - current_user.display_name.length %></div>
+				</h5>
 			</div>
-		</div>
-		<div id="count">0 / <%= 158 - current_user.display_name.length %></div>
-	</h5></div>
-	</span>
+		</span>
     </div>
   <%end%>
   <div>

@@ -75,26 +75,6 @@ Member List
 	height: 100%;
 	display: none;
 }
-#member_list_header {
-	font-size: 14px;
-	font-weight: bold;
-	text-align: left;
-	color: white;
-	background-color: lightgray;
-	padding: 10px 10px 8px 17px;
-	margin-top: 11px;
-	border-radius: 4px;
-	-webkit-border-radius: 4px;
-	-moz-border-radius: 4px;
-	text-shadow: rgba(0,0,0,0.25) 0px -1px 0px;
-}
-#member_list_subheader {
-	font-size: 11px;
-	font-weight: normal;
-	display: block;
-	color: white;
-	text-shadow: rgba(0,0,0,0.1) 0px -1px 0px;
-}
 #student_list {
 	list-style: none;
 	padding: 10px 0px 5px 15px;
@@ -516,6 +496,24 @@ Send Message
 #message {
 	width: 100%;
 	display: block;
+}
+#send_message {
+	margin-top: 25px;
+}
+#send_message_header {
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	color: black;
+	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+}
+#send_message_subheader {
+	font-size: 11px;
+	font-weight: normal;
+	display: block;
+	color: black;
+	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+	padding-bottom: 10px;
 }
 #message_content {
 	resize: none;
