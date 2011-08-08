@@ -9,8 +9,12 @@ gem 'json'
 gem 'rails', '3.0.9'
 gem 'resque'
 gem 'sqlite3'
+<<<<<<< HEAD
 gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
 gem "nested_form"
+=======
+gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git', :branch => 'rails-3.0'
+>>>>>>> 948d658b3b86b00ac0e9e20a4ffe940924adfe1f
 
 group :test, :development do
   gem 'factory_girl_rails'
