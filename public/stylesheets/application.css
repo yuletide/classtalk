@@ -261,7 +261,6 @@ Group List
 	padding-top: 10px;
 	padding-bottom: 35px;
 	text-align: center;
-	border-right: 1px solid #757575;
 }
 #group_list_gradient {
 	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.2)));
@@ -647,6 +646,7 @@ Site Containers
 }
 #main {
 	margin: 2px 10px 0px 0px;
+	background: url('../images/bg-main.png');
 	background-color: #f7f7f7;
 	float: left;
 	width: 960px;
@@ -656,9 +656,9 @@ Site Containers
 	border-right: 1px solid #B3B3B3;
 	border-bottom: 1px solid #d8d8d8;
 	border-left: 1px solid #B3B3B3;
-	-moz-box-shadow: 0px 2px 5px 2px #C6C6C6;
-	-webkit-box-shadow: 0px 2px 5px 2px #C6C6C6;
-	box-shadow: 0px 2px 5px 2px #C6C6C6;
+	-moz-box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
+	-webkit-box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
+	box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
 }
 #groups {
 	width: 383px;
