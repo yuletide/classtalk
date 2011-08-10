@@ -21,7 +21,7 @@ class Destination < ActiveRecord::Base
     #WARNING: this may fail in weird ways if you only do 'partial updates'
     #TODO: make that safer.
     attributes_collection = attributes_collection.each_with_index.map do |att,i|
-      att.merge(:order_index => i)
+      att.merge(:order_index => (i+1))
     end
     puts "calling with: #{attributes_collection.inspect}"
     
