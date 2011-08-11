@@ -57,8 +57,10 @@
       </div>
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
+	<% elsif (params[:controller] == 'groups') || (params[:controller] == 'destinations') %>
+		<div id="main" class="groups">
     <% else %>
-        <div id="main">
+        <div id="main" class="full">
     <% end %>
             <div class="content">
                 <%= render :partial => 'layouts/notices' %>

@@ -6,11 +6,11 @@
 -------------------------------------------------------------- */
 
 body {
-  background: url('../images/bg.png') repeat right;
-  font-size: 20px;
-  font-family: helvetica, arial, sans-serif;
-  font-weight: normal;
-  color: #333;
+	background: url('../images/bg2.png') repeat right;
+	font-size: 20px;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+	color: #333;
 }
 
 h1 { font-size: 2em;}
@@ -133,11 +133,10 @@ Group List
 	display: block;
 	vertical-align: center;
 	height: 76px;
-	width: 328px;
+	width: 330px;
 	padding: 22px 0px 0px 20px;
 	border-top: 1px solid #9c9c9c;
 	border-bottom: 1px solid #757575;
-	border-right: 1px solid #757575;
 }
 /*First group list item has rounded corner and top border removed*/
 .group_list_item:first-of-type {
@@ -204,7 +203,7 @@ Group List
 	display: block;
 	vertical-align: center;
 	height: 76px;
-	width: 328px;
+	width: 330px;
 	padding: 22px 0px 0px 20px;
 	border-top: 2px solid transparent;
 }
@@ -501,38 +500,40 @@ Send Message
 	width: 100%;
 	min-height: 380px;
 }
-#send_message_header {
-	font-size: 14px;
-	font-weight: bold;
-	text-align: left;
-	color: black;
-	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
-}
-#send_message_subheader {
-	font-size: 11px;
+#send_message_info {
+	font-size: 12px;
 	font-weight: normal;
 	display: block;
-	color: black;
+	color: #484848;
 	text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
 	padding-bottom: 10px;
 }
 #message_content {
 	resize: none;
-	border: 1px solid #aaaaaa;
-	font-size:1.1em;
+	border: none;
+	font-size: 1.1em;
 	padding: 7px;
-	width: 488px;
+	width: 522px;
 	height: 6em;
 	display: block;
-	background-color: #fff;
+	background-color: rgba(255, 255, 255, 1);
+	border-radius: 2px;
+	color: #484848;
 }
 .formwrap {
-	border: 8px solid #d3d3d3;
+	border: 1px solid rgba(0,0,0,0.15);
 	border-radius: 4px;
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	display: block;
-	background-color: #d3d3d3;
+	background-color: rgba(0,0,0,0.1);
+	padding: 8px;
+}
+#message_display_name {
+	margin-top: -2px;
+	font-size: 25px;
+	color: #484848;
+	text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
 }
 #bar {
 	background-color:#3a8bd6;
@@ -559,6 +560,7 @@ Send Message
 	overflow: hidden;
 	margin-top: 9px;
 	height: 25px;
+	margin-bottom: 2px;
 }
 #message_send_options { margin-top: 2px }
 #send_message_now {
@@ -646,7 +648,6 @@ Site Containers
 }
 #main {
 	margin: 2px 10px 0px 0px;
-	background: url('../images/bg-main.png');
 	background-color: #f7f7f7;
 	float: left;
 	width: 960px;
@@ -659,6 +660,16 @@ Site Containers
 	-moz-box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
 	-webkit-box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
 	box-shadow: 0px 1px 3px 1px rgba(0,0,0,.25);
+}
+#main.full {
+	padding: 0px 20px 0px 20px;
+	width: 920px;
+}
+#main.splash {
+	background: url('../images/classtalk_splash_v2.jpg') center no-repeat;
+}
+#main.groups {
+	background: url('../images/bg-main.jpg');
 }
 #groups {
 	width: 383px;
@@ -759,9 +770,7 @@ Top Nav Bar
 Splash Page
 
 -------------------------------------------------------------- */
-.splash {
-	background: url('../images/classtalk_splash.png') center no-repeat;
-}
+
 .arrow_sign_up {
 	font-size: 18px;
 	margin-left: 5px;
