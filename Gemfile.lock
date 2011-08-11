@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 536783bfa82dfd1c7e6f9660068cbeeb45bb82f7
+  revision: 608ae867438f406bcd9671438df8be7399937d1d
   branch: rails-3.0
   specs:
     rails_admin (0.0.1)
@@ -67,7 +67,7 @@ GEM
       factory_girl (~> 2.0.0)
       railties (>= 3.0.0)
     fastercsv (1.5.4)
-    haml (3.2.0.alpha.8)
+    haml (3.1.2)
     httparty (0.7.8)
       crack (= 0.1.8)
     httpclient (2.2.1)
