@@ -1,8 +1,37 @@
-<table>
-	<tr>
-		<td class="top"><%= render 'form' %></td>
-		<td class="top"><%= render 'membership_form' %></td>
-	</tr>
-</table>
-<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete %>
-<%= link_to 'Back', groups_path %>
+<div id="groups">
+    <div id="group_list">
+	    <%= render :partial => 'groups/group_list' %>
+    </div>
+    <div id="group_list_bottom">
+        <div class="field_description margin large"><%= @groups.count %> groups</div>
+        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
+    </div>
+</div>
+<div id="group_content">
+	<div id="group_header">
+		<ul id="group_nav">
+			<li>
+				<a href="<%= group_path(@group) %>">Message</a>
+			</li>
+			<li><%= link_to 'Field Trips', group_destinations_path(@group,@destination) %></li>
+			<li>
+				<a href="<%= group_path(@group) %>">Members</a>
+			</li>
+			<li><%= link_to 'Settings', edit_group_path(@group) %></li>
+		</ul>
+		<div id="group_number">
+	        <h3 class="right josefin">
+	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+	        </h3>
+	    </div>
+	</div>
+	<div>
+		<table>
+			<tr>
+				<td class="top"><%= render 'form' %></td>
+			</tr>
+		</table>
+		<br>
+		<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete %>
+	</div>
+</div>

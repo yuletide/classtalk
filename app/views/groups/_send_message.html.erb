@@ -37,18 +37,18 @@
 				</h5>
 			</div>
 			<%= mf.text_area :content, :id => "message_content"%>
-			<div id="message_send_options">
+			<div>
 				<div class="left">
 					<%= f.submit "Send Now", :class => 'button', :id => 'send_message_now' %>
 				</div>
 				<div>
-					<%= f.submit "Send Later", :class => 'right button secondary', :id => 'send_message_scheduled'%>
-				</div>
-				<div>
 					<span class="right"><%= select_datetime(DateTime.now,:discard_minute=>true, :start_year=>Date.today.year,:end_year=>Date.today.year+1) %></span>
 				</div>
+				<div>
+					<%= f.submit "Send Later", :class => 'right button', :id => 'send_message_scheduled'%>
+				</div>
 			</div>
-			<span id="send_message_info">Message will be sent to <%= pluralize @group.students.count, "member" %> and replies will be returned only to you</span>
+			<div id="send_message_info">Message will be sent to <%= pluralize @group.students.count, "member" %> and replies will be returned only to you</div>
 		</span>
     </div>
   <%end%>
