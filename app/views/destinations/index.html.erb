@@ -26,30 +26,27 @@
 	    </div>
 	</div>
 	<div id="destinations">
-		<h1>Listing destinations</h1>
-
 		<table>
-		  <tr>
-		    <th>Name</th>
-   		    <th>Hashtag</th>
-		    <th></th>
-		    <th></th>
-		    <th></th>
-		  </tr>
-
 		<% @group.destinations.each do |destination| %>
-		  <tr>
-		  	<td><%= destination.name %></td>
-		  	<td><%= destination.hashtag %></td>
-		    <td><%= link_to 'Show', group_destination_path(@group,destination) %></td>
-		    <td><%= link_to 'Edit', edit_group_destination_path(@group,destination) %></td>
-		    <td><%= link_to 'Destroy', group_destination_path(@group,destination), :confirm => 'Are you sure?', :method => :delete %></td>
+		  <tr class="destination_row">
+			<td class="destination_image">
+				<img src="../../../images/destinations/map_pin.png" width="80" height="80" alt="Map Pin">
+				<span class="hashtag oswald">#<%= destination.hashtag %></span>
+			</td>
+			<td>
+				<div class="destination_info">
+					<span class="destination_name josefin"><%= destination.name %></span>
+					<span class="destination_notes"><%= destination.notes %></span>
+				</div>
+			</td>
+			<td>
+				<%= link_to 'Show', group_destination_path(@group,destination) %>
+			</td>
 		  </tr>
 		<% end %>
 		</table>
-
-		<br />
-
-		<%= link_to 'New Destination', new_group_destination_path(@group) %>
+		<div class="add_list_item">
+			<%= link_to 'Add Field Trip', new_group_destination_path(@group), :class => "button" %>
+		</div>
 	</div>
 </div>

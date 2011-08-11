@@ -17,5 +17,7 @@
   <dd><%= @destination.questions %></dd>
 </dl>
 
+<%= link_to 'Destroy', group_destination_path(@group,destination), :confirm => 'Are you sure?', :method => :delete %>
 <%= link_to 'Edit', edit_group_destination_path(@group,@destination) %> |
 <%= link_to 'Back', group_destinations_path(@group) %>
+

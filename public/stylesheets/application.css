@@ -119,6 +119,39 @@ input.ajax_edit.number{
 	font-weight: normal;
 }
 
+
+/* --------------------------------------------------------------
+
+Field Trip List
+
+-------------------------------------------------------------- */
+
+.destination_row {
+	height: 80px;
+}
+.destination_image {
+	width: 90px;
+}
+.hashtag {
+	font-size: 13pt;
+	display: block;
+	margin: -10px 0px 12px 0px;
+}
+.destination_info {
+	height: 115px;
+	vertical-align: top;
+}
+.destination_name {
+	font-size: 18pt;
+	font-weight: bold;
+	display: block;
+}
+.destination_notes {
+	font-size: 11pt;
+	display: block;
+	margin-top: -10px;
+}
+
 /* --------------------------------------------------------------
 
 Group List
@@ -260,6 +293,10 @@ Group List
 	padding-top: 10px;
 	padding-bottom: 35px;
 	text-align: center;
+}
+.add_list_item {
+	text-align: center;
+	margin: 30px 0px 30px 0px;
 }
 #group_list_gradient {
 	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.2)));
