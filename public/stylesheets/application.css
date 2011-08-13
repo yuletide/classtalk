@@ -319,13 +319,29 @@ Group Header
 #group_nav {
 	clear: both;
 	float: left;
-	padding: 5px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
 	font-size: 16px;
 }
 #group_nav li {
 	list-style: none;
 	float: left;
-	margin-right:30px;
+	margin-right:32px;
+}
+#group_nav li a:hover {
+}
+#group_nav li:last-child {
+	margin-right: 0px;
+}
+.group_nav_item {
+	height: 65px;
+	width: 65px;
+	border: 2px solid gray;
+	border-radius: 5px;
+}
+.group_nav_item:hover {
+	height: 65px;
+	width: 65px;
+	border: 2px solid red;
 }
 
 /* --------------------------------------------------------------
@@ -565,6 +581,8 @@ Send Message
 	display: block;
 	background-color: rgba(0,0,0,0.1);
 	padding: 8px;
+	-webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
+	-moz-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
 }
 #message_display_name {
 	margin-top: -2px;

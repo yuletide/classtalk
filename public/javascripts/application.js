@@ -38,6 +38,7 @@ $(document).ready(function() {
 		});
 	});
 });
+//On click of Message link, hides Members and displays send message
 function toggleMessage() {
 	var message = document.getElementById("message");
 	var members = document.getElementById("members");
@@ -50,6 +51,7 @@ function toggleMessage() {
 		message.style.display = "block";
 	}
 }
+//On click of Members link, hides Message and displays members
 function toggleMembers() {
 	var message = document.getElementById("message");
 	var members = document.getElementById("members");

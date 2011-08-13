@@ -11,13 +11,21 @@
 	<div id="group_header">
 		<ul id="group_nav">
 			<li>
-				<a href="javascript:toggleMessage();">Message</a>
+				<a href="javascript:toggleMessage();"><div class="group_nav_item"></div></a>
 			</li>
-			<li><%= link_to 'Field Trips', group_destinations_path(@group,@destination) %></li>
 			<li>
-				<a href="javascript:toggleMembers();">Members</a>
+				<%= link_to group_destinations_path(@group,@destination) do %>
+					<div class="group_nav_item"></div>
+				<% end %>
 			</li>
-			<li><%= link_to 'Settings', edit_group_path(@group) %></li>
+			<li>
+				<a href="javascript:toggleMembers();"><div class="group_nav_item"></div></a>
+			</li>
+			<li>
+				<%= link_to edit_group_path(@group) do %>
+					<div class="group_nav_item"></div>
+				<% end %>
+			</li>
 		</ul>
 		<div id="group_number">
 	        <h3 class="right josefin">
