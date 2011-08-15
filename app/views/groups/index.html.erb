@@ -38,12 +38,12 @@
 				<div class="group_nav_text_element group_number_info center">
 					<span class="bold">The Group Number</span>
 					<ul class="contextual_popup_list">
-						<li>All messages are received from this number</li>
-						<li>If <span class="bold">you</span> send a text message it's forwarded to all members</li>
-						<li>If <span class="bold">members</span> send a message it's forwarded only to you</li>
+						<li>Members receive all messages from this number</li>
+						<li>Text messages <span class="bold">you</span> send to this number are forwarded to all members as from "<%= current_user.display_name %>"</li>
+						<li>Messages <span class="bold">members</span> send to this number are forwarded only to you</li>
 					</ul>
 					<div class="contextual_popup_actions">
-						<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill">don't display again</a>
+						<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill">don't show again</a>
 					</div>
 				</div>
 			</div>

@@ -360,7 +360,9 @@ Contextual Popups
 .arrow_up_small.group_number_info {
 	left: 200px;
 	top: -9px;
-	border-bottom: 5px solid rgba(0,0,0,.75);
+	border-left: 7px solid transparent;
+	border-right: 7px solid transparent;
+	border-bottom: 7px solid rgba(0,0,0,.75);
 }
 #messages, #checkins, #members, #settings {
 	float: left;
@@ -402,7 +404,8 @@ Contextual Popups
 .contextual_popup_kill {
 	float: right;
 	font-size: 10px;
-	margin-top: 2px;
+	margin-top: 4px;
+	margin-right: 5px;
 	color: white;
 }
 .contextual_popup_kill:hover {
@@ -419,7 +422,8 @@ Contextual Popups
 }
 .contextual_popup_dismiss:hover {
 	text-decoration: none;
-	color: white;
+	color: #e7e7e7;
+	text-shadow: rgba(0,0,0,0.85) 0px -1px 0px;
 }
 
 /* --------------------------------------------------------------
