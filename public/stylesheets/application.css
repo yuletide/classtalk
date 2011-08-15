@@ -54,6 +54,9 @@ Site-Wide Formatting Classes
 	position: relative;
 	float: right;
 }
+.center {
+	text-align: center;
+}
 .margin.small {
 	margin-bottom: 5px;
 }
@@ -70,7 +73,7 @@ Member List
 
 -------------------------------------------------------------- */
 
-#members {
+#member_list {
 	width: 100%;
 	height: 100%;
 	display: none;
@@ -305,6 +308,119 @@ Group List
 	border-radius: 7px 0px 0px 0px;
 }
 
+/* --------------------------------------------------------------
+
+Contextual Popups
+
+-------------------------------------------------------------- */
+
+.group_nav_text_element {
+	font-size: 8pt;
+	padding: 2px 3px 2px 3px;
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+	position: relative;
+		top: -9px;
+		left: 6px;
+	z-index: 10;
+}
+.group_nav_text_element.group_number_info {
+	font-size: 9pt;
+	background-color: rgba(0,0,0,.75);
+	color: white;
+	text-shadow: rgba(0,0,0,0.5) 0px -1px 0px;
+	padding: 8px 6px 2px 6px;
+	box-shadow: 0px 2px 7px rgba(0,0,0,0.35);
+	-moz-box-shadow: 0px 2px 7px rgba(0,0,0,0.35);
+	-webkit-box-shadow: 0px 2px 7px rgba(0,0,0,0.35);
+}
+.arrow_up_small {
+	width: 0px;
+	height: 0px;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 6px solid white;
+	position: relative;
+		left: 28px;
+		top: 1px;
+	z-index: 20;
+}
+.arrow_up_small.checkins {
+	left: 26px;
+}
+.arrow_up_small.members {
+	left: 26px;
+}
+.arrow_up_small.settings {
+	left: 23px;
+}
+.arrow_up_small.group_number_info {
+	left: 200px;
+	top: -9px;
+	border-bottom: 5px solid rgba(0,0,0,.75);
+}
+#messages, #checkins, #members, #settings {
+	float: left;
+	position: relative;
+		top: 3px;
+}
+#messages {
+	left: 0px;
+	display: none;
+}
+#checkins {
+	left: 47px;
+	display: none;
+}
+#members {
+	left: 96px;
+	display: none;
+}
+#settings {
+	left: 149px;
+	display: none;
+}
+#group_number_info {
+	display: block;
+	width: 230px;
+	z-index: 100;
+	position: absolute;
+		top: 35px;
+		left: 335px;
+}
+.contextual_popup_list {
+	margin: 6px 0px 8px 17px;
+	text-align: left;
+}
+.contextual_popup_actions {
+	height: 20px;
+	margin-bottom: 5px;
+}
+.contextual_popup_kill {
+	float: right;
+	font-size: 10px;
+	margin-top: 2px;
+	color: white;
+}
+.contextual_popup_kill:hover {
+	text-decoration: underline;
+	color: white;
+}
+.contextual_popup_dismiss {
+	margin-left: 8px;
+	color: white;
+	float: right;
+	padding: 0px 4px;
+	background-color: #2EA390;
+	border-radius: 3px;
+}
+.contextual_popup_dismiss:hover {
+	text-decoration: none;
+	color: white;
+}
 
 /* --------------------------------------------------------------
 
@@ -317,7 +433,6 @@ Group Header
 	height: 80px;
 }
 #group_nav {
-	clear: both;
 	float: left;
 	padding: 0px 0px 0px 0px;
 	font-size: 16px;
@@ -335,6 +450,7 @@ Group Header
 .group_nav_item {
 	height: 65px;
 	width: 65px;
+	background-color: lightgray;
 	border: 2px solid gray;
 	border-radius: 5px;
 }
@@ -342,6 +458,11 @@ Group Header
 	height: 65px;
 	width: 65px;
 	border: 2px solid red;
+}
+#group_nav_text {
+	width: 385px;
+	height: 40px;
+	float: left;
 }
 
 /* --------------------------------------------------------------

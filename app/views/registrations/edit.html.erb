@@ -22,11 +22,11 @@
         <%= f.text_field :email %>
       </div>
       <div class="field">
-        <%= f.label :phone_number %>
+        <%= f.label :phone_number, "Mobile Number" %>
         <%= f.text_field :phone_number %>
       </div>
       <div class="field">
-        <%= f.label :current_password %>
+        <%= f.label :current_password, "Current Password" %>
         <%= f.password_field :current_password %>
       </div>
       <p><%= link_to "Change password »", edit_password_of_profile_path, :class => "right" %></p><br>

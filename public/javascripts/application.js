@@ -37,11 +37,21 @@ $(document).ready(function() {
 			}
 		});
 	});
+	$('#message_nav').hover(over, out);
+		//Tell the browser to change the background when hovered over
+		function over(event) {
+			$('#messages').css("display", "block");
+			$('#message_nav').css("cursor", "pointer");
+		}
+		//tell the browser to change the background to nothing when going outside the object area
+		function out(event) {
+			$('#messages').css("display", "none");
+		}
 });
 //On click of Message link, hides Members and displays send message
 function toggleMessage() {
 	var message = document.getElementById("message");
-	var members = document.getElementById("members");
+	var members = document.getElementById("member_list");
 	if(members.style.display == "block" && message.style.display == "none") {
     	members.style.display = "none";
 		message.style.display = "block";
@@ -54,7 +64,7 @@ function toggleMessage() {
 //On click of Members link, hides Message and displays members
 function toggleMembers() {
 	var message = document.getElementById("message");
-	var members = document.getElementById("members");
+	var members = document.getElementById("member_list");
 	if(members.style.display == "none" && message.style.display == "block") {
     	members.style.display = "block";
 		message.style.display = "none";
@@ -63,4 +73,12 @@ function toggleMembers() {
 		members.style.display = "block";
 		message.style.display = "none";
 	}
+}
+
+function dismissContextualPopup() {
+	var hideMe = document.getElementById("group_number_info");
+	hideMe.style.display = "none";
+}
+function killContextualPopup() {
+	
 }

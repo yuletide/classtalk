@@ -11,7 +11,7 @@
 	<div id="group_header">
 		<ul id="group_nav">
 			<li>
-				<a href="javascript:toggleMessage();"><div class="group_nav_item"></div></a>
+				<a href="javascript:toggleMessage();"><div id="message_nav" class="group_nav_item"></div></a>
 			</li>
 			<li>
 				<%= link_to group_destinations_path(@group,@destination) do %>
@@ -32,11 +32,45 @@
 	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
 	        </h3>
 	    </div>
+		<div style="position:absolute;">
+			<div id="group_number_info">
+				<div class="arrow_up_small group_number_info"></div>
+				<div class="group_nav_text_element group_number_info center">
+					<span class="bold">The Group Number</span>
+					<ul class="contextual_popup_list">
+						<li>All messages are received from this number</li>
+						<li>If <span class="bold">you</span> send a text message it's forwarded to all members</li>
+						<li>If <span class="bold">members</span> send a message it's forwarded only to you</li>
+					</ul>
+					<div class="contextual_popup_actions">
+						<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill">don't display again</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="group_nav_text">
+			<div id="messages">
+				<div class="arrow_up_small"></div>
+				<span class="group_nav_text_element">Messages</span>
+			</div>
+			<div id="checkins">
+				<div class="arrow_up_small checkins"></div>
+				<span class="group_nav_text_element">Checkins</span>
+			</div>
+			<div id="members">
+				<div class="arrow_up_small members"></div>
+				<span class="group_nav_text_element">Members</span>
+			</div>
+			<div id="settings">
+				<div class="arrow_up_small settings"></div>
+				<span class="group_nav_text_element">Settings</span>
+			</div>
+		</div>
 	</div>
 	<div id="message">
 		<%= render :partial => 'message'%>
 	</div>
-	<div id="members">
+	<div id="member_list">
 		<%= render :partial => 'member_list'%>
 	</div>
 </div>
