@@ -39,13 +39,13 @@ $(document).ready(function() {
 	});
 	$('#message_nav').hover(over, out);
 		//Tell the browser to change the background when hovered over
+		var messagesGroupNav = document.getElementById("messages");
 		function over(event) {
-			$('#messages').css("display", "block");
-			$('#message_nav').css("cursor", "pointer");
+			messagesGroupNav.style.display = "block";
 		}
 		//tell the browser to change the background to nothing when going outside the object area
 		function out(event) {
-			$('#messages').css("display", "none");
+			messagesGroupNav.style.display = "none";
 		}
 });
 //On click of Message link, hides Members and displays send message

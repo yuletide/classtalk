@@ -454,14 +454,43 @@ Group Header
 .group_nav_item {
 	height: 65px;
 	width: 65px;
-	background-color: lightgray;
-	border: 2px solid gray;
+	border: 2px solid #b9b9ba;
 	border-radius: 5px;
 }
 .group_nav_item:hover {
-	height: 65px;
-	width: 65px;
-	border: 2px solid red;
+	border: 2px solid #b9b9ba;
+}
+#message_nav {
+	background: url('../images/groups/nav_sprites.png') 0px 0px;
+	background-color: rgba(255,255,255,0.5);
+}
+#message_nav:hover {
+	background: url('../images/groups/nav_sprites.png') 0px 65px;
+	background-color: rgba(255,255,255,0.5);
+}
+#checkins_nav {
+	background: url('../images/groups/nav_sprites.png') 195px 0px;
+	background-color: rgba(255,255,255,0.5);
+}
+#checkins_nav:hover {
+	background: url('../images/groups/nav_sprites.png') 195px 65px;
+	background-color: rgba(255,255,255,0.5);
+}
+#members_nav {
+	background: url('../images/groups/nav_sprites.png') 130px 0px;
+	background-color: rgba(255,255,255,0.5);
+}
+#members_nav:hover {
+	background: url('../images/groups/nav_sprites.png') 130px 65px;
+	background-color: rgba(255,255,255,0.5);
+}
+#settings_nav {
+	background: url('../images/groups/nav_sprites.png') 65px 0px;
+	background-color: rgba(255,255,255,0.5);
+}
+#settings_nav:hover {
+	background: url('../images/groups/nav_sprites.png') 65px 65px;
+	background-color: rgba(255,255,255,0.5);
 }
 #group_nav_text {
 	width: 385px;

@@ -15,15 +15,15 @@
 			</li>
 			<li>
 				<%= link_to group_destinations_path(@group,@destination) do %>
-					<div class="group_nav_item"></div>
+					<div id="checkins_nav" class="group_nav_item"></div>
 				<% end %>
 			</li>
 			<li>
-				<a href="javascript:toggleMembers();"><div class="group_nav_item"></div></a>
+				<a href="javascript:toggleMembers();"><div id="members_nav" class="group_nav_item"></div></a>
 			</li>
 			<li>
 				<%= link_to edit_group_path(@group) do %>
-					<div class="group_nav_item"></div>
+					<div id="settings_nav" class="group_nav_item"></div>
 				<% end %>
 			</li>
 		</ul>
