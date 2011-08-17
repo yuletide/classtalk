@@ -1,24 +1,24 @@
 <script type="text/javascript">
-	$(document).ready(function()
-	{
-		$("#message_content").keyup(function()
-		{
-		var box=$(this).val();
-		var main = box.length *100;
-		var value= (main / <%= 158 - current_user.display_name.length %>);
-		var count= box.length;
+  $(document).ready(function()
+  {
+    $("#message_content").keyup(function()
+    {
+    var box=$(this).val();
+    var main = box.length *100;
+    var value= (main / <%= 158 - current_user.display_name.length %>);
+    var count= box.length;
 
-		if(box.length <= <%= 158 - current_user.display_name.length %>)
-		{
-			$('#count').html(count + ' / ' + <%= 158 - current_user.display_name.length %>);
-			$('#bar').animate(
-				{
-				"width": value+'%',
-				}, 1);
-		}
-		return false;
-		});
-	});
+    if(box.length <= <%= 158 - current_user.display_name.length %>)
+    {
+      $('#count').html(count + ' / ' + <%= 158 - current_user.display_name.length %>);
+      $('#bar').animate(
+        {
+        "width": value+'%',
+        }, 1);
+    }
+    return false;
+    });
+  });
 </script>
 
 <%= render :partial => 'ajax_form' %>
@@ -41,15 +41,15 @@
     <div class="field left">
       <%= mf.label :content, "Send Message" %>
       <span class="formwrap"><%= mf.text_area :content, :id => "message_content"%>
-	<div id="character_count"><h5>
-		<div>
-			<div id="barbox">
-				<div id="bar"></div>
-			</div>
-		</div>
-		<div id="count">0 / <%= 158 - current_user.display_name.length %></div>
-	</h5></div>
-	</span>
+  <div id="character_count"><h5>
+    <div>
+      <div id="barbox">
+        <div id="bar"></div>
+      </div>
+    </div>
+    <div id="count">0 / <%= 158 - current_user.display_name.length %></div>
+  </h5></div>
+  </span>
     </div>
   <%end%>
   <div>
