@@ -53,8 +53,10 @@
                     <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li> 
                   </h3>
               </ul>
-          </div>        
-      </div>
+          </div>
+	</div>
+	<%= render :partial => 'layouts/notices' %>
+        
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
 	<% elsif (params[:controller] == 'groups') || (params[:controller] == 'destinations') %>
@@ -63,7 +65,6 @@
         <div id="main" class="full">
     <% end %>
             <div class="content">
-                <%= render :partial => 'layouts/notices' %>
                 <%= yield %>
             </div>
         </div>

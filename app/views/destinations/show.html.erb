@@ -1,23 +1,82 @@
-<p id="notice"><%= notice %></p>
+<div id="groups">
+    <div id="group_list">
+	    <%= render :partial => 'groups/group_list' %>
+    </div>
+    <div id="group_list_bottom">
+        <div class="field_description margin large"><%= @groups.count %> groups</div>
+        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
+    </div>
+</div>
+<div id="group_content">
+	<div id="group_header">
+		<ul id="group_nav">
+			<li>
+				<a href="<%= group_path(@group) %>"><div id="message_nav" class="group_nav_item"></div></a>
+				<div class="group_nav_text">
+					<div id="messages">
+						<div class="arrow_up_small"></div>
+						<span class="group_nav_text_element contexual_popup">Messages</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<%= link_to group_destinations_path(@group) do %>
+					<div id="checkins_nav" class="group_nav_item"></div>
+				<% end %>
+				<div class="group_nav_text">
+					<div id="checkins">
+						<div class="arrow_up_small"></div>
+						<span class="group_nav_text_element contexual_popup">Check Ins</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a href="<%= group_path(@group) %>"><div id="members_nav" class="group_nav_item"></div></a>
+				<div class="group_nav_text">
+					<div id="members">
+						<div class="arrow_up_small"></div>
+						<span class="group_nav_text_element contexual_popup">Members</span>
+					</div>
+				</div>
+			</li>
+			<li>
+				<%= link_to edit_group_path(@group) do %>
+					<div id="settings_nav" class="group_nav_item"></div>
+				<% end %>
+				<div class="group_nav_text">
+					<div id="settings">
+						<div class="arrow_up_small"></div>
+						<span class="group_nav_text_element contexual_popup">Settings</span>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div id="group_number">
+	        <h3 class="right josefin">
+	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+	        </h3>
+	    </div>
+	</div>
+	<div>
+		<h1><%= @destination.name %></h1>
+		<dl>
+		  <dt>Name:</dt>
+		  <dd><%= @destination.name %></dd>
 
-<dl>
-  <dt>Name:</dt>
-  <dd><%= @destination.name %></dd>
+		  <dt>Address:</dt>
+		  <dd><%= @destination.address %></dd>
 
-  <dt>Address:</dt>
-  <dd><%= @destination.address %></dd>
+		  <dt>Notes:</dt>
+		  <dd><%= @destination.notes %></dd>
 
-  <dt>Notes:</dt>
-  <dd><%= @destination.notes %></dd>
+		  <dt>Hashtag:</dt>
+		  <dd><%= @destination.hashtag %></dd>
 
-  <dt>Hashtag:</dt>
-  <dd><%= @destination.hashtag %></dd>
+		  <dt>Questions:</dt>
+		  <dd><%= @destination.questions %></dd>
+		</dl>
 
-  <dt>Questions:</dt>
-  <dd><%= @destination.questions %></dd>
-</dl>
-
-<%= link_to 'Destroy', group_destination_path(@group,destination), :confirm => 'Are you sure?', :method => :delete %>
-<%= link_to 'Edit', edit_group_destination_path(@group,@destination) %> |
-<%= link_to 'Back', group_destinations_path(@group) %>
-
+		<%= link_to 'Destroy', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete %>
+		<%= link_to 'Edit', edit_group_destination_path(@group,@destination) %> |
+		<%= link_to 'Back', group_destinations_path(@group) %>
+</div>

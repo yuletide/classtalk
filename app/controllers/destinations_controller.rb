@@ -51,7 +51,7 @@ class DestinationsController < ApplicationController
 
     respond_to do |format|
       if @destination.save
-        format.html { redirect_to(group_url(@group), :notice => 'Destination was successfully created.') }
+        format.html { redirect_to(group_url(@group), :notice => 'Check in was successfully created.') }
         format.xml  { render :xml => @destination, :status => :created, :location => @destination }
       else
         format.html { render :action => "new" }
@@ -68,7 +68,7 @@ class DestinationsController < ApplicationController
 
     respond_to do |format|
       if @destination.update_attributes(params[:destination])
-        format.html { redirect_to(@group, :notice => 'Destination was successfully updated.') }
+        format.html { redirect_to(@group, :notice => 'Check in was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
