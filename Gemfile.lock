@@ -8,14 +8,13 @@ GIT
 
 GIT
   remote: git://github.com/sferik/rails_admin.git
-  revision: 608ae867438f406bcd9671438df8be7399937d1d
+  revision: 77b45592f4bbcc182294e4281147671c74a9179d
   branch: rails-3.0
   specs:
     rails_admin (0.0.1)
       builder (~> 2.1.0)
-      fastercsv (~> 1.5.4)
       haml (>= 3.1.0, < 3.3.0)
-      rails (~> 3.0.9)
+      rails (~> 3.0.10)
 
 GEM
   remote: http://rubygems.org/
@@ -152,6 +151,7 @@ DEPENDENCIES
   delayed_job
   devise
   factory_girl_rails
+  fastercsv
   flocky!
   httpclient
   jquery-rails (>= 0.2.6)
