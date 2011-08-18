@@ -1,4 +1,4 @@
-<%= form_for student, :html => {:method => :put, :id => 'edit_student_'+student.id.to_s, :style =>'display: none;'}, :remote => true do |f| %>
+<%= form_for student, :html => {:method => :put, :id => 'edit_student_'+student.id.to_s, :style =>'display: none;', :class => "formwrap member"}, :remote => true do |f| %>
     <%= f.hidden_field :group_id, :value => group.id %>
       <%= f.text_field :name, :class => "ajax_edit student", :title => "Name" %>
       <%= f.text_field :phone_number, :class => "ajax_edit number", :title => "Mobile number" %>
