@@ -8,6 +8,9 @@
     </div>
 </div>
 <div id="group_content">
+	<% if @groups.blank? %>
+		<h3>You have no groups.</h3><br><%= link_to 'Add Group', new_group_path, :class => "button" %>
+	<% else %>
 	<div id="group_header">
 		<ul id="group_nav">
 			<li>
@@ -62,9 +65,9 @@
 				<div class="group_nav_text_element contexual_popup group_number_info center">
 					<span class="bold">The Group Number</span>
 					<ul class="contextual_popup_list">
-						<li>Members receive all messages from this number</li>
-						<li>Text messages <span class="bold">you</span> send to this number are forwarded to all members as from "<%= current_user.display_name %>"</li>
-						<li>Messages <span class="bold">members</span> send to this number are forwarded only to you</li>
+						<li>All text messages are from this number, keeping your personal number private</li>
+						<li>Text messages from your phone to the group number are forwarded to all members from "<%= current_user.display_name %>"</li>
+						<li>Text messages members send to this number are forwarded only to you</li>
 					</ul>
 					<div class="contextual_popup_actions">
 						<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill"> </a>
@@ -73,10 +76,13 @@
 			</div>
 		</div>
 	</div>
-	<div id="message">
-		<%= render :partial => 'message'%>
+	<div>
+		<div id="message">
+			<%= render :partial => 'message'%>
+		</div>
+		<div id="member_list">
+			<%= render :partial => 'member_list'%>
+		</div>
 	</div>
-	<div id="member_list">
-		<%= render :partial => 'member_list'%>
-	</div>
+	<% end %>
 </div>

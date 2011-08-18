@@ -85,7 +85,6 @@ Member List
 }
 #student_name {
 	font-weight: bold;
-	padding-top: 10px;
 }
 #student_number {
 	margin: 0px;
@@ -267,10 +266,6 @@ Group List
 	float: left;
 	margin-bottom: 20px;
 }
-#group_title {
-	font-size: 26px;
-	line-height: 26px;
-}
 #group_number {
 	float: right;
 	clear: right;
@@ -374,11 +369,11 @@ Contextual Popups
 }
 #group_number_info {
 	display: block;
-	width: 230px;
+	width: 250px;
 	z-index: 100;
 	position: absolute;
 		top: 35px;
-		left: 363px;
+		left: 352px;
 }
 .contextual_popup_list {
 	margin: 6px 0px 8px 17px;
@@ -627,9 +622,6 @@ input:focus[type="password"], input:focus[type="email"], input:focus[type="text"
 }
 input.last { margin-bottom: 25px; }
 input.membership_field { width: 315px;}
-input.infield_form_label {
-	color: #c5c5c5;
-}
 label {
 	color: #575757;
 	font-size: 11pt;
@@ -672,12 +664,15 @@ label.inline {
 .signin {
 	width: 100%;
 }
+input.infield_form_label.light_color {
+	color: #c5c5c5;
+}
 input.infield_form_label.focused {
 	color: black;
 }
 input.ajax_edit{
 	font-weight: normal;
-	background-color: #FFFFD3;
+	background-color: #ffffe9;
 	border: 1px solid black;
 	width: 80%;
 	-webkit-box-shadow: none;
@@ -741,7 +736,7 @@ Send Message
 	-moz-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
 }
 .formwrap.list {
-	padding-top: 0px;
+	padding: 5px 8px 10px 8px;
 	margin-bottom: 10px;
 }
 .formwrap.list.edit {

@@ -23,6 +23,7 @@ $(document).ready(function() {
 		$thisInput = $(this);
 		if ($thisInput.val() == '') {
 			$thisInput.val($thisInput.attr('title'));
+			$thisInput.addClass('light_color');
 		}
 	        
 		$thisInput.focus(function() {

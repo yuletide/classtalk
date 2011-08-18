@@ -13,11 +13,11 @@
 	<%= hidden_field :group, :user_id, :value => current_user.id %>
 
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label :title, "Name" %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %>
+    <%= f.label :description, "Description" %>
     <%= f.text_field :description %>
   </div>
   <br>

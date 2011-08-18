@@ -3,10 +3,13 @@ class GroupsController < ApplicationController
   before_filter :load_groups, :except =>[:receive_message, :receive_email]
 
   def index
-    @page_title = "Your Groups"
-    @groups = current_user.groups
-    @group = @groups.first #TODO: remember what the user viewed the last time they were on the page 
-    @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+    if @groups.blank?
+  	else
+      @page_title = "Your Groups"
+      @groups = current_user.groups
+      @group = @groups.first #TODO: remember what the user viewed the last time they were on the page 
+      @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+    end
 
     respond_to do |format|
       format.html # index.html.erb
