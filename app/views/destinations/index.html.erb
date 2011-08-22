@@ -59,8 +59,25 @@
 	</div>
 	<div id="destinations">
 		<% if @group.destinations.empty? %>
-			Check Ins are 
-		<% else %>
+			<h2 class="oswald grabber">Hey, looks like you're about to add your first ClassTalk check in!</h2>
+			<p class="leading">
+				Check Ins encourage your students to explore outside class using their cell phones. Think of them like location-aware worksheets, powered by text message. Sometimes we call them Mind Tours (it sounds cooler).
+			</p>
+			<p class="leading">
+				Whether a location around the city or a simple quiz for review, Check Ins let you write questions that students must activate with a #hashtag and answer through text message. You can then view each student's responses right here in ClassTalk. Here are some ways cutting-edge teachers like you are using Check Ins:
+			</p>
+			<ul class="in_paragraph">
+				<li>Encourage a visit to the museum, library, or theater</li>
+				<li>Help review for a test with sample questions</li>
+				<li>Assign and take a quiz</li>
+				<li>Create interactive guided tours</li>
+				<li>Make surveys or polls</li>
+				<li>Got another great use? <a href="mailto:scott@codeforamerica.org">Let us know!</a></li>
+			</ul>
+			<p class="leading">
+				So what are you waiting for? Start adding some Check Ins!
+			</p>
+			<% else %>
 			<table>
 				<% @group.destinations.each do |destination| %>
 				  <tr class="destination_row">

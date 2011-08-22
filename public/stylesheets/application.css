@@ -14,13 +14,24 @@ body {
 }
 
 h1 { font-size: 2em;}
-h2 { font-size: 1.75em;  }
+h2 { font-size: 1.75em; }
 h3 { font-size: 1.25em; }
 h4 { font-size: 1.15em; }
 h5 { font-size: .9em; }
 h6 { font-size: .8em; }
 h7 { font-size: .75em;}
+h2.title { line-height: 1.2em; }
 .josefin { font-family: 'Josefin Sans', arial, serif; }
+.lucky { font-family: 'Luckiest Guy', arial, serif; }
+.oswald { font-family: 'Oswald', arial, serif; }
+.oswald.grabber {
+	color: rgba(0,0,0,0.8);
+	text-shadow: rgba(255,255,255,.8) 0px 2px 0px;
+	margin-top: -12px;
+	line-height: 1.3em;
+}
+.bold{ font-weight: bold; }
+.white { color: white; }
 p {
 	font-family: helvetica, arial, sans-serif;
 	font-weight: normal;
@@ -34,6 +45,14 @@ p.title {
 }
 p.leading {
 	margin-top: 18px;
+}
+ul.in_paragraph {
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+	font-size: 14px;
+    color: #2b2b2b;
+	-webkit-font-smoothing: antialiased;
+	margin: 18px 0px 0px 35px;
 }
 
 /* --------------------------------------------------------------
@@ -125,10 +144,12 @@ input.ajax_edit.number{
 
 /* --------------------------------------------------------------
 
-Field Trip List
+Check Ins List
 
 -------------------------------------------------------------- */
-
+.checkin_explanation {
+	margin-top: -10px;
+}
 .destination_row {
 	height: 80px;
 }
@@ -378,6 +399,9 @@ Contextual Popups
 .contextual_popup_list {
 	margin: 6px 0px 8px 17px;
 	text-align: left;
+	font-size: 12px;
+    color: white;
+	-webkit-font-smoothing: normal;
 }
 .contextual_popup_actions {
 	height: 20px;
@@ -597,10 +621,6 @@ textarea {
 	margin-bottom: 20px;
 	background-origin: padding-box;
 }
-.lucky { font-family: 'Luckiest Guy', arial, serif; }
-.oswald { font-family: 'Oswald', arial, serif; }
-.bold{ font-weight: bold; }
-.white { color: white; }
 table { width: 100%; }
 table.padded { margin-left: 10px; }
 td.top{ vertical-align: top; }
