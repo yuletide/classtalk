@@ -21,7 +21,7 @@
 			</li>
 			<li>
 				<%= link_to group_destinations_path(@group) do %>
-					<div id="checkins_nav" class="group_nav_item"></div>
+					<div id="checkins_nav" class="group_nav_item active"></div>
 				<% end %>
 				<div class="group_nav_text">
 					<div id="checkins">
@@ -58,25 +58,25 @@
 	    </div>
 	</div>
 	<div id="destinations">
-		<table>
-		<% @group.destinations.each do |destination| %>
-		  <tr class="destination_row">
-			<td class="destination_image">
-				<img src="../../../images/destinations/map_pin2.png" width="80" height="80" alt="Map Pin">
-				<span class="hashtag oswald">#<%= destination.hashtag %></span>
-			</td>
-			<td>
-				<div class="destination_info">
-					<span class="destination_name josefin"><%= destination.name %></span>
-					<span class="destination_notes"><%= destination.notes %></span>
-				</div>
-			</td>
-			<td>
-				<%= link_to 'Show', group_destination_path(@group,destination) %>
-			</td>
-		  </tr>
-		<% end %>
-		</table>
+			<table>
+				<% @group.destinations.each do |destination| %>
+				  <tr class="destination_row">
+					<td class="destination_image">
+						<img src="../../../images/destinations/map_pin2.png" width="80" height="80" alt="Map Pin">
+						<span class="hashtag oswald">#<%= destination.hashtag %></span>
+					</td>
+					<td>
+						<div class="destination_info">
+							<span class="destination_name josefin"><%= destination.name %></span>
+							<span class="destination_notes"><%= destination.notes %></span>
+						</div>
+					</td>
+					<td>
+						<%= link_to 'Show', group_destination_path(@group,destination) %>
+					</td>
+				  </tr>
+				<% end %>
+			</table>
 		<div class="add_list_item">
 			<%= link_to 'New Check In', new_group_destination_path(@group), :class => "button" %>
 		</div>

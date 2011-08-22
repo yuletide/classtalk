@@ -353,7 +353,7 @@ Contextual Popups
 #messages, #checkins, #members, #settings {
 	height: 30px;
 	text-align: center;
-	margin: 7px auto 0px auto;
+	margin: 2px auto 0px auto;
 }
 #messages {
 	display: none;
@@ -416,7 +416,7 @@ Group Header
 
 #group_header {
 	width: 100%;
-	height: 120px;
+	height: 110px;
 }
 #group_nav {
 	float: left;
@@ -425,7 +425,7 @@ Group Header
 }
 #group_nav li {
 	width: 69px;
-	height: 120px;
+	height: 100%;
 	list-style: none;
 	float: left;
 	margin-right:32px;
@@ -454,7 +454,7 @@ Group Header
 	background: url('../images/groups/nav_sprites.png') 0px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
-.message_active {
+#message_nav.active {
 	background: url('../images/groups/nav_sprites.png') 0px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
@@ -463,6 +463,10 @@ Group Header
 	background-color: rgba(255,255,255,0.5);
 }
 #checkins_nav:hover {
+	background: url('../images/groups/nav_sprites.png') 195px 65px;
+	background-color: rgba(255,255,255,0.5);
+}
+#checkins_nav.active {
 	background: url('../images/groups/nav_sprites.png') 195px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
@@ -478,7 +482,7 @@ Group Header
 	background: url('../images/groups/nav_sprites.png') 130px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
-#members_nav_active {
+#members_nav.active {
 	background: url('../images/groups/nav_sprites.png') 130px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
@@ -490,7 +494,7 @@ Group Header
 	background: url('../images/groups/nav_sprites.png') 65px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
-#settings_nav_active {
+#settings_nav.active {
 	background: url('../images/groups/nav_sprites.png') 65px 65px;
 	background-color: rgba(255,255,255,0.5);
 }
