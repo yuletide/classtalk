@@ -13,15 +13,15 @@
 	<%= hidden_field :group, :user_id, :value => current_user.id %>
 
   <div class="field">
-    <%= f.label :title, "Name" %>
+    <%= f.label :title, "Group Name" %>
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description, "Description" %>
+    <%= f.label :description, "Group Description" %>
     <%= f.text_field :description %>
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Save", :class => "button" %>	<%= link_to 'Cancel', groups_path %>
+    <%= f.submit "Save", :class => "button" %>
   </div>
 <% end %>

@@ -149,16 +149,20 @@ Check Ins List
 .oswald.grabber.checkin {
 	margin-top: -12px;
 }
-.destination_row {
-	height: 80px;
-}
-.destination_image {
-	width: 90px;
-}
 .hashtag {
 	font-size: 13pt;
 	display: block;
 	margin: -10px 0px 12px 0px;
+}
+#destinations_list {
+	border: 1px solid gray;
+}
+.destination_item {
+	padding: 10px;
+	border-top: 1px solid #9c9c9c;
+	border-bottom: 1px solid #757575;
+	display: block;
+	background-color: rgba(0,0,0,0.05);
 }
 .destination_info {
 	height: 115px;
@@ -172,7 +176,6 @@ Check Ins List
 .destination_notes {
 	font-size: 11pt;
 	display: block;
-	margin-top: -10px;
 }
 
 /* --------------------------------------------------------------
