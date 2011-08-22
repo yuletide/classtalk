@@ -58,6 +58,9 @@
 	    </div>
 	</div>
 	<div id="destinations">
+		<% if @group.destinations.empty? %>
+			Check Ins are 
+		<% else %>
 			<table>
 				<% @group.destinations.each do |destination| %>
 				  <tr class="destination_row">
@@ -77,6 +80,7 @@
 				  </tr>
 				<% end %>
 			</table>
+		<% end %>
 		<div class="add_list_item">
 			<%= link_to 'New Check In', new_group_destination_path(@group), :class => "button" %>
 		</div>
