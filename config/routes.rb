@@ -1,23 +1,29 @@
 HomeworkNotifier::Application.routes.draw do
 
   root :to => 'application#index'
+
   resources :groups do
+
     collection do
       post "receive_message"
       post "receive_email"
     end
+
     member do
       post "send_message", :as=>:send_message_to
       post "bulk_upload_students"
     end
+
     resources :students do
       #post "send_message", :as=>:send_message_to #possibly add in future
     end
+
     resources :destinations do
       member do
         get "responses"
       end
     end
+
   end
   resources :students
 
