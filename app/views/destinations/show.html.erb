@@ -73,7 +73,13 @@
 		  <dd><%= @destination.hashtag %></dd>
 
 		  <dt>Questions:</dt>
-		  <dd><%= @destination.questions %></dd>
+		  <dd>
+			<ol>
+				<% @destination.questions.each do |question| %>
+					<li><%= question.content %></li>
+				<% end %>
+			</ol>
+		  </dd>
 		</dl>
 
 		<%= link_to 'Destroy', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete %>
