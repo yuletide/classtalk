@@ -1,0 +1,16 @@
+
+<ul>
+  <% @responses_by_student.each do |student,responses| %>
+    <li>
+      <%= student.name %>
+      <ol>
+        <% responses.each do |response| %>
+          <li>
+            <span class="question"><%= response.question.content %></span>: 
+            <span class="answer"><%= response.content %></span>
+          <li>
+        <% end %>
+      </dl>
+    </li>
+  <% end %>
+</ul>
