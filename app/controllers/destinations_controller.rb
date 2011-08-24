@@ -90,6 +90,25 @@ class DestinationsController < ApplicationController
     end
   end
 
+  #GET /group/id/destination/id/responses
+  def responses
+    @destination = Destination.find(params[:id])
+    @groups = current_user.groups
+
+    @questions = @destination.questions.includes(:answers => :student)
+    @responses_by_student = @questions.map(&:answers).flatten.group_by(&:student)
+    #sort the responses in correct order
+    @responses_by_student = @responses_by_student.map do |student,answers|
+      [student,answers.sort_by {|a| a.question.order_index}]
+    end
+
+    respond_to do |format|
+      format.html
+      format.csv
+      format.xml { render :xml => @responses_by_student}
+    end
+  end
+
   private
   def load_group
     if params[:group_id]
