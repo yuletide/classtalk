@@ -27,7 +27,6 @@ h2.title { line-height: 1.2em; }
 .oswald.grabber {
 	color: rgba(0,0,0,0.8);
 	text-shadow: rgba(255,255,255,.8) 0px 2px 0px;
-	line-height: 1.3em;
 }
 .bold{ font-weight: bold; }
 .white { color: white; }
@@ -148,35 +147,69 @@ Check Ins List
 -------------------------------------------------------------- */
 .oswald.grabber.checkin {
 	margin-top: -12px;
-}
-.hashtag {
-	font-size: 13pt;
-	display: block;
-	margin: -10px 0px 12px 0px;
+	line-height: 1.3em;
 }
 #destinations_list {
-	border: 1px solid gray;
 }
 .destination_item {
 	padding: 10px;
 	border-top: 1px solid #9c9c9c;
-	border-bottom: 1px solid #757575;
+	border-bottom: 1px solid #535353;
 	display: block;
 	background-color: rgba(0,0,0,0.05);
+	text-decoration: none;
 }
-.destination_info {
-	height: 115px;
-	vertical-align: top;
+.destination_item:first-of-type {
+	border-radius: 10px 10px 0px 0px;
 }
-.destination_name {
-	font-size: 18pt;
+.destination_item:last-of-type {
+	border-radius: 0px 0px 10px 10px;
+}
+.destination_item:hover {
+	border-top: 1px solid #9c9c9c;
+	border-bottom: 1px solid #535353;
+	background-color: rgba(0,0,0,0.1);
+	text-decoration: none;
+}
+.destination {
+	color: #2b2b2b;
+}
+.destination.name {
+	font-size: 20pt;
 	font-weight: bold;
-	display: block;
 }
-.destination_notes {
+.destination.address {
+	font-size: 9pt;
+	color: #6f6f6f;
+}
+.destination.notes {
 	font-size: 11pt;
 	display: block;
 }
+.destination.rightbox {
+	padding: 3px 4px 4px 10px;
+	background-color: rgba(0,0,0,.6);
+	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.4)), to(rgba(0,0,0,.45)));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,.6)), to(rgba(0,0,0,.55)));
+	text-shadow: rgba(0,0,0,0.4) 0px -1px 0px;	display: block;
+	float: right;
+	margin: 0px -10px 0px 0px;
+	vertical-align: center;
+	border: 1px solid #5e5e5e;
+}
+.destination.hashtag {
+	font-size: 13pt;
+	color: white;
+	display: block;
+}
+.destination.questions {
+	font-size: 8pt;
+	display: block;
+	color: white;
+	float: right;
+	margin-top: -3px;
+}
+
 
 /* --------------------------------------------------------------
 
@@ -764,6 +797,7 @@ Send Message
 .formwrap.list {
 	padding: 5px 8px 10px 8px;
 	margin-bottom: 10px;
+	background-color: rgba(46,163,144,0.2);
 }
 .formwrap.list.edit {
 	padding-top: 10px;
