@@ -772,7 +772,7 @@ label.inline {
 }
 #welcome_wrap {
 	width: 390px;
-	margin: 30px auto;
+	margin: 90px auto;
 }
 #signin_form_wrap {
 	width: 260px;
@@ -1019,6 +1019,7 @@ Site Containers
 #main.full {
 	padding: 12px 20px 0px 20px;
 	width: 920px;
+	background: url('../images/page.jpg');
 }
 #main.splash {
 	background: url('../images/classtalk_splash_v2.jpg') center no-repeat;

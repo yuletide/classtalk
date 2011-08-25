@@ -1,10 +1,10 @@
 <% if @groups.blank? %>
 	<div id="welcome_wrap">
 		<h1 class="oswald grabber">Welcome to ClassTalk!</h1>
-			<h4>To begin, you need to make a group.</h4>
+			<h4>To get started, make your first group.</h4>
 			<p>Groups are comprised of members and might represent your classes, teams, clubs, or friends. There's no limit to how you use ClassTalk and it's entirely free. So let your imagination run wild and have fun!</p>
 			<br>
-		<%= link_to "Make my first group »", new_group_path, :class => "button" %>
+		<div class="center"><%= link_to "Make my first group »", new_group_path, :class => "button" %></div>
 	</div>
 <% else %>
 	<div id="groups">
