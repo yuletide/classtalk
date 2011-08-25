@@ -36,7 +36,7 @@
 					<div id="count">0 / <%= 158 - current_user.display_name.length %></div>
 				</h5>
 			</div>
-			<%= mf.text_area :content, :id => "message_content"%>
+			<%= mf.text_area :content, :id => "message_content", :class => "message"%>
 			<div>
 				<div class="left">
 					<%= f.submit "Send Now", :class => 'button', :id => 'send_message_now' %>
