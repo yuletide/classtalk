@@ -21,7 +21,7 @@
 			</li>
 			<li>
 				<%= link_to group_destinations_path(@group) do %>
-					<div id="checkins_nav" class="group_nav_item"></div>
+					<div id="checkins_nav" class="group_nav_item active"></div>
 				<% end %>
 				<div class="group_nav_text">
 					<div id="checkins">
@@ -58,30 +58,21 @@
 	    </div>
 	</div>
 	<div>
-		<h1><%= @destination.name %></h1>
-		<dl>
-		  <dt>Name:</dt>
-		  <dd><%= @destination.name %></dd>
-
-		  <dt>Address:</dt>
-		  <dd><%= @destination.address %></dd>
-
-		  <dt>Notes:</dt>
-		  <dd><%= @destination.notes %></dd>
-
-		  <dt>Hashtag:</dt>
-		  <dd><%= @destination.hashtag %></dd>
-
-		  <dt>Questions:</dt>
-		  <dd>
+		<div>
+			<span class="destination name show josefin grabber"><%= @destination.name %></span>
+			<div class="destination rightbox show">
+				<span class="destination hashtag oswald">#<%= @destination.hashtag %></span>
+				<span class="destination questions_number"><%= pluralize(@destination.questions.count, "question") %></span>
+			</div>
+			<span class="destination address show"><%= @destination.address %></span>
+			<span class="destination notes show"><%= @destination.notes %></span>
+			<span class="destination address show">After texting the #hashtag to the group number, members will be sequentially asked the following questions:</span>
 			<ol>
 				<% @destination.questions.each do |question| %>
-					<li><%= question.content %></li>
+					<li class="destination questions"><%= question.content %></li>
 				<% end %>
 			</ol>
-		  </dd>
-		</dl>
-
+		</div>
 		<%= link_to 'Destroy', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete %>
 		<%= link_to 'Edit', edit_group_destination_path(@group,@destination) %> |
 		<%= link_to 'Back', group_destinations_path(@group) %>

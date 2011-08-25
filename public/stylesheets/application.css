@@ -159,12 +159,6 @@ Check Ins List
 	background-color: rgba(0,0,0,0.05);
 	text-decoration: none;
 }
-.destination_item:first-of-type {
-	border-radius: 10px 10px 0px 0px;
-}
-.destination_item:last-of-type {
-	border-radius: 0px 0px 10px 10px;
-}
 .destination_item:hover {
 	border-top: 1px solid #9c9c9c;
 	border-bottom: 1px solid #535353;
@@ -178,36 +172,66 @@ Check Ins List
 	font-size: 20pt;
 	font-weight: bold;
 }
+.destination.name.show {
+	font-size: 28pt;
+	font-weight: bold;
+	line-height: 24pt;
+	margin-bottom: -5px;
+}
 .destination.address {
 	font-size: 9pt;
 	color: #6f6f6f;
 }
+.destination.address.show {
+	font-size: 12pt;
+	color: #6f6f6f;
+	display: block;
+	line-height: 20px;
+}
 .destination.notes {
 	font-size: 11pt;
 	display: block;
+	width: 60%;
+}
+.destination.notes.show {
+	width: 100%;
+	margin: 15px 0px;
 }
 .destination.rightbox {
 	padding: 3px 4px 4px 10px;
-	background-color: rgba(0,0,0,.6);
-	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.4)), to(rgba(0,0,0,.45)));
-	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,.6)), to(rgba(0,0,0,.55)));
+	background: #faa644;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa644), to(#ffb955));
+	background: -moz-gradient(linear, left top, left bottom, from(rgba(0,0,0,.3)), to(rgba(0,0,0,.35)));
 	text-shadow: rgba(0,0,0,0.4) 0px -1px 0px;	display: block;
 	float: right;
-	margin: 0px -10px 0px 0px;
+	margin: 2px -9px 0px 0px;
 	vertical-align: center;
-	border: 1px solid #5e5e5e;
+	border: 1px solid rgba(0,0,0,.1);
+	border-right: none;
+	border-radius: 2px 0px 0px 2px;
+}
+.destination.rightbox.show {
+	padding: 3px 23px 4px 10px;
+	margin: 2px -28px 0px 0px;
 }
 .destination.hashtag {
 	font-size: 13pt;
 	color: white;
 	display: block;
 }
-.destination.questions {
+.destination.questions_number {
 	font-size: 8pt;
 	display: block;
 	color: white;
 	float: right;
 	margin-top: -3px;
+}
+.destination.questions {
+	margin: 3px 0px 0px 35px;
+	font-size: 11pt;
+}
+.destination.questions:last-of-type {
+	margin: 3px 0px 30px 35px;
 }
 
 
@@ -797,7 +821,27 @@ Send Message
 .formwrap.list {
 	padding: 5px 8px 10px 8px;
 	margin-bottom: 10px;
-	background-color: rgba(46,163,144,0.2);
+}
+.formwrap.list:hover {
+	border-radius: 6px;
+	background-color: rgba(0,0,0,0.05);
+	text-decoration: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	border-top: 1px solid rgba(255,255,255,0.6);
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.1, rgba(255,255,255,0.1)),
+		color-stop(1, rgba(255,255,255,0.6))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgba(255,255,255,0.1) 10%,
+	    rgba(255,255,255,0.6) 100%,
+	);
 }
 .formwrap.list.edit {
 	padding-top: 10px;

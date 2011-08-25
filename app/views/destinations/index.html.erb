@@ -83,7 +83,7 @@
 					<a href="<%= group_destination_path(@group,destination) %>" class="formwrap list">
 						<div class="destination rightbox">
 							<span class="destination hashtag oswald">#<%= destination.hashtag %></span>
-							<span class="destination questions"><%= pluralize(destination.questions.count, "question") %></span>
+							<span class="destination questions_number"><%= pluralize(destination.questions.count, "question") %></span>
 						</div>
 						<span class="destination name josefin grabber"><%= destination.name %></span>
 						<span class="destination address"><%= destination.address %></span>
