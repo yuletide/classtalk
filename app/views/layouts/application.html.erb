@@ -59,6 +59,8 @@
         
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
+	<% elsif @groups.blank? %>
+		<div id="main" class="full">
 	<% elsif ((params[:controller] == 'groups') || (params[:controller] == 'destinations')) && (params[:action] != 'new')%>
 		<div id="main" class="groups">
     <% else %>

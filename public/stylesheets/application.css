@@ -770,6 +770,10 @@ label.inline {
 	width: 350px;
 	margin: 3px 0px 60px 2px;
 }
+#welcome_wrap {
+	width: 390px;
+	margin: 30px auto;
+}
 #signin_form_wrap {
 	width: 260px;
 	margin: 3px 0px 60px 2px;

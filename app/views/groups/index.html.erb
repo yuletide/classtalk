@@ -1,88 +1,94 @@
-<div id="groups">
-    <div id="group_list">
-	    <%= render :partial => 'group_list' %>
-    </div>
-    <div id="group_list_bottom">
-        <div class="field_description margin large"><%= @groups.count %> groups</div>
-        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
-    </div>
-</div>
-<div id="group_content">
-	<% if @groups.blank? %>
-		<h3>You have no groups.</h3><br><%= link_to 'Add Group', new_group_path, :class => "button" %>
-	<% else %>
-	<div id="group_header">
-		<ul id="group_nav">
-			<li>
-				<a href="javascript:toggleMessage();"><div id="message_nav" class="group_nav_item active"></div></a>
-				<div class="group_nav_text">
-					<div id="messages">
-						<div class="arrow_up_small"></div>
-						<span class="group_nav_text_element contexual_popup">Messages</span>
-					</div>
-				</div>
-			</li>
-			<li>
-				<%= link_to group_destinations_path(@group,@destination) do %>
-					<div id="checkins_nav" class="group_nav_item"></div>
-				<% end %>
-				<div class="group_nav_text">
-					<div id="checkins">
-						<div class="arrow_up_small"></div>
-						<span class="group_nav_text_element contexual_popup">Check Ins</span>
-					</div>
-				</div>
-			</li>
-			<li>
-				<a href="javascript:toggleMembers();"><div id="members_nav" class="group_nav_item"></div></a>
-				<div class="group_nav_text">
-					<div id="members">
-						<div class="arrow_up_small"></div>
-						<span class="group_nav_text_element contexual_popup">Members</span>
-					</div>
-				</div>
-			</li>
-			<li>
-				<%= link_to edit_group_path(@group) do %>
-					<div id="settings_nav" class="group_nav_item"></div>
-				<% end %>
-				<div class="group_nav_text">
-					<div id="settings">
-						<div class="arrow_up_small"></div>
-						<span class="group_nav_text_element contexual_popup">Settings</span>
-					</div>
-				</div>
-			</li>
-		</ul>
-		<div id="group_number">
-	        <h3 class="right josefin">
-	            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
-	        </h3>
+<% if @groups.blank? %>
+	<div id="welcome_wrap">
+		<h1 class="oswald grabber">Welcome to ClassTalk!</h1>
+			<h4>To begin, you need to make a group.</h4>
+			<p>Groups are comprised of members and might represent your classes, teams, clubs, or friends. There's no limit to how you use ClassTalk and it's entirely free. So let your imagination run wild and have fun!</p>
+			<br>
+		<%= link_to "Make my first group »", new_group_path, :class => "button" %>
+	</div>
+<% else %>
+	<div id="groups">
+	    <div id="group_list">
+		    <%= render :partial => 'group_list' %>
 	    </div>
-		<div style="position:absolute;">
-			<div id="group_number_info">
-				<div class="arrow_up_small group_number_info"></div>
-				<div class="group_nav_text_element contexual_popup group_number_info center">
-					<span class="bold">The Group Number</span>
-					<ul class="contextual_popup_list">
-						<li>All text messages are from this number, keeping your personal number private</li>
-						<li>Text messages from your phone to the group number are forwarded to all members from "<%= current_user.display_name %>"</li>
-						<li>Text messages members send to this number are forwarded only to you</li>
-					</ul>
-					<div class="contextual_popup_actions">
-						<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill"> </a>
+	    <div id="group_list_bottom">
+	        <div class="field_description margin large"><%= @groups.count %> groups</div>
+	        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
+	    </div>
+	</div>
+	<div id="group_content">
+		<div id="group_header">
+			<ul id="group_nav">
+				<li>
+					<a href="javascript:toggleMessage();"><div id="message_nav" class="group_nav_item active"></div></a>
+					<div class="group_nav_text">
+						<div id="messages">
+							<div class="arrow_up_small"></div>
+							<span class="group_nav_text_element contexual_popup">Messages</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<%= link_to group_destinations_path(@group,@destination) do %>
+						<div id="checkins_nav" class="group_nav_item"></div>
+					<% end %>
+					<div class="group_nav_text">
+						<div id="checkins">
+							<div class="arrow_up_small"></div>
+							<span class="group_nav_text_element contexual_popup">Check Ins</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="javascript:toggleMembers();"><div id="members_nav" class="group_nav_item"></div></a>
+					<div class="group_nav_text">
+						<div id="members">
+							<div class="arrow_up_small"></div>
+							<span class="group_nav_text_element contexual_popup">Members</span>
+						</div>
+					</div>
+				</li>
+				<li>
+					<%= link_to edit_group_path(@group) do %>
+						<div id="settings_nav" class="group_nav_item"></div>
+					<% end %>
+					<div class="group_nav_text">
+						<div id="settings">
+							<div class="arrow_up_small"></div>
+							<span class="group_nav_text_element contexual_popup">Settings</span>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div id="group_number">
+		        <h3 class="right josefin">
+		            <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+		        </h3>
+		    </div>
+			<div style="position:absolute;">
+				<div id="group_number_info">
+					<div class="arrow_up_small group_number_info"></div>
+					<div class="group_nav_text_element contexual_popup group_number_info center">
+						<span class="bold">The Group Number</span>
+						<ul class="contextual_popup_list">
+							<li>All text messages are from this number, keeping your personal number private</li>
+							<li>Text messages from your phone to the group number are forwarded to all members from "<%= current_user.display_name %>"</li>
+							<li>Text messages members send to this number are forwarded only to you</li>
+						</ul>
+						<div class="contextual_popup_actions">
+							<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill"> </a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<div id="message">
-			<%= render :partial => 'message'%>
+		<div>
+			<div id="message">
+				<%= render :partial => 'message'%>
+			</div>
+			<div id="member_list">
+				<%= render :partial => 'member_list'%>
+			</div>
 		</div>
-		<div id="member_list">
-			<%= render :partial => 'member_list'%>
-		</div>
 	</div>
-	<% end %>
-</div>
+<% end %>
