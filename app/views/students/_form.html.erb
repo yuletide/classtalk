@@ -10,16 +10,18 @@
 </div>
 <% end %>
 <div class="field">
-<%= f.label :name %><br />
-<%= f.text_field :name, :class => 'ajax_edit student', :title => "Name" %>
+	<%= f.label :name %>
+	<%= f.text_field :name, :title => "Name" %>
 </div>
 <div class="field">
-<%= f.label :phone_number %><br />
-<%= f.text_field :phone_number, :class => 'ajax_edit number', :title => "Mobile phone" %>
+	<%= f.label :phone_number %>
+	<%= f.text_field :phone_number, :title => "Mobile phone" %>
+	<span class="field_description">SMS messages will be sent to this number if entered (optional)</span>
 </div>
 <div class="field">
-  <%= f.label :email %><br />
-  <%= f.text_field :email, :class => "ajax_edit", :title => "Email" %>
+	  <%= f.label :email %>
+	  <%= f.text_field :email, :title => "Email" %>
+	<span class="field_description">Emails will be sent to this address if entered (optional)</span>
 </div>
 <% #TODO: groups/memberships%>
 <%= link_to 'Cancel', group_path(@group), :class => "button secondary minor margin_top" %>

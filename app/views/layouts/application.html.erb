@@ -59,7 +59,7 @@
         
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
-	<% elsif (params[:controller] == 'groups') || (params[:controller] == 'destinations') %>
+	<% elsif ((params[:controller] == 'groups') || (params[:controller] == 'destinations')) && (params[:action] != 'new')%>
 		<div id="main" class="groups">
     <% else %>
         <div id="main" class="full">

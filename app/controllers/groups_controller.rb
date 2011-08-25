@@ -51,7 +51,6 @@ class GroupsController < ApplicationController
     @group.phone_number = get_new_phone_number
     @group.destination_phone_number = get_new_phone_number
     @page_title = "New Groups"
-    @group.description = "Click to add more info..."
 		
     respond_to do |format|
       if @group.save
