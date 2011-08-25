@@ -34,7 +34,7 @@
     <%= f.fields_for :questions do |qf| %>
       <div class="field">
         <%= qf.label :content, "Question" %>
-        <%= qf.text_field :content %>
+        <%= qf.text_field :content, :class => "full" %>
       </div>
       <%= qf.link_to_remove "Remove this question" %>
     <% end %>
