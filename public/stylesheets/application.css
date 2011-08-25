@@ -183,10 +183,10 @@ Check Ins List
 	color: #6f6f6f;
 }
 .destination.address.show {
-	font-size: 12pt;
+	font-size: 10pt;
 	color: #6f6f6f;
 	display: block;
-	line-height: 20px;
+	line-height: 15px;
 }
 .destination.notes {
 	font-size: 11pt;
@@ -194,6 +194,7 @@ Check Ins List
 	width: 60%;
 }
 .destination.notes.show {
+	font-size: 12pt;
 	width: 100%;
 	margin: 15px 0px;
 }
@@ -228,7 +229,10 @@ Check Ins List
 }
 .destination.questions {
 	margin: 3px 0px 0px 35px;
-	font-size: 11pt;
+	font-size: 12pt;
+}
+.destination.questions:first-of-type {
+	margin: 10px 0px 0px 35px;
 }
 .destination.questions:last-of-type {
 	margin: 3px 0px 30px 35px;
