@@ -58,11 +58,11 @@
 	    </div>
 	</div>
 	<div id="destinations">
-		<h1>New Check In</h1>
+		<h1 class="oswald grabber">Check In > New</h1>
 
 		<%= nested_form_for([@group,@destination]) do |f| %>
 		  <%= render :partial => 'form', :locals => {:f => f} %>
 		<% end %>
-		<%= link_to 'Back', group_destinations_path(@group,@destination) %>
+		<%= link_to 'Cancel', group_destinations_path(@group,@destination) %>
 	</div>
 </div>
