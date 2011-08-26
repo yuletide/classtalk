@@ -1,3 +1,5 @@
+require 'csv'
+
 class DestinationsController < ApplicationController
   before_filter :load_group
   
@@ -104,7 +106,12 @@ class DestinationsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.csv
+      format.csv do
+        render_csv("#{@destination.name}_responses_#{Date.today}.csv") do |csv|
+          csv << ["Student"] + @questions.map(&:content)
+          @responses_by_student.each {|s,r| csv << [s.name]+r.map(&:content)}
+        end
+      end
       format.xml { render :xml => @responses_by_student}
     end
   end
@@ -117,4 +124,10 @@ class DestinationsController < ApplicationController
       @group = Group.find(params[:destination][:group_id])
     end
   end
+  
+  def render_csv(filename)
+    csv_data = CSV.generate {|csv| yield csv}
+    send_data csv_data, :type=> "text/csv", :filename=> filename, :disposition => "attachment"
+  end
+
 end
