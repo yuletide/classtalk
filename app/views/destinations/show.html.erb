@@ -72,9 +72,11 @@
 				<% end %>
 			</ol>
 		</div>
-		<%= link_to "responses", responses_group_destination_path(@group, @destination) %>
-		<%= link_to 'Destroy', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete %>
-		<%= link_to 'Edit', edit_group_destination_path(@group,@destination) %> |
-		<%= link_to 'Back', group_destinations_path(@group) %>
+		<div class="page_actions bottom">
+			<%= link_to "View Responses »", responses_group_destination_path(@group, @destination), :class => "button minor right" %>
+			<%= link_to 'Delete', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete, :class => "button minor" %>
+			<%= link_to 'Edit', edit_group_destination_path(@group,@destination), :class => "button minor secondary" %>
+			<%= link_to '« All Check Ins', group_destinations_path(@group), :class => "button minor left" %>
+		</div>
 	</div>
 </div>

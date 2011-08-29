@@ -238,6 +238,7 @@ Check Ins List
 	color: #6f6f6f;
 	display: block;
 	float: right;
+	margin-top: 11px;
 }
 .destination.answers.question {
 	color: #6f6f6f;
@@ -683,8 +684,13 @@ a.button.margin_right {
 	font-weight: normal;
 	display: block;
 }
-#page_actions {
+.page_actions.top {
 	margin-bottom: 20px;
+	height: 31px;
+}
+.page_actions.bottom {
+	margin-bottom: 20px;
+	margin-top: 20px;
 	height: 31px;
 }
 
