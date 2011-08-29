@@ -229,13 +229,27 @@ Check Ins List
 	margin: 3px 0px 0px 35px;
 	font-size: 12pt;
 }
-.destination.questions:first-of-type {
-	margin: 10px 0px 0px 35px;
+.destination.answers {
+	font-size: 12pt;
+	margin-left: 21px;
 }
-.destination.questions:last-of-type {
-	margin: 3px 0px 30px 35px;
+.destination.answers_number {
+	font-size: 8pt;
+	color: #6f6f6f;
+	display: block;
+	float: right;
 }
-
+.destination.answers.question {
+	color: #6f6f6f;
+}
+.destination.answers.time {
+	font-size: 8pt;
+	display: block;
+	margin-top: -5px;
+}
+.responses_student {
+	display: none;
+}
 
 /* --------------------------------------------------------------
 
@@ -657,12 +671,23 @@ a.button.minor, input.button.minor {
 a.button.minor.margin_top, input.button.minor.margin_top {
 	margin-top: 15px;
 }
+a.button.margin_left {
+	margin-left: 10px;
+}
+a.button.margin_right {
+	margin-right: 10px;
+}
 .session_link {
 	font-size: 9pt;
 	font-family: helvetica, arial, sans-serif;
 	font-weight: normal;
 	display: block;
 }
+#page_actions {
+	margin-bottom: 20px;
+	height: 31px;
+}
+
 
 /* --------------------------------------------------------------
 
@@ -857,7 +882,7 @@ Send Message
 	-moz-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
 }
 .formwrap.list {
-	padding: 5px 8px 10px 8px;
+	padding: 5px 8px 7px 8px;
 	margin-bottom: 10px;
 }
 .formwrap.list:hover {

@@ -66,7 +66,6 @@
 			</div>
 			<span class="destination address show"><%= @destination.address %></span>
 			<span class="destination notes show"><%= @destination.notes %></span>
-			<span class="destination address show">After texting the #hashtag to the group number, members will be sequentially asked the following questions:</span>
 			<ol>
 				<% @destination.questions.each do |question| %>
 					<li class="destination questions"><%= question.content %></li>

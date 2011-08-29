@@ -58,24 +58,24 @@
 	    </div>
 	</div>
 	<div>
-		<ul>
-		  <% @responses_by_student.each do |student,responses| %>
-		    <li>
-		      <%= student.name %>
-		      <ol>
-		        <% responses.each do |response| %>
-		          <li>
-		            <span class="question"><%= response.question.content %></span>: 
-		            <span class="answer"><%= response.content %></span>
-		          <li>
-		        <% end %>
-		      </dl>
-		    </li>
-		  <% end %>
-		</ul>
-
-		<%= link_to "download", responses_group_destination_path(@group, @destination, :format => "csv") %>
-</div>
-<div>
-	<%= link_to 'Back', group_destination_path(@group,@destination) %>
+		<div id="page_actions">
+			<%= link_to '« Back', group_destination_path(@group,@destination), :class => "button minor left" %>
+			<a class="button minor right margin_left" onClick="$('.responses_student').show();">Expand All</a>
+			<%= link_to "Download All", responses_group_destination_path(@group, @destination, :format => "csv"), :class => "button minor right" %>
+		</div>
+		<% @responses_by_student.each do |student,responses| %>
+			<a class="formwrap list" onClick="$('#responses_student_<%= student.id.to_s %>').show();">
+				<span class="destination name josefin grabber"><%= student.name %></span>
+				<span class="destination answers_number"><%= pluralize(responses.count, "response") %></span>
+				<ol id="responses_student_<%= student.id.to_s %>" class="responses_student">
+					<% responses.each do |response| %>
+						<li class="destination answers question">
+							<%= response.question.content %>
+						</li>
+						<span class="destination answers"><%= response.content %></span>
+						<span class="destination answers time"><%= formatted_time(response.question.created_at) %></span>
+			        <% end %>
+				</ol>
+			</a>
+		<% end %>
 </div>
