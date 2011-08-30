@@ -12,6 +12,7 @@ HomeworkNotifier::Application.routes.draw do
     member do
       post "send_message", :as=>:send_message_to
       post "bulk_upload_students"
+      get "members"
     end
 
     resources :students do

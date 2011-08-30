@@ -27,6 +27,18 @@ class GroupsController < ApplicationController
       format.xml  { render :xml => @group }
     end
   end
+  
+  def members
+    @group = current_user.groups.find(params[:id])
+    @page_title = @group.title
+    @members = @group.students
+
+    respond_to do |format|
+      format.html # members.html.erb
+      format.xml  { render :xml => @members }
+    end
+  end
+  
 
   def new
     @group = current_user.groups.new
