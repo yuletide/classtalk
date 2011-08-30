@@ -477,7 +477,7 @@ Contextual Popups
 	width: 250px;
 	z-index: 100;
 	position: absolute;
-		top: 35px;
+		top: -83px;
 		left: 352px;
 }
 .contextual_popup_list {
