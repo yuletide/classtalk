@@ -8,6 +8,7 @@ describe GroupsController do
     @member1 = FactoryGirl.create(:student)
     @group.students << @member1
     controller.stub(:get_new_phone_number).and_return("4443332222")
+    $outbound_flocky=""
   end
 
   describe "authorization" do
@@ -239,6 +240,16 @@ describe GroupsController do
     end
 
     it "should strip out older messages that are being replied to" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,@group.students.map(&:phone_number).compact)
+      @group.user.update_attribute(:email,@from_email)
+      post :receive_email, @params
+      LoggedMessage.last.message.should match /a returning message/
+      LoggedMessage.last.message.should_not match /a testing message/
+    end
+    
+    it "should strip out original message, even if sent from machines using carriage return" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,@group.students.map(&:phone_number).compact)
+      @params["plain"].gsub!("\n","\r\n")
       @group.user.update_attribute(:email,@from_email)
       post :receive_email, @params
       LoggedMessage.last.message.should match /a returning message/

@@ -41,9 +41,10 @@ Spork.prefork do
       user.confirm!
       sign_in user
     end
+
+    Delayed::Worker.delay_jobs = false
+
   end
-
-
 end
 
 Spork.each_run do
