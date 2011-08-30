@@ -185,7 +185,7 @@ class GroupsController < ApplicationController
       #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if params[:to].match(/group\+(\d+)@/) && @group = Group.find($1)
       from = params[:from]
-      body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
+      body =  params[:plain].gsub(/^On .* wrote:\r?$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
 
       if @sender = @group.students.find_by_email(from)
         @group.send_message(@sender.name+": "+body,@sender,[@group.user])
