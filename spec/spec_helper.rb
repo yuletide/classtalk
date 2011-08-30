@@ -40,6 +40,7 @@ Spork.prefork do
       @request.env["devise.mapping"] = Devise.mappings[:admin]
       user.confirm!
       sign_in user
+      return user
     end
   end
 

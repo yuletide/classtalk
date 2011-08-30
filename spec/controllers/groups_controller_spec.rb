@@ -10,7 +10,7 @@ describe GroupsController do
   end
 
   before(:each) do
-    login
+    @current_user = login
     @group=Factory.create(:group,:user=>controller.current_user)
     @member1 = Factory.create(:student)
     @group.students << @member1
@@ -20,8 +20,33 @@ describe GroupsController do
   describe "authorization" do
     pending "all actions should be accessible to logged in users" do
     end
-    pending "no actions should be accessible to non-logged-in users" do
+    
+    describe "no actions should be accessible to non-logged-in users and should redirect to signin" do
+      before(:each) do
+        sign_out(@current_user)
+      end
+       
+      it "on the show page should redirect to signin page" do
+        get :show, {:id => @group.id}
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the edit page should redirect to signin page" do
+        get :edit, {:id => @group.id}
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the index page should redirect to signin page" do
+        get :index
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the new page should redirect to signin page" do
+        get :new
+        response.should redirect_to(new_user_session_path)
+      end
     end
+    
   end
   describe "#create" do
     before :each do
