@@ -2,7 +2,7 @@
 	<ul id="group_nav">
 		<li>
 			<%= link_to group_path(@group) do %>
-				<div id="message_nav" class="group_nav_item active"></div>
+				<div id="message_nav" class="group_nav_item <%= "active" if current_page?(group_path(@group))%>"></div>
 			<% end %>
 			<div class="group_nav_text">
 				<div id="messages">
@@ -13,7 +13,7 @@
 		</li>
 		<li>
 			<%= link_to group_destinations_path(@group,@destination) do %>
-				<div id="checkins_nav" class="group_nav_item"></div>
+				<div id="checkins_nav" class="group_nav_item <%= "active" if current_page?(group_destinations_path(@group,@destination))%>"></div>
 			<% end %>
 			<div class="group_nav_text">
 				<div id="checkins">
@@ -24,7 +24,7 @@
 		</li>
 		<li>
 			<%= link_to members_group_path(@group) do %>
-				<div id="members_nav" class="group_nav_item"></div>
+				<div id="members_nav" class="group_nav_item <%= "active" if current_page?(members_group_path(@group))%>"></div>
 			<% end %>
 			<div class="group_nav_text">
 				<div id="members">
@@ -35,7 +35,7 @@
 		</li>
 		<li>
 			<%= link_to edit_group_path(@group) do %>
-				<div id="settings_nav" class="group_nav_item"></div>
+				<div id="settings_nav" class="group_nav_item <%= "active" if current_page?(edit_group_path(@group))%>"></div>
 			<% end %>
 			<div class="group_nav_text">
 				<div id="settings">
