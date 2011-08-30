@@ -59,7 +59,6 @@
 	</div>
 	<div>
 		<%= render 'form' %>
-		<br>
-		<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete %>
+		<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete, :class => "right button destroy" %>
 	</div>
 </div>
