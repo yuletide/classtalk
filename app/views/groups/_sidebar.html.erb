@@ -1,0 +1,9 @@
+<div id="groups">
+    <div id="group_list">
+	    <%= render :partial => 'groups/group_list' %>
+    </div>
+    <div id="group_list_bottom">
+        <div class="field_description margin large"><%= @groups.count %> groups</div>
+        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
+    </div>
+</div>

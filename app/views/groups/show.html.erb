@@ -1,12 +1,4 @@
-<div id="groups">
-    <div id="group_list">
-	    <%= render :partial => 'group_list' %>
-    </div>
-    <div id="group_list_bottom">
-        <div class="field_description margin large"><%= @groups.count %> groups</div>
-        <%= link_to "Add New Group", new_group_path, :class => 'button' %>
-    </div>
-</div>
+<%= render :partial => 'groups/sidebar' %>
 <div id="group_content">
 	<div id="group_header">
 		<ul id="group_nav">
