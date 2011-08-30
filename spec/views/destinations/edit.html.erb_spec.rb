@@ -4,6 +4,7 @@ describe "destinations/edit.html.erb" do
   before(:each) do
     @destination = assign(:destination, stub_model(Destination))
     @group = assign(:group, Factory.create(:group))
+    @groups = assign(:groups, [@group])
   end
 
   it "renders the edit destination form" do

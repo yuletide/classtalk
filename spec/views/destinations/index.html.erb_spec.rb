@@ -7,6 +7,7 @@ describe "destinations/index.html.erb" do
       stub_model(Destination)
     ])
     @group = assign(:group, Factory.create(:group))
+    @groups = assign(:groups, [@group])
   end
 
   it "renders a list of destinations" do
