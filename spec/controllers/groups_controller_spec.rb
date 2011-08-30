@@ -8,6 +8,7 @@ describe GroupsController do
     @member1 = Factory.create(:student)
     @group.students << @member1
     controller.stub(:get_new_phone_number).and_return("4443332222")
+    $outbound_flocky=""
   end
   
   describe "authorization" do
