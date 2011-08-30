@@ -100,19 +100,20 @@ Member List
 }
 #student_list li {
 }
-#student_name {
+.student_name {
 	font-weight: bold;
+	line-height: 25px;
+	margin-bottom: -3px;
 }
 #student_number {
-	margin: 0px;
 	font-weight: normal;
 	font-size: 14px;
-	line-height:10px;
+	line-height: 16px;
 }
-#student_email {
-	margin: 0px;
+.student_email {
 	font-weight: normal;
 	font-size: 14px;
+	line-height: 16px;
 }
 #remove_member {
 	font-size: .6em;
@@ -145,6 +146,10 @@ input.ajax_edit.number{
 Check Ins List
 
 -------------------------------------------------------------- */
+
+.destination_show {
+	min-height: 404px;
+}
 .oswald.grabber.checkin {
 	margin-top: -12px;
 	line-height: 1.3em;
@@ -232,6 +237,8 @@ Check Ins List
 .destination.answers {
 	font-size: 12pt;
 	margin-left: 21px;
+	margin-bottom: 8px;
+	margin-top: -2px;
 }
 .destination.answers_number {
 	font-size: 8pt;
@@ -240,13 +247,15 @@ Check Ins List
 	float: right;
 	margin-top: 11px;
 }
-.destination.answers.question {
+.destination.question {
 	color: #6f6f6f;
+	font-size: 12pt;
+	margin-left: 21px;
 }
-.destination.answers.time {
+.destination.answer_time {
 	font-size: 8pt;
 	display: block;
-	margin-top: -5px;
+	margin-top: -4px;
 }
 .responses_student {
 	display: none;
@@ -665,6 +674,14 @@ a.button.secondary:hover, input:hover.button.secondary {
 	background-color: white;
 	color: #c4c4c4;
 }
+a.button.destroy, input.button.destroy {
+	background-color: #c8888f;
+	border: 2px solid #c8888f;
+}
+a.button.destroy:hover, input.button.destroy:hover {
+	background-color: white;
+	color: #c8888f;
+}
 a.button.minor, input.button.minor {
 	font-size: 12px;
 	padding: 4px 13px 5px 13px;
@@ -887,8 +904,12 @@ Send Message
 	-webkit-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
 	-moz-box-shadow: 0 1px 1px rgba(255,255,255,0.4),1px 0 1px rgba(255,255,255,0.3),-1px 0 1px rgba(255,255,255,0.3),0 -1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(255,255,255,0.2),0 1px 1px rgba(0,0,0,0.12) inset;
 }
-.formwrap.list {
+.formwrap.list.members {
 	padding: 5px 8px 7px 8px;
+	margin-bottom: 10px;
+}
+.formwrap.list.destinations {
+	padding: 5px 8px 2px 8px;
 	margin-bottom: 10px;
 }
 .formwrap.list:hover {

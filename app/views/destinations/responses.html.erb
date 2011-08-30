@@ -64,18 +64,21 @@
 			<%= link_to "Download All", responses_group_destination_path(@group, @destination, :format => "csv"), :class => "button minor right" %>
 		</div>
 		<% @responses_by_student.each do |student,responses| %>
-			<a class="formwrap list" onClick="$('#responses_student_<%= student.id.to_s %>').show();">
+			<a class="formwrap list destinations" onClick="$('#responses_student_<%= student.id.to_s %>').show();">
 				<span class="destination name josefin grabber"><%= student.name %></span>
 				<span class="destination answers_number"><%= pluralize(responses.count, "response") %></span>
 				<ol id="responses_student_<%= student.id.to_s %>" class="responses_student">
 					<% responses.each do |response| %>
-						<li class="destination answers question">
+						<li class="destination question">
 							<%= response.question.content %>
 						</li>
-						<span class="destination answers"><%= response.content %></span>
-						<span class="destination answers time"><%= formatted_time(response.question.created_at) %></span>
-			        <% end %>
+						<div class="destination answers">
+							<span class=""><%= response.content %></span>
+							<span class="destination answer_time"><%= formatted_time(response.question.created_at) %></span>
+			        	</div>
+					<% end %>
 				</ol>
 			</a>
 		<% end %>
+	</div>
 </div>
