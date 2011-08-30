@@ -1,7 +1,9 @@
 <div id="group_header">
 	<ul id="group_nav">
 		<li>
-			<a href="javascript:toggleMessage();"><div id="message_nav" class="group_nav_item active"></div></a>
+			<%= link_to group_path(@group) do %>
+				<div id="message_nav" class="group_nav_item active"></div>
+			<% end %>
 			<div class="group_nav_text">
 				<div id="messages">
 					<div class="arrow_up_small"></div>
@@ -21,7 +23,9 @@
 			</div>
 		</li>
 		<li>
-			<a href="javascript:toggleMembers();"><div id="members_nav" class="group_nav_item"></div></a>
+			<%= link_to members_group_path(@group) do %>
+				<div id="members_nav" class="group_nav_item"></div>
+			<% end %>
 			<div class="group_nav_text">
 				<div id="members">
 					<div class="arrow_up_small"></div>
