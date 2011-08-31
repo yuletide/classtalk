@@ -23,9 +23,37 @@ HomeworkNotifier::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-	
-	config.time_zone = "Eastern Time (US & Canada)"
-	  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.time_zone = "Eastern Time (US & Canada)"
+
+  $outbound_flocky = Flocky.new(1234,5678,90)
+  def $outbound_flocky.message(from,message,numbers)
+    puts "LOGG: sending a message '#{message}' from #{from} to #{numbers.inspect}"
+  end
+
+  def $outbound_flocky.create_phone_number_synchronous(area_code)
+    num = area_code+Array.new(7) {("0".."9").to_a[rand(10)]}*""
+    puts "LOGG: provision number #{num}"
+    response= Object.new
+    def response.code
+      200
+    end
+    def response.parsed_response
+      {"href"=>"https://api.tropo.com/v1/applications/1234/addresses/number/+#{@num}"}
+    end
+    response.instance_variable_set("@num",num)
+    {:url=>nil, :response=>response}
+  end
+  def $outbound_flocky.destroy_phone_number_synchronous(phone_number)
+    puts "LOGG: destroy phone provision #{phone_number}"
+  end
+  def $outbound_flocky.create_phone_number_asynchronous(area_code)
+    create_phone_number_synchronous(area_code)
+  end
+  def $outbound_flocky.destroy_phone_number_asynchronous(area_code)
+    destroy_phone_number_synchronous(area_code)
+  end
+
 end
 

@@ -26,4 +26,6 @@ class Group < ActiveRecord::Base
     
     #todo: also log these messages
   end
+  handle_asynchronously :send_message
+
 end

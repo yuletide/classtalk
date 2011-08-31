@@ -27,7 +27,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new
     @page_title = "New Group"
     @students=[Student.new]*10
-    
+
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @group }
@@ -46,7 +46,7 @@ class GroupsController < ApplicationController
     @group.phone_number = get_new_phone_number
     @page_title = "New Groups"
     @group.description = "Click to add more info..."
-		
+
     respond_to do |format|
       if @group.save
         format.html { redirect_to(group_path(@group), :notice => 'Group was successfully created.') }
@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
   def update
     @group = current_user.groups.find(params[:id])
     @page_title = "#{@group.title}"
-    
+
     respond_to do |format|
       if @group.update_attributes(params[:group])
         @group.reload if @group.students.any?(&:marked_for_destruction?)
@@ -92,34 +92,34 @@ class GroupsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   require 'csv'
   def bulk_upload_students
     @group = current_user.groups.find(params[:id])
-    
+
     if !@group
       #404 or something?
       #return
     end
-    
+
     csv = CSV.parse(params[:upload][:csv].read)
-    
+
     #in future: these might be programatically defined, and possibly merge multiple cells.
     retrieve_procs = {
       :name => lambda {|row| row[0]},
       :phone_number => lambda {|row| row[1]},
       :email => lambda {|row| row[2]}
     }
-    
+
     new_students=0
     updated_students=0
-    
+
     csv.each do |row|
         #hash.merge(self) accomplishes a .map, but keeps us a hash, not an array.
       given = retrieve_procs.merge(retrieve_procs) {|key,value_proc| value_proc[row]}
       #TODO: we should check if this is ambiguous, instead of giving priority to the first.
       @student = @group.students.where("name = ? OR phone_number = ? OR email = ?",*given.values_at(:name,:phone_number,:email)).first
-      
+
       if @student
         @student.update_attributes(given) #todo: check for errors
         updated_students+=1
@@ -137,7 +137,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.find(params[:id])
     message = @group.user.display_name+": "+params[:message][:content] #TODO: safety, parsing, whatever.
     #TODO: ensure group found
-    
+
     if params[:commit].match /scheduled/i
       time_zone = ActiveSupport::TimeZone["Eastern Time (US & Canada)"]  #use eastern time for the input
       scheduled_run = time_zone.local(*params[:date].values_at(*%w{year month day hour}).map(&:to_i))
@@ -152,18 +152,18 @@ class GroupsController < ApplicationController
     end
 
   end
-  
+
   #POST groups/receive_message, receives a message as a JSON post, and figures out what to do with it.
   def receive_message
     params[:incoming_number] = $1 if params[:incoming_number]=~/^1(\d{10})$/
     params[:origin_number] = $1 if params[:origin_number]=~/^1(\d{10})$/
     @group=Group.find_by_phone_number(params[:incoming_number])
-    
+
     if @group
       sent_by_admin=@group.user.phone_number==params[:origin_number]
       @sending_student = @group.students.find_by_phone_number(params[:origin_number])
       @sending_person = sent_by_admin ? @group.user : @sending_student
-      
+
       #handle the #removeme command. it's a hard-coded single test for now. if we implement more commands, we should probably generalize this
       if params[:message].match(/^\s*#remove[\s_]*me/) && @sending_student.present?
         @group.send_message("You will no longer receive messages from #{@group.title}. Sorry to see you go!",nil,[@sending_student])
@@ -173,19 +173,19 @@ class GroupsController < ApplicationController
         @group.send_message(message,@sending_person, sent_by_admin ? @group.students : [@group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
       end
     end
-    
+
     render :text=>"sent", :status=>202
     #needs to return something API-like, yo
   end
-  
+
   #receive a POSTed email as a form from cloudmailin. figure out what to do with it.
   def receive_email
-    
-    
+
+
       #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if params[:to].match(/group\+(\d+)@/) && @group = Group.find($1)
       from = params[:from]
-      body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
+      body =  params[:plain].gsub(/^On .* wrote:\r?$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
 
       if @sender = @group.students.find_by_email(from)
         @group.send_message(@sender.name+": "+body,@sender,[@group.user])
@@ -195,7 +195,7 @@ class GroupsController < ApplicationController
     end
     render :text => 'success', :status => 200
   end
-  
+
   def load_groups
     @groups = current_user.groups.all
   end
@@ -206,7 +206,7 @@ class GroupsController < ApplicationController
     if r[:response].code == 200
       return r[:response].parsed_response["href"].match(/\+1(\d{10})/)[1] rescue nil
     end
-    
+
     return nil
   end
   def destroy_phone_number(num)
