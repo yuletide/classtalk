@@ -2,7 +2,7 @@
 	<ul id="group_nav">
 		<li>
 			<%= link_to group_path(@group) do %>
-				<div id="message_nav" class="group_nav_item <%= "active" if current_page?(group_path(@group))%>"></div>
+				<div id="message_nav" class="group_nav_item <%= "active" if ((current_page?(group_path(@group))) || (current_page?(groups_path)))%>"></div>
 			<% end %>
 			<div class="group_nav_text">
 				<div id="messages">
