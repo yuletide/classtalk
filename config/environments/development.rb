@@ -23,15 +23,15 @@ HomeworkNotifier::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-	config.action_mailer.default_url_options = { :host => 'localhost:3000' }
-	
-	config.time_zone = "Eastern Time (US & Canada)"
-	  
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.time_zone = "Eastern Time (US & Canada)"
+
   $outbound_flocky = Flocky.new(1234,5678,90)
   def $outbound_flocky.message(from,message,numbers)
     puts "LOGG: sending a message '#{message}' from #{from} to #{numbers.inspect}"
   end
-  
+
   def $outbound_flocky.create_phone_number_synchronous(area_code)
     num = area_code+Array.new(7) {("0".."9").to_a[rand(10)]}*""
     puts "LOGG: provision number #{num}"

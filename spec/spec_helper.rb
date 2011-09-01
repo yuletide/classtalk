@@ -36,7 +36,7 @@ Spork.prefork do
     config.use_transactional_fixtures = true
 
     config.include Devise::TestHelpers, :type => :controller
-    def login(user=Factory.create(:user))
+    def login(user=FactoryGirl.create(:user))
       @request.env["devise.mapping"] = Devise.mappings[:admin]
       user.confirm!
       sign_in user
