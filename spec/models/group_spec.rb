@@ -26,6 +26,8 @@ describe Group do
     before :each do
       @email_student=Factory.create(:student,:email=>"abc@def.com", :phone_number=>nil)
       @group.students << @email_student
+      $outbound_flocky=""
+      $outbound_flocky.should_receive(:message)
     end
     it "should send emails to users without phone numbers" do
     	mailer = mock(:mail)
