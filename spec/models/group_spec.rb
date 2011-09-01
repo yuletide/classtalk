@@ -35,5 +35,11 @@ describe Group do
       NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
       @group.send_message("test message",@group.user)
     end
+    it "if fails sending email with an exception, should not fail" do
+      mailer = mock(:mail)
+      mailer.should_receive(:deliver).and_raise("stubbed problem with delivery")
+      NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
+      @group.send_message("test message",@group.user)
+    end
   end
 end
