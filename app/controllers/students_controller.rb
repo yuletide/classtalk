@@ -71,6 +71,7 @@ class StudentsController < ApplicationController
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.js        
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end
