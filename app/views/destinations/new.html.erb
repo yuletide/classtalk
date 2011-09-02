@@ -7,6 +7,5 @@
 		<%= nested_form_for([@group,@destination]) do |f| %>
 		  <%= render :partial => 'form', :locals => {:f => f} %>
 		<% end %>
-		<%= link_to 'Cancel', group_destinations_path(@group,@destination) %>
 	</div>
 </div>
