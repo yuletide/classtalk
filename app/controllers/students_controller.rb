@@ -50,7 +50,7 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @group.students << @student unless @group.students.include? @student
-        format.html { redirect_to(group_url(@group), :notice => 'Student was successfully created.') }
+        format.html { redirect_to(group_url(@group), :notice => 'Member was successfully created.') }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else
         format.html { render :action => "new" }
@@ -66,12 +66,12 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
-        format.html { redirect_to(group_students_url(@group), :notice => 'Student was successfully updated.') }
+        format.html { redirect_to(group_students_url(@group), :notice => 'Member was successfully updated.') }
         format.js
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.js        
+        format.js
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end
