@@ -38,8 +38,13 @@ class Destination < ActiveRecord::Base
 
     #this weird block syntax is here because find_or_create_by doesn't work properly with association collections in 3.0.9. see https://github.com/rails/rails/pull/358. (I'm not sure which tag this is first available in)
     cn = student.checkins.find_or_initialize_by_destination_id(self.id) do |c|
-      c.update_attributes(:current_question_index=>0, :complete=>false)
+      c.current_question_index=0
+      c.complete=false
     end
+        
+    #send a welcome message
+    send_welcome_message(student, cn.new_record?)
+    
     cn.save if cn.new_record?
     
     student.active_checkin = cn
@@ -60,6 +65,14 @@ class Destination < ActiveRecord::Base
       self.group.send_destination_message("All questions complete!",student)
     end
     cn.save
+  end
+  
+  def send_welcome_message(student, new_checkin=true)
+    if new_checkin
+      self.group.send_destination_message("Welcome, you have checked in", student)
+    else
+      self.group.send_destination_message("You have resumed questions", student)
+    end
   end
 
 end
