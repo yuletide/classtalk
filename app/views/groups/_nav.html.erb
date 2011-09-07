@@ -12,7 +12,7 @@
 			</div>
 		</li>
 		<li>
-			<%= link_to group_destinations_path(@group,@destination) do %>
+			<%= link_to group_destinations_path(@group) do %>
 				<div id="checkins_nav" class="group_nav_item <%= "active" if params[:controller] == 'destinations'%>"></div>
 			<% end %>
 			<div class="group_nav_text">
