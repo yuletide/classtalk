@@ -258,8 +258,9 @@ describe GroupsController do
         @student = @group.students.first
       end
       
-      it "if is a valid hashtag, should check the student in, and send the first question, on the alternate phone number" do
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+      it "if is a valid hashtag, should check the student in, and send a welcome message and then the first question, on the alternate phone number" do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
         @student.reload
         
@@ -268,10 +269,15 @@ describe GroupsController do
         @student.active_checkin.destination.should == @destination
 
       end
-      it "if they've checked in before, should resend their current question" do
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+      it "if they've checked in before, should send a resume message and then resend their current question" do
+        #send first checkin
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number])
+        
+        #send 'resume' checkin
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/You have resumed questions/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
       end
       
@@ -289,6 +295,7 @@ describe GroupsController do
         @question1 = Factory.create(:question, :destination=>@destination)
         @question2 = Factory.create(:question, :destination=>@destination)
         @student = @group.students.first
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number])
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question1.content}/,[@student.phone_number])
         @destination.checkin(@student)
       end
