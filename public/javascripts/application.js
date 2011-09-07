@@ -17,6 +17,10 @@ $(document).ready(function() {
 		$("#edit_student_"+id).hide();
 		$("#student_info_"+id).show();
 	});
+	$(".contextual_popup_kill").live('click', function() { 
+		id = $(this).attr("data");
+		$("#group_number_info").hide();
+	});
 	
 	//Puts field title in form field
 	$('.infield_form_label').each(function() {
