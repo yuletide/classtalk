@@ -36,6 +36,7 @@ HomeworkNotifier::Application.routes.draw do
     scope "/users" do
       resource :profile, :controller=>"registrations", :only=>[:edit,:update] do
         get "edit_password", :as=>"edit_password_of"
+        put "dont_show_again/:notification_name", :action => "dont_show_again", :as => "dont_show_again"
       end
     end
   end
