@@ -37,7 +37,7 @@ Spork.prefork do
 
     config.include Devise::TestHelpers, :type => :controller
     def login(user=Factory.create(:user))
-      @request.env["devise.mapping"] = Devise.mappings[:admin]
+      @request.env["devise.mapping"] = Devise.mappings[:user]
       user.confirm!
       sign_in user
       return user
