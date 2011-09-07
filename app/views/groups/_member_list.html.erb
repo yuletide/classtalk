@@ -24,7 +24,18 @@
     	</li>
     <% end %>
     <li>
-      <%= link_to 'Add Member', new_group_student_path(@group), :class => 'button minor left margin_top' %>
+      
+      <%= nested_form_for @group do |f|%>
+        <% f.fields_for :students, [] do |sf| %>
+          <%= sf.text_field :name, :class => "ajax_edit student", :title => "Name" %>
+          <%= sf.text_field :phone_number, :class => "ajax_edit number infield_form_label", :title => "Mobile Number" %>
+          <%= sf.text_field :email, :class=>"ajax_edit number infield_form_label", :title => "Email" %>
+          <%= sf.link_to_remove "cancel"%>
+        <% end %>
+        <%= f.link_to_add "Add member", :students, :class => 'button minor left margin_top' %>
+        <%= f.submit "Save", :class => "button" %>
+      <% end %>
+      
     </li>
     <br><br><br>
     <li>
