@@ -86,6 +86,228 @@ Site-Wide Formatting Classes
 
 /* --------------------------------------------------------------
 
+Site-Wide Links & Buttons
+
+-------------------------------------------------------------- */
+
+a { color: #3a8bd6; text-decoration: none; }
+a:hover { color: #3a8bd6; text-decoration: underline; }
+a:visited { color: #3a8bd6; }
+a:active { color: #3a8bd6; }
+a.button, input.button, button {
+	background-color: #2ea390;
+	border-radius: 3px;
+	color: white;
+	font-size: 15px;
+	padding: 6px 13px 7px 13px;
+	border: 2px solid #2ea390;
+	text-decoration: none;
+	cursor: pointer;
+	font-family: Oswald, arial, serif;
+	font-size: 15px;
+	font-weight: normal;
+}
+a.button:hover, input:hover.button {
+	background-color: white;
+	color: #2ea390;
+}
+a.button.secondary, input.button.secondary {
+	background-color: #c4c4c4;
+	color: white;
+	border: 2px solid #c4c4c4;
+}
+a.button.secondary:hover, input:hover.button.secondary {
+	background-color: white;
+	color: #c4c4c4;
+}
+a.button.destroy, input.button.destroy {
+	background-color: #c8888f;
+	border: 2px solid #c8888f;
+}
+a.button.destroy:hover, input.button.destroy:hover {
+	background-color: white;
+	color: #c8888f;
+}
+a.button.minor, input.button.minor {
+	font-size: 12px;
+	padding: 4px 13px 5px 13px;
+}
+a.button.minor.margin_top, input.button.minor.margin_top {
+	margin-top: 15px;
+}
+a.button.margin_left {
+	margin-left: 10px;
+}
+a.button.margin_right {
+	margin-right: 10px;
+}
+.session_link {
+	font-size: 9pt;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+	display: block;
+}
+.page_actions.top {
+	margin-bottom: 20px;
+	height: 31px;
+}
+.page_actions.bottom {
+	margin-bottom: 20px;
+	margin-top: 20px;
+	height: 31px;
+}
+
+
+/* --------------------------------------------------------------
+
+Site-Wide Input Elements
+
+-------------------------------------------------------------- */
+
+textarea {
+	resize: none;
+	border: 1px solid #aaaaaa;
+	font-size:1.3em;
+	padding: 7px;
+	width: 335px;
+	height: 2em;
+	display: block;
+	background-color: #fff;
+	margin-bottom: 20px;
+	background-origin: padding-box;
+}
+textarea.main {
+	resize: vertical;
+	-webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
+    -moz-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
+	border-style: none;
+    border-radius: 4px;
+	height: 4.3em;
+	width: 100%;
+    padding: 5px 6px 3px 6px;
+    background: white;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 18px;
+	font-weight: normal;
+	margin-bottom: 0px;
+	line-height: 22px;
+}
+textarea.main:focus{
+	outline-color: black;
+    outline-style: none;
+    outline-width: 0px;
+    -webkit-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
+    -moz-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
+}
+table { width: 100%; }
+table.padded { margin-left: 10px; }
+td.top{ vertical-align: top; }
+input[type="password"], input[type="email"], input[type="text"]{
+    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
+    -moz-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
+	border-style: none;
+    border-radius: 4px;
+    height: 28px;
+    line-height: 16px;
+    padding: 5px 6px 3px 6px;
+    background: white;
+    font-family: helvetica, arial, sans-serif;
+    font-size: 18px;
+	font-weight: normal;
+}
+input[type="password"].full, input[type="email"].full, input[type="text"].full{
+	width: 100%;
+}
+input:focus[type="password"], input:focus[type="email"], input:focus[type="text"] {
+	outline-color: black;
+    outline-style: none;
+    outline-width: 0px;
+    -webkit-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
+    -moz-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
+}
+input.last { margin-bottom: 25px; }
+input.membership_field { width: 315px;}
+label {
+	color: #575757;
+	font-size: 11pt;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+	display: block;
+	margin: 15px 0px 2px 0px;	
+}
+label.inline {
+	display: inline;
+	margin-left: 3px;
+}
+.field.large {
+	width: 100%;
+}
+.field.small {
+	width: 60%;
+}
+.field_description {
+	display: block;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+    font-size: 12px;
+	color: #7b7b7b;
+	margin: 1px 0px 0px 4px;
+}
+.field_with_errors {
+	display: inline;
+	font-weight: bold;
+}
+.double_field {
+	width: 160px;
+}
+#signup_form_wrap {
+	width: 350px;
+	margin: 3px 0px 60px 2px;
+}
+#welcome_wrap {
+	width: 390px;
+	margin: 90px auto;
+}
+#signin_form_wrap {
+	width: 260px;
+	margin: 3px 0px 60px 2px;
+}
+#signin_more_actions {
+	padding: 25px 0px 0px 0px;
+	float: left;
+}
+.signin {
+	width: 100%;
+}
+input.infield_form_label.light_color {
+	color: #c5c5c5;
+}
+input.infield_form_label.focused {
+	color: black;
+}
+input.ajax_edit{
+	font-weight: normal;
+	background-color: #ffffe9;
+	border: 1px solid black;
+	width: 80%;
+	-webkit-box-shadow: none;
+    -moz-box-shadow: none;
+	border-style: 1px solid lightGray;
+    border-radius: 3px;
+	border-color: lightGray;
+    height: 26px;
+    line-height: 0px;
+    padding: 0px 4px 0px 4px;
+    font-size: 18px;
+	font-weight: normal;
+}
+span:hover.text_highlight {
+	cursor: text;
+	background-color: #FFFFD3;
+}
+
+/* --------------------------------------------------------------
+
 Member List
 
 -------------------------------------------------------------- */
@@ -502,6 +724,9 @@ Contextual Popups
 	text-decoration: underline;
 	color: white;
 }
+.contextual_popup_kill:visited {
+	color: white;
+}
 .contextual_popup_dismiss {
 	margin-left: 8px;
 	color: white;
@@ -637,227 +862,6 @@ Message Log List
 	border-bottom: 1px solid #DDD;
 }
 
-/* --------------------------------------------------------------
-
-Site-Wide Links & Buttons
-
--------------------------------------------------------------- */
-
-a { color: #3a8bd6; text-decoration: none; }
-a:hover { color: #3a8bd6; text-decoration: underline; }
-a:visited { color: #3a8bd6; }
-a:active { color: #3a8bd6; }
-a.button, input.button, button {
-	background-color: #2ea390;
-	border-radius: 3px;
-	color: white;
-	font-size: 15px;
-	padding: 6px 13px 7px 13px;
-	border: 2px solid #2ea390;
-	text-decoration: none;
-	cursor: pointer;
-	font-family: Oswald, arial, serif;
-	font-size: 15px;
-	font-weight: normal;
-}
-a.button:hover, input:hover.button {
-	background-color: white;
-	color: #2ea390;
-}
-a.button.secondary, input.button.secondary {
-	background-color: #c4c4c4;
-	color: white;
-	border: 2px solid #c4c4c4;
-}
-a.button.secondary:hover, input:hover.button.secondary {
-	background-color: white;
-	color: #c4c4c4;
-}
-a.button.destroy, input.button.destroy {
-	background-color: #c8888f;
-	border: 2px solid #c8888f;
-}
-a.button.destroy:hover, input.button.destroy:hover {
-	background-color: white;
-	color: #c8888f;
-}
-a.button.minor, input.button.minor {
-	font-size: 12px;
-	padding: 4px 13px 5px 13px;
-}
-a.button.minor.margin_top, input.button.minor.margin_top {
-	margin-top: 15px;
-}
-a.button.margin_left {
-	margin-left: 10px;
-}
-a.button.margin_right {
-	margin-right: 10px;
-}
-.session_link {
-	font-size: 9pt;
-	font-family: helvetica, arial, sans-serif;
-	font-weight: normal;
-	display: block;
-}
-.page_actions.top {
-	margin-bottom: 20px;
-	height: 31px;
-}
-.page_actions.bottom {
-	margin-bottom: 20px;
-	margin-top: 20px;
-	height: 31px;
-}
-
-
-/* --------------------------------------------------------------
-
-Site-Wide Input Elements
-
--------------------------------------------------------------- */
-
-textarea {
-	resize: none;
-	border: 1px solid #aaaaaa;
-	font-size:1.3em;
-	padding: 7px;
-	width: 335px;
-	height: 2em;
-	display: block;
-	background-color: #fff;
-	margin-bottom: 20px;
-	background-origin: padding-box;
-}
-textarea.main {
-	resize: vertical;
-	-webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
-    -moz-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
-	border-style: none;
-    border-radius: 4px;
-	height: 4.3em;
-	width: 100%;
-    padding: 5px 6px 3px 6px;
-    background: white;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 18px;
-	font-weight: normal;
-	margin-bottom: 0px;
-	line-height: 22px;
-}
-textarea.main:focus{
-	outline-color: black;
-    outline-style: none;
-    outline-width: 0px;
-    -webkit-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
-    -moz-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
-}
-table { width: 100%; }
-table.padded { margin-left: 10px; }
-td.top{ vertical-align: top; }
-input[type="password"], input[type="email"], input[type="text"]{
-    -webkit-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
-    -moz-box-shadow: inset 0 0 0 1px rgba(0,0,0,0.4),inset 0 1px 4px 0 rgba(0,0,0,0.15),inset 0 2px 3px 0 rgba(0,0,0,0.2),0 1px 0 0 rgba(255,255,255,0.8);
-	border-style: none;
-    border-radius: 4px;
-    height: 28px;
-    line-height: 16px;
-    padding: 5px 6px 3px 6px;
-    background: white;
-    font-family: helvetica, arial, sans-serif;
-    font-size: 18px;
-	font-weight: normal;
-}
-input[type="password"].full, input[type="email"].full, input[type="text"].full{
-	width: 100%;
-}
-input:focus[type="password"], input:focus[type="email"], input:focus[type="text"] {
-	outline-color: black;
-    outline-style: none;
-    outline-width: 0px;
-    -webkit-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
-    -moz-box-shadow:0 0 0 1px #73bdfa inset,0 0 2px 0 rgba(115,189,250,0.9);
-}
-input.last { margin-bottom: 25px; }
-input.membership_field { width: 315px;}
-label {
-	color: #575757;
-	font-size: 11pt;
-	font-family: helvetica, arial, sans-serif;
-	font-weight: normal;
-	display: block;
-	margin: 15px 0px 2px 0px;	
-}
-label.inline {
-	display: inline;
-	margin-left: 3px;
-}
-.field.large {
-	width: 100%;
-}
-.field.small {
-	width: 60%;
-}
-.field_description {
-	display: block;
-	font-family: helvetica, arial, sans-serif;
-	font-weight: normal;
-    font-size: 12px;
-	color: #7b7b7b;
-	margin: 1px 0px 0px 4px;
-}
-.field_with_errors {
-	display: inline;
-	font-weight: bold;
-}
-.double_field {
-	width: 160px;
-}
-#signup_form_wrap {
-	width: 350px;
-	margin: 3px 0px 60px 2px;
-}
-#welcome_wrap {
-	width: 390px;
-	margin: 90px auto;
-}
-#signin_form_wrap {
-	width: 260px;
-	margin: 3px 0px 60px 2px;
-}
-#signin_more_actions {
-	padding: 25px 0px 0px 0px;
-	float: left;
-}
-.signin {
-	width: 100%;
-}
-input.infield_form_label.light_color {
-	color: #c5c5c5;
-}
-input.infield_form_label.focused {
-	color: black;
-}
-input.ajax_edit{
-	font-weight: normal;
-	background-color: #ffffe9;
-	border: 1px solid black;
-	width: 80%;
-	-webkit-box-shadow: none;
-    -moz-box-shadow: none;
-	border-style: 1px solid lightGray;
-    border-radius: 3px;
-	border-color: lightGray;
-    height: 26px;
-    line-height: 0px;
-    padding: 0px 4px 0px 4px;
-    font-size: 18px;
-	font-weight: normal;
-}
-span:hover.text_highlight {
-	cursor: text;
-	background-color: #FFFFD3;
-}
 
 /* --------------------------------------------------------------
 
