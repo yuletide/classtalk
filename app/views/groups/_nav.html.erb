@@ -51,7 +51,7 @@
         </h3>
     </div>
 </div>
-<% if current_page?(groups_path) %>
+<% if current_page?(groups_path) && current_user.show_group_number_popup? %>
 	<div style="position:absolute;">
 		<div id="group_number_info">
 			<div class="arrow_up_small group_number_info"></div>
@@ -63,7 +63,7 @@
 					<li>Text messages members send to this number are forwarded only to you</li>
 				</ul>
 				<div class="contextual_popup_actions">
-					<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><a href="javascript:dismissContextualPopup()" class="contextual_popup_kill"> </a>
+					<a href="javascript:dismissContextualPopup()" class="contextual_popup_dismiss">OK</a><%= link_to "don't show again", dont_show_again_profile_path(:group_number_popup), :method => :put, :class => "contextual_popup_kill" %>
 				</div>
 			</div>
 		</div>
