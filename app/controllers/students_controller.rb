@@ -58,6 +58,23 @@ class StudentsController < ApplicationController
       end
     end
   end
+  
+  def create_multiple
+    @page_title = "#{@group.title}"
+
+    respond_to do |format|
+      if @group.update_attributes(params[:group])
+        @group.reload if @group.students.any?(&:marked_for_destruction?)
+        format.html { redirect_to(members_group_path(@group)) }
+        format.js
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to(members_group_path(@group)) }
+        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
 
   # PUT /students/1
   # PUT /students/1.xml
