@@ -11,10 +11,11 @@ describe GroupsController do
 
   before(:each) do
     @current_user = login
-    @group=Factory.create(:group,:user=>controller.current_user)
-    @member1 = Factory.create(:student)
+    @group=FactoryGirl.create(:group,:user=>controller.current_user)
+    @member1 = FactoryGirl.create(:student)
     @group.students << @member1
     controller.stub(:get_new_phone_number).and_return("4443332222")
+    $outbound_flocky=""
   end
 
   describe "authorization" do
@@ -236,7 +237,7 @@ describe GroupsController do
       end
 
       it "if sent from student, should send a message to teacher, and only the teacher" do
-        @group.students << Factory.create(:student)
+        @group.students << FactoryGirl.create(:student)
         $outbound_flocky.should_receive(:message).with(@group.phone_number,/goat/,[@teacher_num])
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"I was told it was a giant mutant space goat!"}
       end
@@ -328,12 +329,12 @@ describe GroupsController do
       @group.user.update_attribute(:phone_number, @teacher_num="5551234567")
       @from_email="from@fromemail.com"
       @params = {"html"=>"", "from"=>@from_email,"x_to_header"=>"[\"group+1@mail.staging.classtalk.org\"]", "plain"=>"a returning message\n\nOn Thu, Jun 9, 2011 at 1:13 AM,  <group+1@mail.staging.classtalk.org> wrote:\n> user1: a testing message\n>", "disposable"=>"1", "signature"=>"05977d0872091de8114af47950ee403f", "subject"=>"Re: Update from example group", "to"=>"<group+1@mail.staging.classtalk.org>", "x_cc_header"=>"[\"user+moartest@codeforamerica.org\"]", "message"=>"Received: by bwz16 with SMTP id 16so1211960bwz.4\r\n        for <group+1@mail.staging.classtalk.org>; Thu, 09 Jun 2011 01:13:32 -0700 (PDT)\r\nMIME-Version: 1.0\r\nReceived: by 10.204.22.197 with SMTP id o5mr434729bkb.68.1307607211820; Thu,\r\n 09 Jun 2011 01:13:31 -0700 (PDT)\r\nReceived: by 10.205.65.198 with HTTP; Thu, 9 Jun 2011 01:13:31 -0700 (PDT)\r\nIn-Reply-To: <4df080925871c_13f9c87c7a1388633f@e1f5f000-4ff7-415d-b21f-afe6950e9a31.mail>\r\nReferences: <4df080925871c_13f9c87c7a1388633f@e1f5f000-4ff7-415d-b21f-afe6950e2011-06-09T08:13:34+00:00 app[web.1]: 9a31.mail>\r\nDate: Thu, 9 Jun 2011 01:13:31 -0700\r\nMessage-ID: <BANLkTind+aaGnUmfy2R2Egsy1YVysRg-Dw@mail.gmail.com>\r\nSubject: Re: Update from example group\r\nFrom: the guy <#{@from_email}>\r\nTo: group+1@mail.staging.classtalk.org\r\nCc: user+moartest@codeforamerica.org\r\nContent-Type: text/plain; charset=ISO-8859-1\r\n\r\na returning message\r\n\r\nOn Thu, Jun 9, 2011 at 1:13 AM,  <group+1@mail.staging.classtalk.org> wrote:\r\n> user1: a testing message\r\n>"}
-      @group.students << Factory.create(:student,:email=>@student_email)
+      @group.students << FactoryGirl.create(:student,:email=>@student_email)
     end
 
     it "if sent from student, should send a message to teacher, and only the teacher" do
       $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,[@teacher_num])
-      @group.students << Factory.create(:student,:email=>@from_email)
+      @group.students << FactoryGirl.create(:student,:email=>@from_email)
       post :receive_email, @params
     end
 
@@ -344,7 +345,16 @@ describe GroupsController do
     end
 
     it "should strip out older messages that are being replied to" do
-      $outbound_flocky.stub(:message)
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,@group.students.map(&:phone_number).compact)
+      @group.user.update_attribute(:email,@from_email)
+      post :receive_email, @params
+      LoggedMessage.last.message.should match /a returning message/
+      LoggedMessage.last.message.should_not match /a testing message/
+    end
+    
+    it "should strip out original message, even if sent from machines using carriage return" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/a returning message/,@group.students.map(&:phone_number).compact)
+      @params["plain"].gsub!("\n","\r\n")
       @group.user.update_attribute(:email,@from_email)
       post :receive_email, @params
       LoggedMessage.last.message.should match /a returning message/

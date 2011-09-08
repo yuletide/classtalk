@@ -201,7 +201,7 @@ class GroupsController < ApplicationController
   def receive_email
     
     from = params[:from]
-    body =  params[:plain].gsub(/^On .* wrote:$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
+      body =  params[:plain].gsub(/^On .* wrote:\r?$\s*(^>.*$\s*)+/,'') #strip out replies and whatnot
       
     #if one of the to addresses matches us, use that one. todo - correctly handle mulitple emails, or correctly fail
     if params[:to].match(/group\+(\d+)@/) && @group = Group.find($1)

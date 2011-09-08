@@ -5,7 +5,7 @@ describe Group do
     $outbound_flocky = '' unless $outbound_flocky
   end
   before(:each) do
-    @group = Factory.create(:group)
+    @group = FactoryGirl.create(:group)
   end
 
   describe "their phone number" do
@@ -27,7 +27,7 @@ describe Group do
 
   describe "send_message" do
     before :each do
-      @email_student=Factory.create(:student,:email=>"abc@def.com", :phone_number=>nil)
+      @email_student=FactoryGirl.create(:student,:email=>"abc@def.com", :phone_number=>nil)
       @group.students << @email_student
     end
     it "should send emails to users without phone numbers" do

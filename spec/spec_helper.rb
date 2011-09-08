@@ -36,15 +36,16 @@ Spork.prefork do
     config.use_transactional_fixtures = true
 
     config.include Devise::TestHelpers, :type => :controller
-    def login(user=Factory.create(:user))
+    def login(user=FactoryGirl.create(:user))
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user.confirm!
       sign_in user
       return user
     end
+
+    Delayed::Worker.delay_jobs = false
+
   end
-
-
 end
 
 Spork.each_run do

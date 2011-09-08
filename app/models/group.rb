@@ -28,7 +28,8 @@ class Group < ActiveRecord::Base
 
     #todo: also log these messages
   end
-  
+  handle_asynchronously :send_message
+
   def send_destination_message(message,recipient)
     if recipient.phone_number.present?
       LoggedMessage.create(:group=>self,:sender=>nil,:source_phone=>destination_phone_number,:destination_phone=>recipient.phone_number,:message=>message)
@@ -39,4 +40,5 @@ class Group < ActiveRecord::Base
       #destination email send.
     end
   end
+
 end
