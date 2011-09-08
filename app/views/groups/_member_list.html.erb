@@ -27,13 +27,15 @@
       
       <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
         <% f.fields_for :students, [] do |sf| %>
-          <%= sf.text_field :name, :class => "ajax_edit student", :title => "Name" %>
-          <%= sf.text_field :phone_number, :class => "ajax_edit number infield_form_label", :title => "Mobile Number" %>
-          <%= sf.text_field :email, :class=>"ajax_edit number infield_form_label", :title => "Email" %>
-          <%= sf.link_to_remove "cancel"%>
+          <span class="formwrap members">
+            <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
+            <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
+            <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
+            <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span>
+          </span>
         <% end %>
-        <%= f.link_to_add "Add member", :students, :class => 'button minor left margin_top' %>
-        <%= f.submit "Save", :class => "button" %>
+        <%= f.link_to_add "New Member", :students, :class => 'button minor right', :id => "add_multiple_members" %>
+        <%= f.submit "Save All", :class => 'button minor', :id => "save_multiple_members" %>
       <% end %>
       
     </li>
