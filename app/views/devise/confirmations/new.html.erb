@@ -1,0 +1,17 @@
+<h2 class="oswald grabber">Check Your Email</h2>
+<div id="signup_form_wrap">
+  <p>
+    Check your email for a link to confirm your account. Sometimes, the account confirmation email can be accidentally marked as spam, so you might look there too. If you need, we can resend the confirmation email if you enter your address below.
+  </p>
+
+  <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <p><%= f.label :email %>
+    <%= f.email_field :email %></p>
+
+    <p><%= f.submit "Resend Confirmation", :class => "button" %></p>
+  <% end %>
+  <br>
+  <%= render :partial => "devise/shared/links" %>
+</div>
