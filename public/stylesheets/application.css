@@ -1176,6 +1176,11 @@ Top Nav Bar
 #logo_text div:hover;{
 	text-decoration: none;
 }
+#logo_text_beta {
+	font-size: 10px;
+	color: lightgray;
+	letter-spacing: 0.5px;
+}
 
 /* --------------------------------------------------------------
 
