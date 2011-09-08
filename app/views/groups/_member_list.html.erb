@@ -39,17 +39,17 @@
       <% end %>
       
     </li>
-    <br><br><br>
-    <li>
-      <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
-        <div class="field">
-          <%= label :upload, "Bulk Add Members (CSV)", :for=>"upload[csv]" %>
-          <%= file_field :upload, :csv %>
-        </div>
-        <div class="actions">
-          <%= f.submit "Upload CSV", :class => 'button minor left margin_top' %>
-        </div>
-      <%end%>
-    </li>
   </ul>
 <% end %>
+
+<br><br>
+
+<%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
+  <div class="field">
+    <%= label :upload, "Bulk Add Members (CSV)", :for=>"upload[csv]" %>
+    <%= file_field :upload, :csv %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Upload CSV", :class => 'button minor left margin_top' %>
+  </div>
+<%end%>
