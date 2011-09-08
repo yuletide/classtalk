@@ -245,6 +245,9 @@ label.inline {
 .field.small {
 	width: 60%;
 }
+.field.question {
+	height: 80px;
+}
 .field_description {
 	display: block;
 	font-family: helvetica, arial, sans-serif;
@@ -481,6 +484,9 @@ Check Ins List
 }
 .responses_student {
 	display: none;
+}
+.destination_actions {
+	margin-top: 65px;
 }
 
 /* --------------------------------------------------------------
