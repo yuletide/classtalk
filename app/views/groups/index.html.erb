@@ -1,19 +1,19 @@
 <% if @groups.blank? %>
-  <h3>You haven't yet created any groups.</h3><br><%= link_to 'Make my first group!', new_group_path, :class => "button" %>
+	<div id="welcome_wrap">
+		<h1 class="oswald grabber">Welcome to ClassTalk!</h1>
+			<h4>To get started, make your first group.</h4>
+			<p>Groups are comprised of members and might represent your classes, teams, clubs, or friends. There's no limit to how you use ClassTalk and it's entirely free. So let your imagination run wild and have fun!</p>
+			<br>
+		<div class="center"><%= link_to "Make my first group »", new_group_path, :class => "button" %></div>
+	</div>
 <% else %>
-      <% @groups.each do |group| %>
-        <a class="group_list_item" href="<%= group_path(group) %>">
-              <span class="left josefin bold">
-                <span class="groups primary"><%= group.title %></span><br>
-                <span class="groups secondary"><%= group.description %></span>
-              </span>
-              <span class="right josefin bold">
-                <span class="groups primary"><%= PhoneValidator::OUTPUT_PRINTF%group.phone_number.scan(/\d/) %></span><br>
-                <span class="groups secondary right"><%= pluralize group.students.count, "member" %></span>
-              </span>
-        </a>
-      <% end %>
-      <br>
-  <%= link_to "Add New Group", new_group_path, :class => 'button right' %>
-  <div id="return_to_groups"></div>
+	<%= render :partial => 'groups/sidebar' %>
+	<div id="group_content">
+		<%= render :partial => 'groups/nav' %>
+		<div>
+			<div id="message">
+				<%= render :partial => 'message'%>
+			</div>
+		</div>
+	</div>
 <% end %>

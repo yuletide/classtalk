@@ -54,7 +54,7 @@
   <div id="container">
       <div class="top_bar">
           <div id="logo">
-              <a href="/" id="logo_text" class="lucky">ClassTalk</a>
+              <a href="/" id="logo_text" class="lucky">ClassTalk</a><span id="logo_text_beta">beta</span>
           </div>
           <div id="nav">
               <ul id="main_menu">
@@ -67,27 +67,28 @@
                     <li><a href="http://codeforamerica.org/?cfa_project=whatsassign-me" class="nav_links">ABOUT</a></li> 
                   </h3>
               </ul>
-          </div>        
-      </div>
+          </div>
+	</div>
+	<%= render :partial => 'layouts/notices' %>
+        
     <% if (params[:action] == 'splash') %>
         <div id="main" class="splash">
+	<% elsif (@groups.blank?) || ((params[:action] == 'new') && (params[:controller] == 'groups')) %>
+		<div id="main" class="full">
+	<% elsif ((params[:controller] == 'groups') || (params[:controller] == 'destinations')) || ((params[:action] != 'new') && (params[:controller] == 'destinations'))%>
+		<div id="main" class="groups">
     <% else %>
-        <div id="main">
-            <div class="header">
-                <div class="title_text">
-                    <%= render :partial => 'layouts/breadcrumbs' %>
-                </div>
-            </div>
+        <div id="main" class="full">
     <% end %>
             <div class="content">
-                <%= render :partial => 'layouts/notices' %>
                 <%= yield %>
             </div>
         </div>
     <div id="footer">
               <span>
                   made by <a href="http://codeforamerica.org">Code for America</a> in partnership with the <a href="http://www.newurbanmechanics.org">City of Boston</a>
-              </span>
+              </span><br>
+              <a href="http://www.codeforamerica.org" target="blank"><img src="/images/cfa_logo.png" width="123" height="51" alt="Code for America" class="cfa_logo right"></a>
     </div>
   </div>
 

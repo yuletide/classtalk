@@ -1,8 +1,8 @@
-<table>
-  <tr>
-    <td class="top"><%= render 'form' %></td>
-    <td class="top"><%= render 'membership_form' %></td>
-  </tr>
-</table>
-
-<%= link_to 'Back', groups_path %>
+<%= render :partial => 'groups/sidebar' %>
+<div id="group_content">
+	<%= render :partial => 'groups/nav' %>
+	<div>
+		<%= render 'form' %>
+		<%= link_to 'Delete Group', @group, :confirm => 'Are you sure?', :method => :delete, :class => "right button destroy" %>
+	</div>
+</div>

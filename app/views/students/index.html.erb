@@ -4,7 +4,6 @@
   <tr>
     <th>Name</th>
     <th>Phone number</th>
-    <th>Groups</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,7 +14,6 @@
     <td><%= student.name %></td>
     <td><%= student.phone_number %></td>
     <% #strictly speaking, the .html_safe should be unnecessary. see bug https://rails.lighthouseapp.com/projects/8994/tickets/6298 %>
-    <td><%= (student.groups.map {|g| link_to(g.description, g)}*", ").html_safe  %></td>
     <td><%= link_to 'Show', group_student_path(@group.id, student) %></td>
     <td><%= link_to 'Edit', edit_group_student_path(@group.id, student) %></td>
     <td><%= link_to 'Destroy', group_student_path(@group.id, student.id), :confirm => 'Are you sure?', :method => :delete %></td>

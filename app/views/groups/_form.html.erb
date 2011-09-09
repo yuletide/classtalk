@@ -10,14 +10,18 @@
       </ul>
     </div>
   <% end %>
-  <%= hidden_field :group, :user_id, :value => current_user.id %>
+	<%= hidden_field :group, :user_id, :value => current_user.id %>
 
-  <div class="field">
-    <%= f.label :title %>
+  <div class="field small">
+    <%= f.label :title, "Group Name" %>
     <%= f.text_field :title %>
+  </div>
+  <div class="field small">
+    <%= f.label :description, "Group Description" %>
+    <%= f.text_field :description %>
   </div>
   <br>
   <div class="actions">
-    <%= f.submit :class => "button" %>
+    <%= f.submit "Save", :class => "button" %>
   </div>
 <% end %>

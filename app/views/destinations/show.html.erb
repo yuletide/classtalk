@@ -1,0 +1,28 @@
+<%= render :partial => 'groups/sidebar' %>
+<div id="group_content">
+	<%= render :partial => 'groups/nav' %>
+	<div>
+		<div class="destination_show">
+			<span class="destination name show josefin grabber"><%= @destination.name %></span>
+			<div class="destination rightbox show">
+				<span class="destination hashtag oswald">#<%= @destination.hashtag %></span>
+				<span class="destination questions_number"><%= pluralize(@destination.questions.count, "question") %></span>
+			</div>
+			<span class="destination address show"><%= @destination.address %></span>
+			<span class="destination notes show"><%= @destination.notes %></span>
+			<ol>
+				<% @destination.questions.each do |question| %>
+					<li class="destination questions"><%= question.content %></li>
+				<% end %>
+			</ol>
+		</div>
+		<div class="page_actions bottom">
+			<%= link_to '« All Check Ins', group_destinations_path(@group), :class => "button minor left" %>
+			<%= link_to "View Responses »", responses_group_destination_path(@group, @destination), :class => "button minor right" %>
+			<div class="center">
+				<%= link_to 'Edit', edit_group_destination_path(@group,@destination), :class => "button minor secondary" %>
+				<%= link_to 'Delete', group_destination_path(@group,@destination), :confirm => 'Are you sure?', :method => :delete, :class => "button minor destroy" %>
+			</div>
+		</div>
+	</div>
+</div>

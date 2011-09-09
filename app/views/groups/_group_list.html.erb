@@ -1,0 +1,26 @@
+<% if @groups.blank? %>
+	<h3>You have no groups.</h3><br><%= link_to 'Add Group', new_group_path, :class => "button" %>
+<% else %>
+	<div id="group_list_gradient">
+		<% @groups.each do |group| %>
+			<% if group.id == @group.id %>
+				<a class="group_list_item_selected" href="<%= group_path(group) %>">
+		    		<span class="left">
+						<span class="groups primary josefin bold selected"><%= group.title %></span>
+		    			<span class="groups secondary selected"><%= group.description %></span>
+					</span>
+			<% else %>
+				<a class="group_list_item" href="<%= group_path(group) %>">
+		    		<span class="left">
+						<span class="groups primary josefin bold"><%= group.title %></span>
+		    			<span class="groups secondary"><%= group.description %></span>
+					</span>
+			<% end %>
+				<!-- <span class="right josefin bold">
+				<span class="groups primary"><%= PhoneValidator::OUTPUT_PRINTF%group.phone_number.scan(/\d/) %></span><br>
+				<span class="groups secondary right"><%= pluralize group.students.count, "member" %></span>
+				</span> -->
+			</a>
+		<% end %>
+	</div>
+<% end %>

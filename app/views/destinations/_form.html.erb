@@ -1,0 +1,47 @@
+  <% if @destination.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@destination.errors.count, "error") %> prohibited this destination from being saved:</h2>
+
+      <ul>
+      <% @destination.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field small">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field small">
+    <%= f.label :hashtag %>
+    <%= f.text_field :hashtag %>
+    <span class="field_description">Members check in with this hashtag, so keep it short, unique, and memorable (e.g. "historymuseum" or "mathquiz6")</span>
+  </div>
+  <div class="field small">
+    <%= f.label :address, "Location" %>
+    <%= f.text_field :address %>
+    <span class="field_description">e.g. "26 Court St, Boston, MA" or "4th period, Wed 8/15"</span>
+  </div>
+  <div class="field large">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, :class => "main" %>
+    <span class="field_description">Any relevant information you wish to include about this check-in (e.g. instructions, hints, due date, grading, etc.)</span>
+  </div>
+  
+  <div id="questions_form">
+    <%= f.fields_for :questions do |qf| %>
+      <div class="field question">
+        <%= qf.label :content, "Question"%>
+        <%= qf.text_field :content, :class => "full" %>
+        <span class="field_description left">This question will be asked to members via SMS after they check in</span><%= qf.link_to_remove "remove", :id => 'remove_member', :class => "right" %>
+      </div>
+    <% end %>
+  </div>
+    <%= f.link_to_add "Add Question", :questions, :class => "button minor left margin_top" %>
+  
+  <div class="actions right destination_actions">
+    <%= link_to 'Cancel', group_destinations_path(@group,@destination), :class => "button secondary" %>
+    <%= f.submit "Save", :class => "button" %>
+  </div>

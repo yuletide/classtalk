@@ -2,8 +2,15 @@ require 'spec_helper'
 
 describe GroupsController do
 
+  #   rspec will whine about setting an expectation on nil
+  # unless $outbound_flocky is set to something first. 
+
+  before(:all) do
+    $outbound_flocky = '' unless $outbound_flocky
+  end
+
   before(:each) do
-    login
+    @current_user = login
     @group=FactoryGirl.create(:group,:user=>controller.current_user)
     @member1 = FactoryGirl.create(:student)
     @group.students << @member1
@@ -14,8 +21,33 @@ describe GroupsController do
   describe "authorization" do
     pending "all actions should be accessible to logged in users" do
     end
-    pending "no actions should be accessible to non-logged-in users" do
+    
+    describe "no actions should be accessible to non-logged-in users and should redirect to signin" do
+      before(:each) do
+        sign_out(@current_user)
+      end
+       
+      it "on the show page should redirect to signin page" do
+        get :show, {:id => @group.id}
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the edit page should redirect to signin page" do
+        get :edit, {:id => @group.id}
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the index page should redirect to signin page" do
+        get :index
+        response.should redirect_to(new_user_session_path)
+      end
+
+      it "on the new page should redirect to signin page" do
+        get :new
+        response.should redirect_to(new_user_session_path)
+      end
     end
+    
   end
   describe "#create" do
     before :each do
@@ -66,6 +98,8 @@ describe GroupsController do
     end
     describe "delete" do
       it "should delete group, and dependent students" do
+        $outbound_flocky.should_receive(:destroy_phone_number_synchronous).with(@group.phone_number)
+        $outbound_flocky.should_receive(:destroy_phone_number_synchronous).with(@group.destination_phone_number)
         expect {
           delete :destroy, {:id=>@group.id}
         }.to change(Student,:count).by(-1)
@@ -183,6 +217,7 @@ describe GroupsController do
   describe "receive_message" do
     before :each do
       sign_out controller.current_user
+      ENV["APP_DOMAIN"] = 'test.com'
     end
 
     pending "should log the message" do
@@ -190,11 +225,11 @@ describe GroupsController do
 
     it "should disable student if they text '#removeme'" do
       @group.students.first.phone_number.should_not be_nil
-      $outbound_flocky.should_receive(:message).with(@group.phone_number,/removed/,[@group.students.first.phone_number])
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/no longer receive messages/,[@group.students.first.phone_number])
       post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"#removeme"}
       @group.students.first.phone_number.should be_nil
     end
-
+    
     describe "if teacher does have phone number" do
       before :each do
         @group.user.phone_number = @teacher_num = "5551234567"
@@ -216,6 +251,76 @@ describe GroupsController do
       pending "is sent to email" do
       end
     end
+    
+    describe "if contains a checkin hashtag" do
+      before(:each) do
+        @destination = Factory.create(:destination, :group=>@group)
+        @question = Factory.create(:question, :destination=>@destination)
+        @student = @group.students.first
+      end
+      
+      it "if is a valid hashtag, should check the student in, and send a welcome message and then the first question, on the alternate phone number" do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+        @student.reload
+        
+        @student.checkins.find_by_destination_id(@destination.id).should_not be_nil
+        @student.active_checkin.should_not be_nil
+        @student.active_checkin.destination.should == @destination
+
+      end
+      it "if they've checked in before, should send a resume message and then resend their current question" do
+        #send first checkin
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+        
+        #send 'resume' checkin
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/You have resumed questions/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
+        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
+      end
+      
+      it "if not a valid hashtag, should not change checkin, should inform the student" do
+        $outbound_flocky.should_receive(:message).with(@group.phone_number,/.*/,[@student.phone_number]) #TODO: determine copy of response.
+        expect{
+          post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"#fake_hashtag"}
+        }.to_not change(@student,:active_checkin)
+      end
+    end
+    
+    describe "if sent to an alternate destination number" do
+      before(:each) do
+        @destination = Factory.create(:destination, :group=>@group)
+        @question1 = Factory.create(:question, :destination=>@destination)
+        @question2 = Factory.create(:question, :destination=>@destination)
+        @student = @group.students.first
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Welcome, you have checked in/,[@student.phone_number])
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question1.content}/,[@student.phone_number])
+        @destination.checkin(@student)
+      end
+      
+      it "should record answer the most current question, and send out the next question" do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question2.content}/,[@student.phone_number])
+        
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 1"}
+        
+        a = @student.answers.last
+        a.content.should == "answer to question 1"
+        a.question.should == @question1
+      end
+      it "if is an answer to the last question, should send out the 'finished' method', and the checkin should be complete." do
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question2.content}/,[@student.phone_number])
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 1"}
+        
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/.*/,[@student.phone_number]) #TODO: correct message here
+        post :receive_message, {:incoming_number=>@group.destination_phone_number, :origin_number=>@student.phone_number, :message=>"answer to question 2"}
+
+        @student.reload.active_checkin.should be_complete
+      end
+    end
+    
   end
 
   describe "receive_email" do
@@ -254,6 +359,20 @@ describe GroupsController do
       post :receive_email, @params
       LoggedMessage.last.message.should match /a returning message/
       LoggedMessage.last.message.should_not match /a testing message/
+    end
+
+    describe "if contains a checkin hashtag" do
+      pending "if is a valid hashtag, should check the student in, and send the first question, on the alternate email" do
+      end
+      pending "if not a valid hashtag, should inform the student" do
+      end
+    end
+
+    describe "if sent to an alternate destination email" do
+      pending "should answer the most current question, and send out the next question" do
+      end
+      pending "if is an answer to the last question, should send out the 'finished' method'" do
+      end
     end
 
   end

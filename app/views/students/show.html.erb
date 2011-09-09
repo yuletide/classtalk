@@ -10,15 +10,22 @@
   <%= @student.phone_number %>
 </p>
 
-<p>
-  <b>Groups:</b>
-  <br />
-  <ul>
-  <% for group in @student.groups %>
-    <li><%= link_to group.title, group_path %></li>
+<div>
+  Answers:
+  <% @grouped_answers.each do |(destination, answers)| %>
+    <ul>
+      <li>
+        <%= destination.try(:name) || "unknown destination" %>
+        <ol>
+          <% answers.each do |a| %>
+            <li><%= a.question.try(:content) || "unknown question" %>: 
+            <%= a.content %></li>
+          <%end%>
+        </ol>
+      </li>
+    </ul>
   <% end %>
-  </ul>
-</p>
+</div>
 <br />
 
 <%= link_to 'Edit', edit_group_student_path(@group, @student) %> |

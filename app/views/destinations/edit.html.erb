@@ -1,0 +1,14 @@
+<%= render :partial => 'groups/sidebar' %>
+<div id="group_content">
+	<%= render :partial => 'groups/nav' %>
+	<div>
+		<h1 class="oswald grabber">Check In > Edit</h1>
+		<div>
+			<%= nested_form_for([@group,@destination]) do |f| %>
+			  <%= render :partial => 'form', :locals => {:f => f} %>
+			<% end %>
+		</div>
+
+		<%= link_to 'Cancel', group_destination_path(@group,@destination), :class => "button secondary right" %>
+	</div>
+</div>

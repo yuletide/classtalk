@@ -1,18 +1,33 @@
 HomeworkNotifier::Application.routes.draw do
 
   root :to => 'application#index'
+
   resources :groups do
+
     collection do
       post "receive_message"
       post "receive_email"
     end
+
     member do
       post "send_message", :as=>:send_message_to
       post "bulk_upload_students"
+      get "members"
     end
+
     resources :students do
       #post "send_message", :as=>:send_message_to #possibly add in future
+      collection do
+        post "create_multiple"
+      end
     end
+
+    resources :destinations do
+      member do
+        get "responses"
+      end
+    end
+
   end
   resources :students
 
@@ -24,6 +39,7 @@ HomeworkNotifier::Application.routes.draw do
     scope "/users" do
       resource :profile, :controller=>"registrations", :only=>[:edit,:update] do
         get "edit_password", :as=>"edit_password_of"
+        put "dont_show_again/:notification_name", :action => "dont_show_again", :as => "dont_show_again"
       end
     end
   end

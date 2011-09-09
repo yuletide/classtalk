@@ -16,7 +16,9 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.xml
   def show
-    @student = Student.includes(:groups).find(params[:id])
+    @student = @group.students.find(params[:id])
+    @grouped_answers = @student.answers.includes(:question).order("questions.destination_id, questions.order_index").group_by {|a| a.question.try(:destination)}
+    #you can't easily do #includes through a :includes, you'll still have a bit of n+1 on getting the associated destinations. ah well.
 
     respond_to do |format|
       format.html # show.html.erb
@@ -48,13 +50,30 @@ class StudentsController < ApplicationController
     respond_to do |format|
       if @student.save
         @group.students << @student unless @group.students.include? @student
-        format.html { redirect_to(group_url(@group), :notice => 'Student was successfully created.') }
+        format.html { redirect_to(group_url(@group), :notice => 'Member was successfully created.') }
         format.xml  { render :xml => @student, :status => :created, :location => @student }
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def create_multiple
+    @page_title = "#{@group.title}"
+
+    respond_to do |format|
+      if @group.update_attributes(params[:group])
+        @group.reload if @group.students.any?(&:marked_for_destruction?)
+        format.html { redirect_to(members_group_path(@group)) }
+        format.js
+        format.xml  { head :ok }
+      else
+        format.html { redirect_to(members_group_path(@group)) }
+        format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
+      end
+    end
+    
   end
 
   # PUT /students/1
@@ -64,11 +83,12 @@ class StudentsController < ApplicationController
 
     respond_to do |format|
       if @student.update_attributes(params[:student])
-        format.html { redirect_to(group_students_url(@group), :notice => 'Student was successfully updated.') }
+        format.html { redirect_to(group_students_url(@group), :notice => 'Member was successfully updated.') }
         format.js
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
+        format.js
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end
