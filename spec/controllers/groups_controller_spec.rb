@@ -87,6 +87,14 @@ describe GroupsController do
           assigns[:page_title].should_not be_nil
         end
       end
+      
+      it "should assign logged messages to @messages" do
+        3.times {@group.logged_messages << FactoryGirl.create(:logged_message)}
+        get :show, {:id => @group.id}
+        assigns[:messages].should_not be_nil
+        assigns[:messages].length.should == 3
+      end
+      
       pending "should only show if it's the currently logged in user's group" do
       end
     end
