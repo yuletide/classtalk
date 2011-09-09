@@ -34,7 +34,7 @@ class Group < ActiveRecord::Base
     end
 
   end
-  handle_asynchronously :send_message
+  #handle_asynchronously :send_message
 
   def send_destination_message(message,recipient)
     if recipient.phone_number.present?
