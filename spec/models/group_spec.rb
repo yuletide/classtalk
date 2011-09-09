@@ -29,11 +29,19 @@ describe Group do
     before :each do
       @email_student=FactoryGirl.create(:student,:email=>"abc@def.com", :phone_number=>nil)
       @group.students << @email_student
+      $outbound_flocky=""
+      $outbound_flocky.should_receive(:message)
     end
     it "should send emails to users without phone numbers" do
       $outbound_flocky.stub(:message)
     	mailer = mock(:mail)
     	mailer.should_receive(:deliver)
+      NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
+      @group.send_message("test message",@group.user)
+    end
+    it "if fails sending email with an exception, should not fail" do
+      mailer = mock(:mail)
+      mailer.should_receive(:deliver).and_raise("stubbed problem with delivery")
       NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
       @group.send_message("test message",@group.user)
     end
