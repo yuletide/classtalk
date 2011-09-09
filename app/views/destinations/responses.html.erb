@@ -3,7 +3,7 @@
 	<%= render :partial => 'groups/nav' %>
 	<div>
 		<div class="page_actions top">
-			<%= link_to '« Check In', group_destination_path(@group,@destination), :class => "button minor left" %>
+			<%= link_to '« Questions', group_destination_path(@group,@destination), :class => "button minor left" %>
 			<a class="button minor right margin_left" onClick="$('.responses_student').show();">Expand All</a>
 			<%= link_to "Download All", responses_group_destination_path(@group, @destination, :format => "csv"), :class => "button minor right" %>
 		</div>
