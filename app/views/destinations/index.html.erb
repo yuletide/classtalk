@@ -3,15 +3,15 @@
 	<%= render :partial => 'groups/nav' %>
 	<div id="destinations">
 		<% if @group.destinations.empty? %>
-			<h2 class="oswald grabber checkin">Hey, looks like you're about to add your first ClassTalk check in!</h2>
+			<h2 class="oswald grabber checkin">ClassTalk Questions</h2>
 			<p class="leading">
-				Check Ins encourage your students to explore outside class using their cell phones. Think of them like location-aware worksheets, powered by text message. Sometimes we call them Mind Tours (it sounds cooler).
+			  Questions let your students learn and explore outside class with their cell phones. Think of them like interactive worksheets, powered by text message.
 			</p>
 			<p class="leading">
-				Whether a location around the city or a simple quiz for review, Check Ins let you write questions that students must activate with a #hashtag and answer through text message. You can then view each student's responses right here in ClassTalk. Here are some ways cutting-edge teachers like you are using Check Ins:
+				Whether a location around the city or a simple quiz for review, Questions let you write questions that students activate with a #hashtag and answer through text message. You can view each student's responses right here in ClassTalk. Here are some ways teachers are using Questions:
 			</p>
 			<ul class="in_paragraph">
-				<li>Encourage a visit to the museum, library, or theater</li>
+				<li>Interact during a visit to the museum, library, or theater</li>
 				<li>Help review for a test with sample questions</li>
 				<li>Assign and take a quiz</li>
 				<li>Create interactive guided tours</li>
@@ -19,7 +19,7 @@
 				<li>Got another great use? <a href="mailto:scott@codeforamerica.org">Let us know!</a></li>
 			</ul>
 			<p class="leading">
-				So what are you waiting for? Start adding some Check Ins!
+				So what are you waiting for? Start adding some Questions!
 			</p>
 		<% else %>
 			<div id="destinations_list">
@@ -37,7 +37,7 @@
 			</div>
 		<% end %>
 		<div class="add_list_item">
-			<%= link_to 'New Check In', new_group_destination_path(@group), :class => "button" %>
+			<%= link_to 'Add Questions', new_group_destination_path(@group), :class => "button" %>
 		</div>
 	</div>
 </div>

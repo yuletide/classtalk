@@ -2,7 +2,7 @@
 <div id="group_content">
 	<%= render :partial => 'groups/nav' %>
 	<div id="destinations">
-		<h1 class="oswald grabber">Check In > New</h1>
+		<h1 class="oswald grabber">Questions > New</h1>
 
 		<%= nested_form_for([@group,@destination]) do |f| %>
 		  <%= render :partial => 'form', :locals => {:f => f} %>
