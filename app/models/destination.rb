@@ -62,16 +62,16 @@ class Destination < ActiveRecord::Base
       self.group.send_destination_message("Q#{q.order_index}: #{q.content}",student)
     else
       cn.complete = true
-      self.group.send_destination_message("All questions complete!",student)
+      self.group.send_destination_message("Nice work, you've answered all the #{self.name} questions! #{self.group.user.displayname} will now be able to review your responses.",student)
     end
     cn.save
   end
   
   def send_welcome_message(student, new_checkin=true)
     if new_checkin
-      self.group.send_destination_message("Welcome, you have checked in", student)
+      self.group.send_destination_message("OK, you're about to answer #{self.questions.count} #{self.name} questions. You can always continue later by texting ##{self.hashtag} to this number again. Now, get ready!", student)
     else
-      self.group.send_destination_message("You have resumed questions", student)
+      self.group.send_destination_message("Alright, you still have #{self.questions.count} #{self.name} questions left. You can always continue later by texting ##{self.hashtag} to this number again.", student)
     end
   end
 
