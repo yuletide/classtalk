@@ -3,11 +3,11 @@
 <%end %>
 
 <ul id="student_list">
-  <%= render :partial => "students/editable", :collection => @group.students, :as => :member %>
+  <%= render :partial => "students/editable", :collection => @group.students.select(&:persisted?), :as => :member %>
   <li>
 
     <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
-      <% f.fields_for :students, [] do |sf| %>
+      <% f.fields_for :students, @group.students.reject(&:persisted?) do |sf| %>
         <span class="formwrap members">
           <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
           <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
