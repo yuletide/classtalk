@@ -1,47 +1,45 @@
 <% if @group.students.blank? %>
-	<h5>There are no members in this group.</h5>
-	<%= link_to 'Add Member', new_group_student_path(@group), :class => 'button left minor margin_top' %>
-
-<% else %>
-	<ul id="student_list">
-    <% for member in @group.students %>
-    	<li>
-			<span id="student_info_<%= member.id %>" class="formwrap list members" onClick="$(this).hide(); $('#edit_student_<%= member.id %>').show();">
-			        <div id="student_name" class="student_name">
-			        <span class="text_highlight josefin"><%= member.name %></span>
-			        <%= link_to 'remove', group_path(@group, :group=>{:students_attributes=>[{:id=>member.id,:_destroy=>1}]}), :confirm => 'Are you sure?', :method => :put, :id => 'remove_member' %>
-			    </div>
-			    <div id="student_number">
-			        <span class="text_highlight"><%= PhoneValidator::OUTPUT_PRINTF%member.phone_number.scan(/\d/) if member.phone_number.present? %></span>
-			    </div>
-			    <div id="student_email" class="student_email">
-			      <span class="text_highlight"><%= member.email %></span>
-			    </div>
-			</span>
-			<span id="edit_student_info_<%=member.id%>">
-			    <%=render :partial => "groups/ajax_membership_form", :locals => {:student => member, :group => @group}%>
-			</span>
-    	</li>
-    <% end %>
-    <li>
-      
-      <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
-        <% f.fields_for :students, [] do |sf| %>
-          <span class="formwrap members">
-            <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
-            <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
-            <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
-            <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span>
-          </span>
-        <% end %>
-        <%= f.link_to_add "New Member", :students, :class => 'button minor right', :id => "add_multiple_members" %>
-        <%= f.submit "Save All", :class => 'button minor', :id => "save_multiple_members" %>
-      <% end %>
-      
-    </li>
-  </ul>
+	<h6>To begin, you must first add some members to this group!</h6><p>You can add members individually, or upload a CSV containing rows of name, mobile number, and email. To generate a CSV, perform "Save As" on an Excel spreadsheet.</p><br>
 <% end %>
 
+<ul id="student_list">
+  <% for member in @group.students %>
+  	<li>
+		<span id="student_info_<%= member.id %>" class="formwrap list members" onClick="$(this).hide(); $('#edit_student_<%= member.id %>').show();">
+		        <div id="student_name" class="student_name">
+		        <span class="text_highlight josefin"><%= member.name %></span>
+		        <%= link_to 'remove', group_path(@group, :group=>{:students_attributes=>[{:id=>member.id,:_destroy=>1}]}), :confirm => 'Are you sure?', :method => :put, :id => 'remove_member' %>
+		    </div>
+		    <div id="student_number">
+		        <span class="text_highlight"><%= PhoneValidator::OUTPUT_PRINTF%member.phone_number.scan(/\d/) if member.phone_number.present? %></span>
+		    </div>
+		    <div id="student_email" class="student_email">
+		      <span class="text_highlight"><%= member.email %></span>
+		    </div>
+		</span>
+		<span id="edit_student_info_<%=member.id%>">
+		    <%=render :partial => "groups/ajax_membership_form", :locals => {:student => member, :group => @group}%>
+		</span>
+  	</li>
+  <% end %>
+  <li>
+    
+    <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
+      <% f.fields_for :students, [] do |sf| %>
+        <span class="formwrap members">
+          <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
+          <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
+          <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
+          <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span>
+        </span>
+      <% end %>
+      <%= f.link_to_add "New Member", :students, :class => 'button minor right', :id => "add_multiple_members" %>
+      <%= f.submit "Save All", :class => 'button minor', :id => "save_multiple_members" %>
+    <% end %>
+    
+  </li>
+</ul>
+  
 <br><br>
 
 <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>
