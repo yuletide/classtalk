@@ -1,3 +1,9 @@
+<% if @group.students.blank? %>
+	<div class="center">
+	  <h6>Before sending a message, you'll need to add members.</h6><p>Add members to this group by visiting the Members page, above.</p><br>
+	</div>
+<% end %>
+
 <div id="send_message">
     <%= render :partial => 'send_message' %>
 </div>
