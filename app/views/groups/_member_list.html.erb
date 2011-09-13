@@ -4,25 +4,7 @@
 
 <% else %>
 	<ul id="student_list">
-    <% for member in @group.students %>
-    	<li>
-			<span id="student_info_<%= member.id %>" class="formwrap list members" onClick="$(this).hide(); $('#edit_student_<%= member.id %>').show();">
-			        <div id="student_name" class="student_name">
-			        <span class="text_highlight josefin"><%= member.name %></span>
-			        <%= link_to 'remove', group_path(@group, :group=>{:students_attributes=>[{:id=>member.id,:_destroy=>1}]}), :confirm => 'Are you sure?', :method => :put, :id => 'remove_member' %>
-			    </div>
-			    <div id="student_number">
-			        <span class="text_highlight"><%= PhoneValidator::OUTPUT_PRINTF%member.phone_number.scan(/\d/) if member.phone_number.present? %></span>
-			    </div>
-			    <div id="student_email" class="student_email">
-			      <span class="text_highlight"><%= member.email %></span>
-			    </div>
-			</span>
-			<span id="edit_student_info_<%=member.id%>">
-			    <%=render :partial => "groups/ajax_membership_form", :locals => {:student => member, :group => @group}%>
-			</span>
-    	</li>
-    <% end %>
+    <%= render :partial => "students/editable", :collection => @group.students, :as => :member %>
     <li>
       
       <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
