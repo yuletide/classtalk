@@ -1,0 +1,2 @@
+$("#edit_student_<%= @student.id %>").replaceWith('<%=escape_javascript(render :partial => "groups/ajax_membership_form" , :locals => {:student => @student, :group => @group} )%>');
+$("#edit_student_<%= @student.id %>").show();
