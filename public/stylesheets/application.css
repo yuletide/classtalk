@@ -345,26 +345,6 @@ Member List
 	display: none;
 }
 
-/* --------------------------------------------------------------
-
-Member List Input Elements
-
--------------------------------------------------------------- */
-
-input.ajax_edit.student{
-	font-size: 20px;
-	font-weight: normal;
-	font-family: 'Josefin Sans', arial, serif;
-	font-weight: bold;
-	height: 20px;
-	line-height: 20px;
-	padding: 7px 4px 5px 4px;
-}
-input.ajax_edit.number{
-	font-size: 14px;
-	font-weight: normal;
-}
-
 
 /* --------------------------------------------------------------
 
