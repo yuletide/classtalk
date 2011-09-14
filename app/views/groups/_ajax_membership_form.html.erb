@@ -1,4 +1,6 @@
+
 <%= form_for student, :html => {:method => :put, :id => 'edit_student_'+student.id.to_s, :style =>'display: none;', :class => "formwrap list edit"}, :remote => true do |f| %>
+<%= render :partial => "shared/errors", :locals => {:record=> student} %>
     <%= f.hidden_field :group_id, :value => group.id %>
       <%= f.text_field :name, :class => "member_info student", :title => "Name" %><span class="member_info label">Name</span>
       <%= f.text_field :phone_number, :class => "member_info number infield_form_label", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
