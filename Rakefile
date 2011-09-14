@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-HomeworkNotifier::Application.load_tasks
+Classtalk::Application.load_tasks
