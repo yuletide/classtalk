@@ -1,6 +1,6 @@
 <% if @group.students.blank? %>
-  <h5>There are no members in this group.</h5>
-<%end %>
+  <h6>To begin, you must first add some members to this group!</h6><p>You can add members individually, or upload a CSV containing rows of name, mobile number, and email. To generate a CSV, perform "Save As" on an Excel spreadsheet.</p><br>
+<% end %>
 
 <ul id="student_list">
   <%= render :partial => "students/editable", :collection => @group.students.select(&:persisted?), :as => :member %>
@@ -12,8 +12,8 @@
           <%= render :partial => "shared/errors", :locals => {:record=> sf.object} %>
           <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
           <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
-          <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
-          <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span>
+          <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span><br>
+          <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span><br>
         </span>
       <% end %>
       <%= f.link_to_add "New Member", :students, :class => 'button minor right', :id => "add_multiple_members" %>
@@ -22,7 +22,6 @@
 
   </li>
 </ul>
-
 
 <br><br>
 
