@@ -268,7 +268,7 @@ describe GroupsController do
       end
       
       it "if is a valid hashtag, should check the student in, and send a welcome message and then the first question, on the alternate phone number" do
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \s+ questions. You can always continue later by texting #\s+ to this number again. Now, get ready!/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \w+ questions. You can always continue later by texting #\w+ to this number again. Now, get ready!/,[@student.phone_number]).ordered
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
         @student.reload
@@ -280,12 +280,12 @@ describe GroupsController do
       end
       it "if they've checked in before, should send a resume message and then resend their current question" do
         #send first checkin
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \s+ questions. You can always continue later by texting #\s+ to this number again. Now, get ready!/,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \w+ questions. You can always continue later by texting #\w+ to this number again. Now, get ready!/,[@student.phone_number]).ordered
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
         
         #send 'resume' checkin
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Alright, you still have \d+ \s+ questions left. You can always continue later by texting #\s+ to this number again./,[@student.phone_number]).ordered
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/Alright, you still have \d+ \w+ questions left. You can always continue later by texting #\w+ to this number again./,[@student.phone_number]).ordered
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question.content}/,[@student.phone_number]).ordered
         post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@student.phone_number, :message=>"##{@destination.hashtag}"}
       end
@@ -304,7 +304,7 @@ describe GroupsController do
         @question1 = Factory.create(:question, :destination=>@destination)
         @question2 = Factory.create(:question, :destination=>@destination)
         @student = @group.students.first
-        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \s+ questions. You can always continue later by texting #\s+ to this number again. Now, get ready!/,[@student.phone_number])
+        $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/OK, you're about to answer \d+ \w+ questions. You can always continue later by texting #\w+ to this number again. Now, get ready!/,[@student.phone_number])
         $outbound_flocky.should_receive(:message).with(@group.destination_phone_number,/#{@question1.content}/,[@student.phone_number])
         @destination.checkin(@student)
       end

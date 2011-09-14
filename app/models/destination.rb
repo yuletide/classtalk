@@ -62,7 +62,7 @@ class Destination < ActiveRecord::Base
       self.group.send_destination_message("Q#{q.order_index}: #{q.content}",student)
     else
       cn.complete = true
-      self.group.send_destination_message("Nice work, you've answered all the #{self.name} questions! #{self.group.user.displayname} will now be able to review your responses.",student)
+      self.group.send_destination_message("Nice work, you've answered all the #{self.name} questions! #{self.group.user.display_name} will now be able to review your responses.",student)
     end
     cn.save
   end
