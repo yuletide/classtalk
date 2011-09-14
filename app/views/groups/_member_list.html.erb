@@ -9,6 +9,7 @@
     <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
       <% f.fields_for :students, @group.students.reject(&:persisted?) do |sf| %>
         <span class="formwrap members">
+          <%= render :partial => "shared/errors", :locals => {:record=> sf.object} %>
           <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
           <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
           <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span>
