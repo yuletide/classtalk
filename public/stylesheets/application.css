@@ -341,9 +341,6 @@ Member List
 	font-weight: normal;
 	padding: 0px 3px 0px 3px;
 }
-#save_multiple_members {
-	display: none;
-}
 
 
 /* --------------------------------------------------------------
@@ -925,7 +922,7 @@ Send Message
 	    rgba(255,255,255,0.6) 100%,
 	);
 }
-.formwrap.list.edit {
+.formwrap.edit {
 	padding-top: 10px;
 	margin-bottom: 10px;
 }
@@ -1005,29 +1002,31 @@ Notices & Alerts
 	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 #error_explanation {
-	width: 95%;
+	width: 520px;
 	padding: 7px;
 	padding-bottom: 0;
-	border-radius: 7px;
-	margin-bottom: 20px;
-	background-color: white;
-	border: 1px solid gray;
+	border-radius: 4px;
+	margin: 4px 0px 10px 0px;
+	background-color: rgba(182,68,80,0.9);
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	color: #f4f4f4;
+	border-width: 1px;
+	border-style: solid;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 }
 #error_explanation h2 {
 	text-align: left;
 	font-weight: bold;
-	padding: 5px 5px 5px 8px;
+	padding: 5px 5px 0px 8px;
 	font-size: 13px;
 	margin: -7px;
 	margin-bottom: 0px;
-	background-color: #c00;
-	color: #fff;
 	border-radius: 6px 6px 0px 0px;
 }
 #error_explanation ul li {
-	font-size: 12px;
+	font-size: 11px;
 	list-style: none;
-	padding: 4px;
+	padding: 1px 1px 4px 1px;
 }
 
 /* --------------------------------------------------------------

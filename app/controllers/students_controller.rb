@@ -61,6 +61,8 @@ class StudentsController < ApplicationController
 
   def create_multiple
     @page_title = "#{@group.title}"
+    @groups = current_user.groups
+    params[:controller] = "groups" #a hack, until I fix application/layout.
 
     respond_to do |format|
       if @group.update_attributes(params[:group])
@@ -69,7 +71,7 @@ class StudentsController < ApplicationController
         format.js
         format.xml  { head :ok }
       else
-        format.html { redirect_to(members_group_path(@group)) }
+        format.html { render "groups/members" }
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
@@ -88,7 +90,7 @@ class StudentsController < ApplicationController
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
-        format.js
+        format.js   { render :action => "edit" }
         format.xml  { render :xml => @student.errors, :status => :unprocessable_entity }
       end
     end

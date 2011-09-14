@@ -1,0 +1,11 @@
+<% if record.errors.any? %>
+<div id="error_explanation">
+  <h2>Uh oh! Fix <%= pluralize(record.errors.count, "problem") %>, then try saving this <%= record.class.name.underscore %> again.</h2>
+
+  <ul>
+  <% record.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>

@@ -21,14 +21,6 @@ $(document).ready(function() {
 		id = $(this).attr("data");
 		$("#group_number_info").hide();
 	});
-	$("#add_multiple_members").live('click', function() { 
-		id = $(this).attr("data");
-		$("#save_multiple_members").show();
-	});
-	$("#save_multiple_members").live('click', function() { 
-		id = $(this).attr("data");
-		$("#save_multiple_members").hide();
-	});
 	
 	//Puts field title in form field
 	$('.infield_form_label').each(function() {
