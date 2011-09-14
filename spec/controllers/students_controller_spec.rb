@@ -26,7 +26,7 @@ describe StudentsController do
       response.should redirect_to(members_group_path(@group))
     end
 
-    it "on failure, should redirect to members_group_page, with errors" do
+    it "on failure, should render the same page, with errors" do
       @group = FactoryGirl.create(:group)
       post :create_multiple, :group_id => @group.id, :group => {"students_attributes" => {"placeholder_name" => {"name"=>"TestName1", "phone_number"=>"555", "email"=>"testname1@example.com", "_destroy"=>"false"}, "placeholder_name2" => {"name"=>"TestName2", "phone_number"=>"6665554444", "email"=>"testname2@example.com", "_destroy"=>"false"} } }
       @group.reload.students.count.should == 0
