@@ -16,6 +16,7 @@
       <div class="field">
         <%= f.label :display_name %>
         <%= f.text_field :display_name %>
+        <span class="field_description">A short name displayed in text messages you send</span>
       </div>
       <div class="field">
         <%= f.label :email %>
@@ -24,6 +25,7 @@
       <div class="field">
         <%= f.label :phone_number, "Mobile Number" %>
         <%= f.text_field :phone_number %>
+        <span class="field_description">SMS messages will be sent to this number (optional)</span>
       </div>
       <div class="field">
         <%= f.label :current_password, "Current Password" %>
