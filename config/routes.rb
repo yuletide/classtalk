@@ -1,4 +1,4 @@
-HomeworkNotifier::Application.routes.draw do
+Classtalk::Application.routes.draw do
 
   root :to => 'application#index'
 
