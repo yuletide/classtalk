@@ -29,7 +29,7 @@ Implementation:
 	We'll use devise for authentication. a devise-style user account will handle sign-in
 	we'll use the 'Confirmable' module to act as an invitation email
 	required information will have a conditional validation based on registration confirmation
-	
+
 
 Future considerations:
 	admin user role

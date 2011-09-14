@@ -46,7 +46,7 @@ HomeworkNotifier::Application.routes.draw do
 
   resources :users
 
-  get "/welcome" => "users#splash"  
+  get "/welcome" => "users#splash"
 
   # devise_for :admins, :controllers => { :sessions => "admins/sessions" }
 

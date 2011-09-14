@@ -1,7 +1,7 @@
 class AddCheckinToStudent < ActiveRecord::Migration
   def self.up
     add_column :students, :active_checkin_id, :integer
-    
+
     create_table(:checkins) do |t|
       t.references :destination
       t.references :student

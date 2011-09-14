@@ -2,14 +2,14 @@
 	Start talking
 </h1>
 <div id="signup_form_wrap">
-  
+
     <p class="title">ClassTalk helps teachers engage and communicate with their classes through SMS and email.</p>
     <p class="leading">Sign up for a free account below, or <%= link_to "sign in here", new_session_path(resource_name) %>.</p>
-    
+
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    
+
       <%= devise_error_messages! %>
-  
+
       <div class="field">
         <%= f.label :first_name, "Name" %>
         <%= f.text_field :first_name, :title => "First", :class => "double_field infield_form_label" %>
@@ -36,7 +36,7 @@
       </div>
 
       <p><%= f.submit "Go Talk  »", :class => 'button right' %></p>
-    
+
     <% end %>
-    
+
 </div>

@@ -1,6 +1,6 @@
 <h2>Activate Your Account</h2>
 <% form_for @confirmable, :url => update_user_confirmation_path, :html => {:method => 'put'}, :id => 'activation-form' do |f| %>
-  
+
   <% if @confirmable.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@confirmable.errors.count, "error") %> prohibited this group from being saved:</h2>
@@ -12,7 +12,7 @@
       </ul>
     </div>
   <% end %>
-  
+
   <fieldset>
     <legend><%= @confirmable.email %></legend>
 
@@ -28,7 +28,7 @@
       <%= f.label :phone_number %><br />
       <%= f.text_field :phone_number %>
     </div>
-    
+
     <div class="field">
       <%= f.label :password,'Password' %><br />
       <%= f.password_field :password %>

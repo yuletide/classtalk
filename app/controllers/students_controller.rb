@@ -1,6 +1,6 @@
 class StudentsController < ApplicationController
   before_filter :load_group
-  
+
   # GET /students
   # GET /students.xml
   def index
@@ -58,7 +58,7 @@ class StudentsController < ApplicationController
       end
     end
   end
-  
+
   def create_multiple
     @page_title = "#{@group.title}"
 
@@ -73,7 +73,7 @@ class StudentsController < ApplicationController
         format.xml  { render :xml => @group.errors, :status => :unprocessable_entity }
       end
     end
-    
+
   end
 
   # PUT /students/1
@@ -105,7 +105,7 @@ class StudentsController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
+
   private
   def load_group
     if params[:group_id]

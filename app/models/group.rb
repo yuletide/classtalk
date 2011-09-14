@@ -41,7 +41,7 @@ class Group < ActiveRecord::Base
       LoggedMessage.create(:group=>self,:sender=>nil,:source_phone=>destination_phone_number,:destination_phone=>recipient.phone_number,:message=>message)
       $outbound_flocky.message destination_phone_number, message, [recipient.phone_number]
     end
-    
+
     if recipient.email.present?
       #destination email send.
     end

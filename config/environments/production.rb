@@ -46,10 +46,10 @@ HomeworkNotifier::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  
+
   config.action_mailer.default_url_options = { :host => ENV["APP_DOMAIN"] }
-  
+
   config.time_zone = "Eastern Time (US & Canada)"
-  
+
   $outbound_flocky = Flocky.new ENV['FLOCKY_TOKEN'],ENV['FLOCKY_APPNUM'],{:username=>ENV['FLOCKY_USERNAME'],:password=>ENV['FLOCKY_PASSWORD']}, :queue => false
 end

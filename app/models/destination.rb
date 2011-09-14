@@ -3,7 +3,7 @@ class Destination < ActiveRecord::Base
   belongs_to :group
   has_many :questions, :order => :order_index
   has_many :checkins
-  
+
   accepts_nested_attributes_for :questions, :allow_destroy => true, :reject_if => :all_blank
   def questions_attributes_with_reordering=(attributes_collection)
     #this portion makes sure we have an array of attributes. it's taken from the original assign_nested_attributes_for_collection_association source
@@ -24,8 +24,8 @@ class Destination < ActiveRecord::Base
       att.merge(:order_index => (i+1))
     end
     puts "calling with: #{attributes_collection.inspect}"
-    
-    #for some weird reason, 
+
+    #for some weird reason,
     #  questions_attributes_without_reordering=(attributes_collection)
     #doesn't work. for now, I'll just assign directly. TODO: investigate more.
     assign_nested_attributes_for_collection_association(:questions,attributes_collection)
@@ -41,18 +41,18 @@ class Destination < ActiveRecord::Base
       c.current_question_index=0
       c.complete=false
     end
-        
+
     #send a welcome message
     send_welcome_message(student, cn.new_record?)
-    
+
     cn.save if cn.new_record?
-    
+
     student.active_checkin = cn
     student.save
-    
+
     send_current_question(student)
   end
-  
+
   def send_current_question(student)
     cn = student.active_checkin
     return nil unless cn.destination == self
@@ -66,7 +66,7 @@ class Destination < ActiveRecord::Base
     end
     cn.save
   end
-  
+
   def send_welcome_message(student, new_checkin=true)
     if new_checkin
       self.group.send_destination_message("OK, you're about to answer #{self.questions.count} #{self.name} questions. You can always continue later by texting ##{self.hashtag} to this number again. Now, get ready!", student)

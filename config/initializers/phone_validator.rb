@@ -5,7 +5,7 @@ ActiveRecord::Base.class_eval do
     before_validation lambda {massage_my_number!(name)} unless used_opts.delete(:massage_number) == false
     validates_format_of(name, used_opts)
   end
-  
+
   def massage_my_number!(name)
     self[name]=PhoneValidator::massage_number(self[name])
   end

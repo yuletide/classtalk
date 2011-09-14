@@ -3,13 +3,13 @@ require 'csv'
 class DestinationsController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_group
-  
+
   # GET /destinations
   # GET /destinations.xml
   def index
     @destinations = Destination.all
     @groups = current_user.groups
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @destinations }
@@ -125,7 +125,7 @@ class DestinationsController < ApplicationController
       @group = Group.find(params[:destination][:group_id])
     end
   end
-  
+
   def render_csv(filename)
     csv_data = CSV.generate {|csv| yield csv}
     send_data csv_data, :type=> "text/csv", :filename=> filename, :disposition => "attachment"

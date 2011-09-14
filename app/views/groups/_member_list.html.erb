@@ -23,7 +23,7 @@
   	</li>
   <% end %>
   <li>
-    
+
     <%= nested_form_for @group, :url => create_multiple_group_students_path(@group), :html => {:method => :post} do |f|%>
       <% f.fields_for :students, [] do |sf| %>
         <span class="formwrap members">
@@ -36,10 +36,10 @@
       <%= f.link_to_add "New Member", :students, :class => 'button minor right', :id => "add_multiple_members" %>
       <%= f.submit "Save All", :class => 'button minor', :id => "save_multiple_members" %>
     <% end %>
-    
+
   </li>
 </ul>
-  
+
 <br><br>
 
 <%= form_for @group, :url=>bulk_upload_students_group_path(@group), :html=>{:method=>:post, :multipart=>true}  do |f| %>

@@ -8,7 +8,7 @@ module Google
       @key = key
       @host = "https://www.googleapis.com"
     end
-    
+
     def translate(phrase, to, from="en")
       uri = "/language/translate/v2"
       params = "?key=#{@key}&source=#{from}&target=#{to}&q=#{URI.escape(phrase)}"
