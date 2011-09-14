@@ -353,7 +353,6 @@ Check Ins List
 	min-height: 404px;
 }
 .oswald.grabber.checkin {
-	margin-top: -12px;
 	line-height: 1.3em;
 }
 .destination_item {
@@ -372,6 +371,9 @@ Check Ins List
 }
 .destination {
 	color: #2b2b2b;
+}
+.destination.iphone {
+	padding: 15px 0px 0px 20px;
 }
 .destination.name {
 	font-size: 20pt;
@@ -606,7 +608,7 @@ Group List
 }
 .add_list_item {
 	text-align: center;
-	margin: 30px 0px 30px 0px;
+	margin: 45px 0px 30px 0px;
 }
 #group_list_gradient {
 	background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,.15)), to(rgba(0,0,0,.2)));
