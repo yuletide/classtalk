@@ -4,6 +4,10 @@ class Destination < ActiveRecord::Base
   has_many :questions, :order => :order_index
   has_many :checkins
 
+  validates_presence_of :hashtag
+  validates_format_of :hashtag, :with => /^\w+$/
+  before_validation lambda {self[:hashtag] = self[:hashtag].sub(/^#/,'') if self[:hashtag]}
+
   accepts_nested_attributes_for :questions, :allow_destroy => true, :reject_if => :all_blank
   def questions_attributes_with_reordering=(attributes_collection)
     #this portion makes sure we have an array of attributes. it's taken from the original assign_nested_attributes_for_collection_association source
