@@ -1,5 +1,6 @@
-
-Factory.define(:student) do |s|
-  s.sequence(:name) {|n| "student_barcode_number_#{n}"}
-  s.sequence(:phone_number) {|n|"%0.10d"%n }
+FactoryGirl.define do
+  factory :student do
+    sequence(:name) {|n| "student_barcode_number_#{n}"}
+    sequence(:phone_number) {|n|"%0.10d"%n }
+  end
 end

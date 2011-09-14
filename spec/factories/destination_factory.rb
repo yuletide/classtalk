@@ -1,5 +1,7 @@
-Factory.define(:destination) do |g|
-  g.sequence(:name) {|n| "name_#{n}"}
-  g.notes "some notes"
-  g.sequence(:hashtag) {|n| "hashtag_#{n}"}
+FactoryGirl.define do
+  factory :destination do
+    sequence(:name) {|n| "name_#{n}"}
+    notes "some notes"
+    sequence(:hashtag) {|n| "hashtag_#{n}"}
+  end
 end

@@ -1,4 +1,6 @@
-Factory.define(:logged_message) do |g|
-  g.sequence(:destination_phone) {|n|"%0.10d"%n }
-  g.sequence(:message) {|n| "message_#{n}"}
+FactoryGirl.define do
+  factory :logged_message do
+    sequence(:destination_phone) {|n|"%0.10d"%n }
+    sequence(:message) {|n| "message_#{n}"}
+  end
 end
