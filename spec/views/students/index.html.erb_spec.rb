@@ -6,7 +6,7 @@ describe "students/index.html.erb" do
       stub_model(Student),
       stub_model(Student)
     ])
-    @group = assign(:group, Factory.create(:group))
+    @group = assign(:group, FactoryGirl.create(:group))
   end
 
   it "renders a list of students" do

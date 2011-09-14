@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "destinations/new.html.erb" do
   before(:each) do
     assign(:destination, stub_model(Destination).as_new_record)
-    @group = assign(:group, Factory.create(:group))
+    @group = assign(:group, FactoryGirl.create(:group))
     @groups = assign(:groups, [@group])
   end
 

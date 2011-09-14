@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "students/new.html.erb" do
   before(:each) do
     assign(:student, stub_model(Student).as_new_record)
-    @group = assign(:group, Factory.create(:group))
+    @group = assign(:group, FactoryGirl.create(:group))
   end
 
   it "renders new student form" do

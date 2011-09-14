@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "destinations/_list_element.erb" do
   before(:each) do
     @destination = assign(:destination, stub_model(Destination))
-    @group = assign(:group, Factory.create(:group))
+    @group = assign(:group, FactoryGirl.create(:group))
   end
 
   it "renders" do

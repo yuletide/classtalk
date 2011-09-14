@@ -6,7 +6,7 @@ describe "destinations/index.html.erb" do
       stub_model(Destination),
       stub_model(Destination)
     ])
-    @group = assign(:group, Factory.create(:group))
+    @group = assign(:group, FactoryGirl.create(:group))
     @groups = assign(:groups, [@group])
   end
 

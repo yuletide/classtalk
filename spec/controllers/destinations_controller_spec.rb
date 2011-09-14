@@ -7,10 +7,10 @@ require 'spec_helper'
 describe DestinationsController do
    describe "When not logged in" do
      before(:each) do
-       @group = Factory.create :group
-       @destination = Factory.create(:destination, :group => @group)
+       @group = FactoryGirl.create :group
+       @destination = FactoryGirl.create(:destination, :group => @group)
      end
-     
+
      it "on the show page should redirect to signin page" do
        get :show, {:group_id => @group.id, :id => @destination.id}
        response.should redirect_to(new_user_session_path)
@@ -30,6 +30,6 @@ describe DestinationsController do
        get :new, {:group_id => @group.id}
        response.should redirect_to(new_user_session_path)
      end
-          
+
    end
 end
