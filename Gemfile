@@ -19,3 +19,8 @@ group :test, :development do
   gem 'simplecov'
   gem 'spork', '~> 0.9.0.rc'
 end
+
+platforms :jruby do
+  gem 'activerecord-jdbcsqlite3-adapter', '~> 1.1'
+  gem 'jruby-openssl', '~> 0.7'
+end
