@@ -29,19 +29,28 @@
 		    <%= @destination.notes %>
 		  </p>
 		  <img class="print_block" src="/images/destinations/print_gray.png">
-		  <div>
-        When you're ready at <%= @destination.address %>
-		  </div>
-		  <img class="print_block" src="/images/destinations/print_gray.png">
-		  <div>
-        start the <%= @destination.name %> questions by texting
-		  </div>
-		  <div>
-		    #<%= @destination.hashtag %> to <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
-		  </div>
-		  <img class="print_block" src="/images/destinations/print_gray.png">
-		  <div>
-		    and you will receive <%= pluralize(@destination.questions.count, "question") %> to answer by text message
+		  <div class="destination instructions">
+        <div class="destination action">
+          When you're ready at
+        </div>
+        <div class="destination info">
+          <%= @destination.address %>
+        </div>
+		    <img class="print_block instructions" src="/images/destinations/print_gray.png">
+      </div>
+		  <div class="destination instructions">
+  		  <div class="destination action">
+          start the <%= @destination.name %> questions by texting
+  		  </div>
+        <div class="destination info">
+  		    #<%= @destination.hashtag %> <span class="destination action">to</span> <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+  		  </div>
+		    <img class="print_block instructions" src="/images/destinations/print_gray.png">
+      </div>
+		  <div class="destination instructions">
+  		  <div class="destination action">
+  		    and you will receive <%= pluralize(@destination.questions.count, "question") %> to answer by text message.
+  		  </div>
 		  </div>
 		</div>
 		<div class="page_actions bottom">
