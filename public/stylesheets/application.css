@@ -352,7 +352,7 @@ Check Ins List
 .destination_show {
 	min-height: 404px;
 }
-.destination_print {
+#destination_print {
 	display: none;
 }
 .oswald.grabber.checkin {
