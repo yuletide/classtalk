@@ -27,7 +27,7 @@
 		  </div>
 		  <div>
 		    <h1 class="josefin destination name"><%= @destination.name %></h1>
-		    <h2 class="group name"><%= @destination.group.title %></h2>
+		    <h2 class="group name"><%= @destination.group.title unless @destination.group.nil? %></h2>
 		  </div>
 		  <p>
 		    <%= @destination.notes %>
