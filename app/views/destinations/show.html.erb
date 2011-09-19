@@ -15,6 +15,47 @@
 					<li class="destination questions"><%= question.content %></li>
 				<% end %>
 			</ol>
+			<div class="page_actions middle center">
+			  <a onClick="window.print()" class="button">Print Instructions</a>
+			  <div class="field_description margin_top">Print a page with instructions for members to answer these questions.</div>
+			</div>
+		</div>
+		<div id="destination_print">
+		  <div class="right">
+		    <div class="logo lucky">ClassTalk</div>
+		    <div class="sublogo oswald right">Questions</div>
+		  </div>
+		  <div>
+		    <h1 class="josefin destination name"><%= @destination.name %></h1>
+		    <h2 class="group name"><%= @destination.group.title unless @destination.group.nil? %></h2>
+		  </div>
+		  <p>
+		    <%= @destination.notes %>
+		  </p>
+		  <img class="print_block" src="/images/destinations/print_gray.png">
+		  <div class="destination instructions">
+        <div class="destination action">
+          When you're ready at
+        </div>
+        <div class="destination info">
+          <%= @destination.address %>
+        </div>
+		    <img class="print_block instructions" src="/images/destinations/print_gray.png">
+      </div>
+		  <div class="destination instructions">
+  		  <div class="destination action">
+          start the <%= @destination.name %> questions by texting
+  		  </div>
+        <div class="destination info">
+  		    #<%= @destination.hashtag %> <span class="destination action">to</span> <%= PhoneValidator::OUTPUT_PRINTF%@group.phone_number.scan(/\d/) %>
+  		  </div>
+		    <img class="print_block instructions" src="/images/destinations/print_gray.png">
+      </div>
+		  <div class="destination instructions">
+  		  <div class="destination action">
+  		    and you will receive <%= pluralize(@destination.questions.count, "question") %> to answer by text message.
+  		  </div>
+		  </div>
 		</div>
 		<div class="page_actions bottom">
 			<%= link_to '« All Questions', group_destinations_path(@group), :class => "button minor left" %>

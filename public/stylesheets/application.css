@@ -141,6 +141,9 @@ a.button.margin_left {
 a.button.margin_right {
 	margin-right: 10px;
 }
+a.button.margin_bottom {
+	margin-bottom: 10px;
+}
 .session_link {
 	font-size: 9pt;
 	font-family: helvetica, arial, sans-serif;
@@ -150,6 +153,9 @@ a.button.margin_right {
 .page_actions.top {
 	margin-bottom: 20px;
 	height: 31px;
+}
+.page_actions.middle {
+	margin-top: 30px;
 }
 .page_actions.bottom {
 	margin-bottom: 20px;
@@ -256,6 +262,9 @@ label.inline {
 	color: #7b7b7b;
 	margin: 1px 0px 0px 4px;
 }
+.field_description.margin_top {
+	margin-top: 8px;
+}
 .field_with_errors {
 	display: inline;
 	font-weight: bold;
@@ -351,6 +360,9 @@ Check Ins List
 
 .destination_show {
 	min-height: 404px;
+}
+#destination_print {
+	display: none;
 }
 .oswald.grabber.checkin {
 	line-height: 1.3em;

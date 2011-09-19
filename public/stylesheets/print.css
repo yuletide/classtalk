@@ -1,0 +1,126 @@
+/* --------------------------------------------------------------
+
+  	print.css
+  	* Default CSS file for site when printing
+	* Styled for printing destination
+
+-------------------------------------------------------------- */
+
+body {
+	background: white;
+	font-size: 14px;
+	font-family: helvetica, arial, sans-serif;
+	font-weight: normal;
+	color: black;
+	margin: 3% 5%;
+}
+h1 {font-size:32pt; font-weight: bold;}
+h2 {font-size:22pt; font-weight: normal;}
+p {font-size: 13pt;}
+
+
+
+/* --------------------------------------------------------------
+
+	Header & Formatting
+
+-------------------------------------------------------------- */
+
+.josefin { font-family: 'Josefin Sans', arial, serif; }
+.lucky { font-family: 'Luckiest Guy', arial, serif; }
+.oswald { font-family: 'Oswald', arial, serif; }
+.left {
+	position: relative;
+	float: left;
+	clear: both;
+}
+.right {
+	position: relative;
+	float: right;
+}
+.center {
+	text-align: center;
+}
+.logo {
+	text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+	font-size: 32px;
+}
+.sublogo {
+	font-size: 16pt;
+	margin-top: -12px;
+}
+
+
+/* --------------------------------------------------------------
+
+	Page Content
+
+-------------------------------------------------------------- */
+
+.print_block {
+	display: inline;
+	width: 100%;
+	height: 10px;
+}
+.print_block.instructions {
+	height: 2px;
+	width: 40%;
+	margin-top: -2pt;
+}
+.destination.name {
+	line-height: 32pt;
+}
+.destination.instructions {
+	margin: 20pt 0pt 30pt 0pt;
+}
+.destination.action {
+	font-size: 14pt;
+	line-height: 14pt;
+	margin-bottom: 0pt;
+	font-weight: bold;
+}
+.destination.info {
+	font-size: 22pt;
+	line-height: 22pt;
+	margin: 2pt 0pt -3pt 0pt;
+}
+.group.name {
+	line-height: 22pt;
+	margin-top: -10pt;
+}
+
+
+/* --------------------------------------------------------------
+
+	Hide Screen Content & Show Print Content
+
+-------------------------------------------------------------- */
+
+
+.top_bar {
+	display: none;
+}
+#groups {
+	display: none;
+}
+#group_header {
+	display: none;
+}
+.destination_show {
+	display: none;
+}
+.destination_print {
+	display: block;
+}
+.page_actions {
+	display: none;
+}
+#footer {
+	display: none;
+}
+#fdbk_tab {
+	display: none;
+}
+#habla_beta_container_do_not_rely_on_div_classes_or_names {
+	display: none;
+}
