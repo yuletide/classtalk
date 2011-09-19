@@ -3,6 +3,6 @@
     <div>
         <%= form_for(:student, :url => group_students_path(@group), :html => {:method => :post}) do |f| %>
         <%= render :partial => 'form', :locals => {:f => f} %>
-    </div>
     <% end %>
+    </div>
  </div>
