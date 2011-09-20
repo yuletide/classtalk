@@ -160,8 +160,7 @@ class GroupsController < ApplicationController
     #TODO: ensure group found
 
     if params[:commit].match /scheduled/i
-      time_zone = ActiveSupport::TimeZone["Eastern Time (US & Canada)"]  #use eastern time for the input
-      scheduled_run = time_zone.local(*params[:date].values_at(*%w{year month day hour}).map(&:to_i))
+      scheduled_run = Time.zone.local(*params[:date].values_at(*%w{year month day hour}).map(&:to_i))
 
       #schedule 5 minutes early so we don't accidentally hit anything silly on cron job execution time
       @group.delay(:run_at=>scheduled_run-5.minutes).send_message(message,@group.user)
