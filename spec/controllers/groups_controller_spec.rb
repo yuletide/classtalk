@@ -217,12 +217,19 @@ describe GroupsController do
       end
 
       it "should interpret the date/time in the posting user's time zone" do
+        Delayed::Worker.delay_jobs = true
+
         @current_user.update_attribute(:time_zone,'Eastern Time (US & Canada)')
+        sign_out @current_user
+        sign_in @current_user
         post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
-        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 17:00 -0000")
+        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 16:55 -0000") #at that time, in UTC, minus the 5 minute 'wiggle room' period
+
         @current_user.update_attribute(:time_zone,'Pacific Time (US & Canada)')
+        sign_out @current_user
+        sign_in @current_user
         post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
-        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 20:00 -0000")
+        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 19:55 -0000")
       end
     end
 
