@@ -12,7 +12,7 @@
           <%= render :partial => "shared/errors", :locals => {:record=> sf.object} %>
           <%= sf.link_to_remove "remove", :class => "right", :id => 'remove_member' %>
           <%= sf.text_field :name, :class => "member_info number", :title => "Name" %><span class="member_info label">Name</span>
-          <%= sf.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span><br>
+          <%= sf.text_field :phone_number, :class => "member_info number", :title => "SMS Number" %><span class="member_info label">SMS Number</span><br>
           <%= sf.text_field :email, :class => "member_info number", :title => "Email" %><span class="member_info label">Email</span><br>
         </span>
       <% end %>

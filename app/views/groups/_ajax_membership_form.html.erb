@@ -3,7 +3,7 @@
 <%= render :partial => "shared/errors", :locals => {:record=> student} %>
     <%= f.hidden_field :group_id, :value => group.id %>
       <%= f.text_field :name, :class => "member_info student", :title => "Name" %><span class="member_info label">Name</span><br>
-      <%= f.text_field :phone_number, :class => "member_info number", :title => "Mobile Number" %><span class="member_info label">SMS Number</span><br>
+      <%= f.text_field :phone_number, :class => "member_info number", :title => "SMS Number" %><span class="member_info label">SMS Number</span><br>
       <%= f.text_field :email, :class=>"member_info number", :title => "Email" %><span class="member_info label">Email</span>
       <br>
       <%= f.submit 'Save', :class=>"button minor"%>
