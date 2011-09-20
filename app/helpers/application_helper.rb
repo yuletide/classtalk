@@ -4,6 +4,6 @@ module ApplicationHelper
   end
 
   def formatted_time(time)
-    time.strftime('%m/%d/%Y %I:%M %p') unless time.blank?
+    time.in_time_zone(Time.zone).strftime('%m/%d/%Y %I:%M %p') unless time.blank?
   end
 end
