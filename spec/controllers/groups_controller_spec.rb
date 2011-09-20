@@ -208,10 +208,22 @@ describe GroupsController do
     it "should send a message to all group members" do
       post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send now"}
     end
-    it "should send a message delayed-like" do
-      #@group.should_receive(:delay) {@group} #I don't know how to test this properly - @group here won't receive the message - createds-in-crontroller-@group inside the controller will
-      post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"1999",:month=>"12",:day=>"31",:hour=>"23"}}
-      Delayed::Worker.new.work_off #send the delayed message
+
+    describe "with scheduled date/time" do
+      it "should send a message delayed-like" do
+        #@group.should_receive(:delay) {@group} #I don't know how to test this properly - @group here won't receive the message - createds-in-crontroller-@group inside the controller will
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"1999",:month=>"12",:day=>"31",:hour=>"23"}}
+        Delayed::Worker.new.work_off #send the delayed message
+      end
+
+      it "should interpret the date/time in the posting user's time zone" do
+        @current_user.update_attribute(:time_zone,'Eastern Time (US & Canada)')
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
+        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 17:00 -0000")
+        @current_user.update_attribute(:time_zone,'Pacific Time (US & Canada)')
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
+        Delayed::Job.last.run_at.should == Time.parse("2011-01-01 20:00 -0000")
+      end
     end
 
     it "should log the message" do
