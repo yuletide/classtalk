@@ -30,6 +30,10 @@
         <span class="field_description">SMS messages will be sent to this number (optional)</span>
       </div>
       <div class="field">
+        <%= f.label :time_zone, "Time Zone" %>
+        <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, :default => Classtalk::Application.config.time_zone) %>
+      </div>
+      <div class="field">
         <%= f.label :password, "Password" %>
         <%= f.password_field :password, :title => "Password", :class => "double_field" %>
         <%= f.text_field :password_confirmation, :title => "Re-type", :onfocus => "this.type = 'password';", :class => "double_field infield_form_label last" %>
