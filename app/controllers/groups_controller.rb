@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
       @page_title = "Your Groups"
       @groups = current_user.groups
       @group = @groups.first #TODO: remember what the user viewed the last time they were on the page
-      @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+      @messages = @group.logged_messages.unique_messages.order("created_at DESC").all
     end
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.groups.find(params[:id])
-    @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+    @messages = @group.logged_messages.unique_messages.order("created_at DESC").all
     @page_title = @group.title
 
     respond_to do |format|
