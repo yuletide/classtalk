@@ -850,16 +850,6 @@ input.ajax_edit.description{
 	padding: 0px 4px 0px 4px;
 }
 
-/* --------------------------------------------------------------
-
-Message Log List
-
--------------------------------------------------------------- */
-
-.message_row {
-	border-bottom: 1px solid #DDD;
-}
-
 
 /* --------------------------------------------------------------
 
@@ -872,7 +862,7 @@ Send Message
 }
 #send_message {
 	width: 100%;
-	min-height: 380px;
+	min-height: 350px;
 }
 #send_message_info {
 	font-size: 12px;
@@ -909,6 +899,13 @@ Send Message
 	padding: 5px 8px 7px 8px;
 	margin-bottom: 10px;
 }
+.formwrap.messages {
+	padding: 5px 8px 7px 8px;
+	margin-bottom: 10px;
+}
+.formwrap.messages:first-of-type {
+	margin-top: 10px;
+}
 .formwrap.list.destinations {
 	padding: 5px 8px 2px 8px;
 	margin-bottom: 10px;
@@ -941,7 +938,7 @@ Send Message
 #message_display_name {
 	margin-top: -2px;
 	font-size: 25px;
-	color: #484848;
+	color: rgba(0, 0, 0, 0.8);
 	text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
 }
 #bar {
@@ -977,9 +974,15 @@ Send Message
 	margin-top: 9px;
 }
 #send_message_scheduled { width: 295px }
-#sent_messages {
-	width: 100%;
-	margin-bottom: 50px;
+.sent_message {
+	font-size: 15px;
+	line-height: 18px;
+	margin-top: 3px;
+}
+.sent_message.time {
+	font-size: 12px;
+	color: #646464;
+	margin-top: 6px;
 }
 
 /* --------------------------------------------------------------
