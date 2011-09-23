@@ -909,6 +909,7 @@ Send Message
 .formwrap.list.destinations {
 	padding: 5px 8px 2px 8px;
 	margin-bottom: 10px;
+	min-height: 62px;
 }
 .formwrap.list:hover {
 	border-radius: 6px;
