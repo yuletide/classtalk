@@ -143,7 +143,7 @@ GEM
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.29)
+    tzinfo (0.3.30)
     vegas (0.1.8)
       rack (>= 1.0.0)
     warden (1.0.5)
