@@ -146,7 +146,7 @@ GEM
     tzinfo (0.3.30)
     vegas (0.1.8)
       rack (>= 1.0.0)
-    warden (1.0.5)
+    warden (1.0.6)
       rack (>= 1.0)
 
 PLATFORMS
