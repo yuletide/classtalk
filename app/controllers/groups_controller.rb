@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
       @page_title = "Your Groups"
       @groups = current_user.groups
       @group = @groups.first #TODO: remember what the user viewed the last time they were on the page
-      @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+      @messages = @group.logged_messages.unique_messages.order("created_at DESC").all
     end
 
     respond_to do |format|
@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 
   def show
     @group = current_user.groups.find(params[:id])
-    @messages = @group.logged_messages.unique_messages.order("created_at DESC")
+    @messages = @group.logged_messages.unique_messages.order("created_at DESC").all
     @page_title = @group.title
 
     respond_to do |format|
@@ -257,7 +257,16 @@ class GroupsController < ApplicationController
         end
       else
         message = (sent_by_admin ? group.user.display_name : sender.name)+": "+message
-        group.send_message(message,sender, sent_by_admin ? group.students : [group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
+
+        send_to = if sent_by_admin
+          group.students
+        elsif group.replies_all?
+          [group.user] + group.students - [sender]
+        else
+          [group.user]
+        end
+
+        group.send_message(message,sender, send_to)
       end
   end
 

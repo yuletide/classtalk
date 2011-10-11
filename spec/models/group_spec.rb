@@ -46,4 +46,26 @@ describe Group do
       @group.send_message("test message",@group.user)
     end
   end
+
+  describe "replies_all" do
+    before :each do
+      @student = FactoryGirl.create(:student)
+      @group.students << @student
+      $outbound_flocky=""
+    end
+
+    it "when updated, should inform students" do
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/settings.*changed.*everyone/,[@student.phone_number])
+      @group.update_attribute(:replies_all, true)
+
+      $outbound_flocky.should_receive(:message).with(@group.phone_number,/settings.*changed.*only/,[@student.phone_number])
+      @group.update_attribute(:replies_all, false)
+    end
+
+    it "when not updated when group is saved, should not notify students" do
+      @group.update_attribute(:title,"new group name")
+    end
+
+  end
+
 end
