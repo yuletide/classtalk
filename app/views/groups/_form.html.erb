@@ -20,6 +20,12 @@
     <%= f.label :description, "Group Description" %>
     <%= f.text_field :description %>
   </div>
+  <div class="field small">
+    <%= f.label :replies_all_false, "member replies are forwarded to you only" %>
+    <%= f.radio_button :replies_all, false %>
+    <%= f.label :replies_all_true, "member replies are forwarded to whole group" %>
+    <%= f.radio_button :replies_all, true %>
+  </div>
   <br>
   <div class="actions">
     <%= f.submit "Save", :class => "button" %>

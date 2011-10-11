@@ -257,7 +257,16 @@ class GroupsController < ApplicationController
         end
       else
         message = (sent_by_admin ? group.user.display_name : sender.name)+": "+message
-        group.send_message(message,sender, sent_by_admin ? group.students : [group.user]) #if a student sent it, just send it to teacher. if teacher sent it, push to group
+
+        send_to = if sent_by_admin
+          group.students
+        elsif group.replies_all?
+          [group.user] + group.students - [sender]
+        else
+          [group.user]
+        end
+
+        group.send_message(message,sender, send_to)
       end
   end
 

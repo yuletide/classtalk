@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110920000714) do
+ActiveRecord::Schema.define(:version => 20111011185045) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                             :default => "", :null => false
@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(:version => 20110920000714) do
     t.datetime "updated_at"
     t.string   "phone_number"
     t.string   "destination_phone_number"
+    t.boolean  "replies_all",              :default => false
   end
 
   create_table "logged_messages", :force => true do |t|
@@ -102,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20110920000714) do
     t.string   "username"
     t.integer  "item"
     t.string   "table"
-    t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "month"
+    t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

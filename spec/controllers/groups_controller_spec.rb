@@ -266,10 +266,25 @@ describe GroupsController do
         @group.user.save
       end
 
-      it "if sent from student, should send a message to teacher, and only the teacher" do
-        @group.students << FactoryGirl.create(:student)
-        $outbound_flocky.should_receive(:message).with(@group.phone_number,/goat/,[@teacher_num])
-        post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@group.students.first.phone_number, :message=>"I was told it was a giant mutant space goat!"}
+      describe "if sent from student" do
+        before :each do
+          @member2 = FactoryGirl.create(:student)
+          @group.students << @member2
+        end
+
+        it "if group.replies_all is false, should send to only the teacher" do
+          @group.replies_all = false
+          $outbound_flocky.should_receive(:message).with(@group.phone_number,/goat/,[@teacher_num])
+          post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@member1.phone_number, :message=>"I was told it was a giant mutant space goat!"}
+        end
+
+
+        it "if group.replies_all is true, should send to teacher & rest of the group" do
+          Group.skip_callback(:save, :before, :notify_reply_settings_changed) #we don't want to send notifications on replies_all_change, for this test.
+          @group.update_attribute(:replies_all,true)
+          $outbound_flocky.should_receive(:message).with(@group.phone_number,/goat/,[@teacher_num,@member2.phone_number])
+          post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@member1.phone_number, :message=>"I was told it was a giant mutant space goat!"}
+        end
       end
 
       it "if sent from teacher, should send a message to all group members" do

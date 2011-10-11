@@ -11,6 +11,8 @@ class Group < ActiveRecord::Base
   validates_phone_number :phone_number
   validates_phone_number :destination_phone_number
 
+  before_save :notify_reply_settings_changed
+
   def send_message(message,sending_person,recipients=nil)
 	begin
       recipients ||= students+[user] - [sending_person]
@@ -44,6 +46,19 @@ class Group < ActiveRecord::Base
 
     if recipient.email.present?
       #destination email send.
+    end
+  end
+
+  def notify_reply_settings_changed
+    if self.replies_all_changed?
+      message = "Reply settings for #{self.title} have changed. "
+      message += if self.replies_all? 
+        "Your replies will now be sent to everyone in the group."
+      else
+        "Your replies will be sent to #{user.display_name} only."
+      end
+
+      send_message(message,self.user)
     end
   end
 
