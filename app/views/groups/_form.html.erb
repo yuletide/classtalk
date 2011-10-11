@@ -11,20 +11,21 @@
     </div>
   <% end %>
 	<%= hidden_field :group, :user_id, :value => current_user.id %>
-
   <div class="field small">
-    <%= f.label :title, "Group Name" %>
+    <%= f.label :title, "Name" %>
     <%= f.text_field :title %>
   </div>
   <div class="field small">
-    <%= f.label :description, "Group Description" %>
+    <%= f.label :description, "Description" %>
     <%= f.text_field :description %>
   </div>
   <div class="field small">
-    <%= f.label :replies_all_false, "member replies are forwarded to you only" %>
+    <br>
+    <h5>When a Member Messages the Group:</h5>
     <%= f.radio_button :replies_all, false %>
-    <%= f.label :replies_all_true, "member replies are forwarded to whole group" %>
+    <%= f.label :replies_all_false, "Only you receive the message", :class => "inline" %><br>
     <%= f.radio_button :replies_all, true %>
+    <%= f.label :replies_all_true, "All members receive the message", :class => "inline" %>
   </div>
   <br>
   <div class="actions">
