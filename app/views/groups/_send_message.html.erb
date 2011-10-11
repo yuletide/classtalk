@@ -48,7 +48,7 @@
 					<%= f.submit "Send Later", :class => 'right button', :id => 'send_message_scheduled'%>
 				</div>
 			</div>
-			<div id="send_message_info">Message will be sent to <%= pluralize @group.students.count, "member" %> and replies will be returned only to you</div>
+			<div id="send_message_info">Message will be sent to <%= pluralize @group.students.count, "member" %> and replies will be <%= @group.replies_all? ? "forwarded to you, and all group members" : "returned only to you" %></div>
 		</span>
     </div>
   <%end%>
