@@ -282,6 +282,7 @@ describe GroupsController do
         it "if group.replies_all is true, should send to teacher & rest of the group" do
           Group.skip_callback(:save, :before, :notify_reply_settings_changed) #we don't want to send notifications on replies_all_change, for this test.
           @group.update_attribute(:replies_all,true)
+          Group.set_callback(:save, :before, :notify_reply_settings_changed) #set it back. this doesn't seem to be necessary locally, but does seem to be on travis.ci
           $outbound_flocky.should_receive(:message).with(@group.phone_number,/goat/,[@teacher_num,@member2.phone_number])
           post :receive_message, {:incoming_number=>@group.phone_number, :origin_number=>@member1.phone_number, :message=>"I was told it was a giant mutant space goat!"}
         end
