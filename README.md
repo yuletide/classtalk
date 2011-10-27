@@ -1,5 +1,5 @@
 # Class Talk
-A Ruby on Rails application for sending group text messaging
+A free Ruby on Rails application for sending group text messaging.
 
 ## <a name="ci">Continuous Integration</a>
 [![Build Status](https://secure.travis-ci.org/codeforamerica/classtalk.png)](http://travis-ci.org/codeforamerica/classtalk)

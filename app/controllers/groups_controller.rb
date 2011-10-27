@@ -159,7 +159,7 @@ class GroupsController < ApplicationController
     message = @group.user.display_name+": "+params[:message][:content] #TODO: safety, parsing, whatever.
     #TODO: ensure group found
 
-    if params[:commit].match /scheduled/i
+    if params[:commit].match /later/i
       scheduled_run = Time.zone.local(*params[:date].values_at(*%w{year month day hour}).map(&:to_i))
 
       #schedule 5 minutes early so we don't accidentally hit anything silly on cron job execution time
