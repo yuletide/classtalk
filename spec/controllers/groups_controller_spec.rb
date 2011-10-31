@@ -215,7 +215,7 @@ describe GroupsController do
       it "should send a message delayed-like" do
         $outbound_flocky.should_receive(:message).with(@group.phone_number,/test message/,an_instance_of(Array))
         #@group.should_receive(:delay) {@group} #I don't know how to test this properly - @group here won't receive the message - createds-in-crontroller-@group inside the controller will
-        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"1999",:month=>"12",:day=>"31",:hour=>"23"}}
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"Send Later", :date=>{:year=>"1999",:month=>"12",:day=>"31",:hour=>"23"}}
         Delayed::Job.last.should_not be_nil
         Delayed::Worker.new.work_off #send the delayed message
       end
@@ -224,13 +224,13 @@ describe GroupsController do
         @current_user.update_attribute(:time_zone,'Eastern Time (US & Canada)')
         sign_out @current_user
         sign_in @current_user
-        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"Send Later", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
         Delayed::Job.last.run_at.should == Time.parse("2011-01-01 16:55 -0000") #at that time, in UTC, minus the 5 minute 'wiggle room' period
 
         @current_user.update_attribute(:time_zone,'Pacific Time (US & Canada)')
         sign_out @current_user
         sign_in @current_user
-        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"send_scheduled", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
+        post :send_message, {:id=>@group.id, :message=>{:content=>"test message"}, :commit=>"Send Later", :date=>{:year=>"2011",:month=>"01",:day=>"01",:hour=>"12"}}
         Delayed::Job.last.run_at.should == Time.parse("2011-01-01 19:55 -0000")
       end
     end
