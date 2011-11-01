@@ -32,4 +32,16 @@ describe DestinationsController do
      end
 
    end
+
+   describe "responses" do
+     before(:each) do
+       @current_user = login
+       @group = FactoryGirl.create(:group,:user=>controller.current_user)
+       @destination = FactoryGirl.create(:destination, :group=>@group)
+     end
+
+     it "when requested in CSV format, should not fail" do
+       get :responses, {:group_id => @group.id, :id => @destination.id, :format => "csv"}
+     end
+   end
 end
