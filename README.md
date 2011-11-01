@@ -79,6 +79,7 @@ This library aims to support and is [tested
 against](http://travis-ci.org/codeforamerica/classtalk) the following
 Ruby implementations:
 
+* Ruby 1.8.7
 * Ruby 1.9.2
 * [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/)
 
