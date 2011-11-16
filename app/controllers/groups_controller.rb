@@ -221,7 +221,7 @@ class GroupsController < ApplicationController
 
   private
   def get_new_phone_number
-    r=$outbound_flocky.create_phone_number_synchronous("1617")
+    r=$outbound_flocky.create_phone_number_synchronous(nil)
     if r[:response].code == 200
       return r[:response].parsed_response["href"].match(/\+1(\d{10})/)[1] rescue nil
     end
