@@ -1,24 +1,28 @@
 require 'spec_helper'
 
 describe Destination do
-  before(:each) do
-    @destination = FactoryGirl.create(:destination)
-  end
+  context "validates :hashtag" do
+    before  { subject.hashtag = hashtag }
 
-  describe "hashtag" do
-    it "must be present" do
-      @destination.hashtag = nil
-      @destination.should_not be_valid
-      @destination.errors.keys.should be_include(:hashtag)
+    context "when nil" do
+      let(:hashtag) { nil }
+      it { should have_errors_on(:hashtag).with_message("can't be blank") }
     end
 
-    it "must not start with a #, and must strip leading '#' if given" do
-      #I don't know how to skip before_validation, to make sure it's actually invalid if it somehow gets through.
-      @destination.hashtag = "#myhashtag"
-      @destination.should be_valid
-      @destination.hashtag.should_not =~ /^#/
+    context "when blank" do
+      let(:hashtag) { "" }
+      it { should have_errors_on(:hashtag).with_message("can't be blank") }
     end
 
-  end
+    context "when preceded by a '#'" do
+      let(:hashtag) { "#myhashtag" }
 
+      it { should be_valid }
+
+      it "strips the hashtag" do
+        subject.valid?
+        subject.hashtag.should eql("myhashtag")
+      end
+    end
+  end
 end
