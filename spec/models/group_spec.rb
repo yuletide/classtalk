@@ -1,28 +1,41 @@
 require 'spec_helper'
 
 describe Group do
+
+  context "validates :phone_number" do
+    before { subject.phone_number = phone_number }
+
+    context "when nil" do
+      let(:phone_number) { nil }
+      it { should have_errors_on(:phone_number).with_message("can't be blank") }
+    end
+
+    context "when blank" do
+      let(:phone_number) { "" }
+      it { should have_errors_on(:phone_number).with_message("can't be blank") }
+    end
+
+    context "when non-numeric" do
+      let(:phone_number) { "abc123" }
+      it { should have_errors_on(:phone_number).with_message("phone number must be 10 digits, and of the form 'xxxxxxxxxx'") }
+    end
+
+    context "when formatted" do
+      let(:phone_number) { "(123) 456-7890" }
+      it { should_not have_errors_on(:phone_number) }
+    end
+
+    context "when unformatted" do
+      let(:phone_number) { "0123456789" }
+      it { should_not have_errors_on(:phone_number) }
+    end
+  end
+
   before(:all) do
     $outbound_flocky = '' unless $outbound_flocky
   end
   before(:each) do
     @group = FactoryGirl.create(:group)
-  end
-
-  describe "their phone number" do
-    it "may NOT be blank" do
-      @group.phone_number=nil
-      @group.should_not be_valid
-      @group.phone_number=""
-      @group.should_not be_valid
-    end
-    it "if present, must be valid" do
-      @group.phone_number="abc123"
-      @group.should_not be_valid
-      @group.phone_number="(123) 456-7890"
-      @group.should be_valid
-      @group.phone_number="1234567891"
-      @group.should be_valid
-    end
   end
 
   describe "send_message" do
@@ -34,8 +47,8 @@ describe Group do
     end
     it "should send emails to users without phone numbers" do
       $outbound_flocky.stub(:message)
-    	mailer = mock(:mail)
-    	mailer.should_receive(:deliver)
+      mailer = mock(:mail)
+      mailer.should_receive(:deliver)
       NotificationMailer.should_receive(:notification_email).with(/test message/,@email_student,@group).and_return(mailer)
       @group.send_message("test message",@group.user)
     end

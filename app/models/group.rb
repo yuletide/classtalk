@@ -8,13 +8,15 @@ class Group < ActiveRecord::Base
 
   accepts_nested_attributes_for :students, :allow_destroy=>true, :reject_if=>:all_blank
 
+  validates_presence_of :phone_number
+
   validates_phone_number :phone_number
   validates_phone_number :destination_phone_number
 
   before_save :notify_reply_settings_changed
 
   def send_message(message,sending_person,recipients=nil)
-	begin
+    begin
       recipients ||= students+[user] - [sending_person]
 
       #send sms messages to sms recipients
@@ -52,7 +54,7 @@ class Group < ActiveRecord::Base
   def notify_reply_settings_changed
     if self.replies_all_changed?
       message = "Reply settings for #{self.title} have changed. "
-      message += if self.replies_all? 
+      message += if self.replies_all?
         "Your replies will now be sent to everyone in the group."
       else
         "Your replies will be sent to #{user.display_name} only."

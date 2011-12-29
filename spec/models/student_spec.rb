@@ -1,47 +1,71 @@
 require 'spec_helper'
 
 describe Student do
-  before(:each) do
-    @student = FactoryGirl.create(:student)
-  end
 
-  describe "their phone number" do
-    it "must be 10 digits" do
-      @student.phone_number.scan(/\d/).length.should == 10
-    end
-    it "must be in the canonical format" do
-      @student.phone_number.should match(PhoneValidator::STORAGE_REGEX)
-    end
-    it "should automatically be converted to the canonical format, agnostic of valid-ish input" do
-      FactoryGirl.create(:student, :phone_number=>"(555) 123-4567").phone_number.should == "5551234567"
-    end
-    it "may not be unique, across different groups" do
-      FactoryGirl.build(:student,:phone_number=>@student.phone_number,:group_id=>3).should be_valid
-    end
-    it "must be unique in a group" do
-      FactoryGirl.build(:student,:phone_number=>@student.phone_number,:group_id=>@student.group_id).should_not be_valid
+  context "validates :phone_number" do
+    let(:email) { nil }
+
+    before do
+      subject.phone_number = phone_number
+      subject.email        = email
     end
 
-    it "may be blank, if and only if an email is present" do
-      @student.phone_number = nil
-      @student.email = nil
-      @student.should_not be_valid
-      @student.email = "student@company.com"
-      @student.should be_valid
+    context "when :email is blank" do
+      context "when :phone_number is nil" do
+        let(:phone_number) { nil }
+        it { should have_errors_on(:base).with_message("either phone_number or email must be present") }
+      end
+
+      context "when :phone_number is blank" do
+        let(:phone_number) { "" }
+        it { should have_errors_on(:base).with_message("either phone_number or email must be present") }
+      end
+    end
+
+    context "when :email is present" do
+      let(:email) { "abc@def.com" }
+
+      context "when :phone_number is nil" do
+        let(:phone_number) { nil }
+        it { should_not have_errors_on(:phone_number) }
+      end
+
+      context "when :phone_number is blank" do
+        let(:phone_number) { "" }
+        it { should_not have_errors_on(:phone_number) }
+      end
+    end
+
+    context "when non-numeric" do
+      let(:phone_number) { "abc123" }
+      it { should have_errors_on(:phone_number).with_message("phone number must be 10 digits, and of the form 'xxxxxxxxxx'") }
+    end
+
+    context "when formatted" do
+      let(:phone_number) { "(123) 456-7890" }
+      it { should_not have_errors_on(:phone_number) }
+    end
+
+    context "when unformatted" do
+      let(:phone_number) { "0123456789" }
+      it { should_not have_errors_on(:phone_number) }
     end
   end
 
-  describe "their name" do
-    it "must be present" do
-      FactoryGirl.build(:student,:name=>nil).should_not be_valid
+  context "validates :name" do
+    before  { subject.name = name }
+
+    context "when nil" do
+      let(:name) { nil }
+      it { should have_errors_on(:name).with_message("can't be blank") }
     end
-    it "can't be set to blank" do
-      FactoryGirl.build(:student,:name=>"").should_not be_valid
-    end
-    it "might not be unique" do
-      FactoryGirl.create(:student,:name=>@student.name).should be_valid
+
+    context "when blank" do
+      let(:name) { "" }
+      it { should have_errors_on(:name).with_message("can't be blank") }
     end
   end
+
   describe "their group memberships" do
     pending "students can be members of no groups" do
     end
