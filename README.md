@@ -1,26 +1,32 @@
 # Class Talk
 A free Ruby on Rails application for sending group text messaging.
 
-## <a name="ci">Continuous Integration</a>
+## <a name="ci"></a>Continuous Integration
 [![Build Status](https://secure.travis-ci.org/codeforamerica/classtalk.png)](http://travis-ci.org/codeforamerica/classtalk)
 
-## <a name="demo">Demo</a>
+## <a name="dependencies"></a>Dependency Status
+[![Dependency Status](https://gemnasium.com/codeforamerica/classtalk.png?travis)][gemnasium]
+
+[gemnasium]: https://gemnasium.com/codeforamerica/classtalk
+
+
+## <a name="demo"</a>Demo
 You can see a running version of the application at
 [http://classtalk.org/](http://classtalk.org/).
 
-## <a name="installation">Installation</a>
+## <a name="installation"></a>Installation
     git clone git@github.com:codeforamerica/classtalk.git
     cd classtalk
     bundle install
     rake db:migrate
 
-## <a name="usage">Usage</a>
+## <a name="usage"></a>Usage
     rails server
 
 Users can't register, they can only be provisioned by admins.
 To provision, go to rails console, and issue User.create(:email=>"theiremail@place.ya"). They'll be sent a confirmation email (or in dev mode, it'll be printed in logs)
 
-## <a name="deploying">Deploying:</a>
+## <a name="deploying"></a>Deploying
 
 The following environment variables must be set:
 FLOCKY_TOKEN,FLOCKY_USERNAME,FLOCKY_PASSWORD,FLOCKY_APPNUM
@@ -33,15 +39,20 @@ App domain classtalk.org redirects from heroku URL using heroku config variable.
 on heroku, the following plugins are used:
 sendgrid, cloudmailin, cron
 
-Setting up incoming email
+Setting up incoming email:
+
 1) install the cloudmailin plugin on heroku
+
 2) look at 'heroku config' for your app, to get the username and password
+
 3) on cloudmailin.com, add the desired incoming domain as a custom domain
+
 4) on your DNS server, add 'clients.cloudmailin.net' as a CNAME for your desired subdomain/domain.
+
 resources: http://docs.cloudmailin.com/custom_domains, http://devcenter.heroku.com/articles/cloudmailin
 
 
-## <a name="contributing">Contributing</a>
+## <a name="contributing"></a>Contributing
 In the spirit of [free software](http://www.fsf.org/licensing/essays/free-sw.html), **everyone** is encouraged to help improve this project.
 
 Here are some ways *you* can contribute:
@@ -57,7 +68,7 @@ Here are some ways *you* can contribute:
 * by reviewing patches
 * [financially](https://secure.codeforamerica.org/page/contribute)
 
-## <a name="issues">Submitting an Issue</a>
+## <a name="issues"></a>Submitting an Issue
 We use the [GitHub issue tracker](https://github.com/codeforamerica/classtalk/issues) to track bugs and
 features. Before submitting a bug report or feature request, check to make sure it hasn't already
 been submitted. You can indicate support for an existing issuse by voting it up. When submitting a
@@ -65,7 +76,7 @@ bug report, please include a [Gist](https://gist.github.com/) that includes a st
 details that may be necessary to reproduce the bug, including your gem version, Ruby version, and
 operating system. Ideally, a bug report should include a pull request with failing specs.
 
-## <a name="pulls">Submitting a Pull Request</a>
+## <a name="pulls"></a>Submitting a Pull Request
 1. Fork the project.
 2. Create a topic branch.
 3. Implement your feature or bug fix.
@@ -74,14 +85,14 @@ operating system. Ideally, a bug report should include a pull request with faili
 6. Commit and push your changes.
 7. Submit a pull request. Please do not include changes to the gemspec or version file. (If you want to create your own version for some reason, please do so in a separate commit.)
 
-## <a name="rubies">Supported Rubies</a>
+## <a name="rubies"></a>Supported Rubies
 This library aims to support and is [tested
 against](http://travis-ci.org/codeforamerica/classtalk) the following
 Ruby implementations:
 
 * Ruby 1.8.7
 * Ruby 1.9.2
-* [Ruby Enterprise Edition](http://www.rubyenterpriseedition.com/)
+* Ruby 1.9.3
 
 If something doesn't work on one of these interpreters, it should be considered
 a bug.
@@ -97,7 +108,7 @@ implementation, you will be personally responsible for providing patches in a
 timely fashion. If critical issues for a particular implementation exist at the
 time of a major release, support for that Ruby version may be dropped.
 
-## <a name="copyright">Copyright</a>
+## <a name="copyright"></a>Copyright
 Copyright (c) 2011 Code for America.
 See [LICENSE](https://github.com/codeforamerica/classtalk/blob/master/LICENSE.md) for details.
 
