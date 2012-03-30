@@ -175,18 +175,20 @@ class GroupsController < ApplicationController
 
   #POST groups/receive_message, receives a message as a JSON post, and figures out what to do with it.
   def receive_message
-    params[:incoming_number] = $1 if params[:incoming_number]=~/^1(\d{10})$/
-    params[:origin_number] = $1 if params[:origin_number]=~/^1(\d{10})$/
+    _from = params[:session][:from][:id]
+    _to = params[:session][:to][:id]
+    _to = $1 if _to=~/^1(\d{10})$/
+    _from = $1 if _from=~/^1(\d{10})$/
 
-    if (@group=Group.find_by_phone_number(params[:incoming_number]))
-      sent_by_admin=@group.user.phone_number==params[:origin_number]
-      @sending_student = @group.students.find_by_phone_number(params[:origin_number])
+    if (@group=Group.find_by_phone_number(_to))
+      sent_by_admin=@group.user.phone_number==_from
+      @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       handle_group_message(@group,@sending_person,params[:message])
-    elsif (@group=Group.find_by_destination_phone_number(params[:incoming_number]))
-      sent_by_admin=@group.user.phone_number==params[:origin_number]
-      @sending_student = @group.students.find_by_phone_number(params[:origin_number])
+    elsif (@group=Group.find_by_destination_phone_number(_to))
+      sent_by_admin=@group.user.phone_number==_from
+      @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       handle_destination_message(@group,@sending_person,params[:message])
