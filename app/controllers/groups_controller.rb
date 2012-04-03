@@ -181,6 +181,7 @@ class GroupsController < ApplicationController
     _from = $1 if _from=~/^1(\d{10})$/
 
     if (@group=Group.find_by_phone_number(_to))
+      puts 'found user in group'
       sent_by_admin=@group.user.phone_number==_from
       @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
