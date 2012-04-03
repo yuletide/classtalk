@@ -183,13 +183,13 @@ class GroupsController < ApplicationController
     if (@group=Group.find_by_phone_number(_to))
       puts 'found group by phone'
       sent_by_admin=@group.user.phone_number==_from
-      puts 'admin? ' + sent_by_admin
+      puts 'admin? ' + sent_by_admin.to_s
       @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       handle_group_message(@group,@sending_person,params[:message])
     elsif (@group=Group.find_by_destination_phone_number(_to))
-      puts 'found group by destination??'
+      puts 'found group by destination'
       sent_by_admin=@group.user.phone_number==_from
       @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
