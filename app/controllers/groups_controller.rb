@@ -181,13 +181,15 @@ class GroupsController < ApplicationController
     _from = $1 if _from=~/^1(\d{10})$/
 
     if (@group=Group.find_by_phone_number(_to))
-      puts 'found user in group'
+      puts 'found group by phone'
       sent_by_admin=@group.user.phone_number==_from
+      puts 'admin? ' + sent_by_admin
       @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
 
       handle_group_message(@group,@sending_person,params[:message])
     elsif (@group=Group.find_by_destination_phone_number(_to))
+      puts 'found group by destination??'
       sent_by_admin=@group.user.phone_number==_from
       @sending_student = @group.students.find_by_phone_number(_from)
       @sending_person = sent_by_admin ? @group.user : @sending_student
@@ -236,6 +238,7 @@ class GroupsController < ApplicationController
   end
 
   def handle_group_message(group,sender,message)
+    puts 'group message'
     return unless [group,sender,message].all?(&:present?)
 
     sent_by_admin = (sender == group.user)
@@ -248,6 +251,7 @@ class GroupsController < ApplicationController
         end
       when /^\s*#(\w+)\s*$/
         unless sent_by_admin
+          puts 'hashtag detected: ' + $1
           hashtag = $1
           @destination = @group.destinations.find_by_hashtag(hashtag)
 
@@ -274,6 +278,7 @@ class GroupsController < ApplicationController
   end
 
   def handle_destination_message(group,sender,message)
+    puts 'destination message'
     return if (sender == group.user)
 
     #we have a student, make sure they're checked in to _a_ group
